@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "herencias",
   "version": "1.0.0",
   "description": "Sitio web de HerencIAs - Automatización con IA",
@@ -12,5 +12,3 @@
   "author": "HerencIAs",
   "license": "ISC"
 }
-</content>
-<parameter name="filePath">c:\FELIPE\herencias\package.json
