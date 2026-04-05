@@ -1,14 +1,19 @@
-﻿{
+{
   "name": "herencias",
   "version": "1.0.0",
   "description": "Sitio web de HerencIAs - Automatización con IA",
   "main": "index.html",
   "scripts": {
-    "dev": "echo 'No build needed for static site'",
-    "build": "echo 'No build needed for static site'",
-    "start": "echo 'No start needed for static site'"
+    "dev": "echo \"No build needed for static site\"",
+    "build": "echo \"No build needed for static site\"",
+    "start": "echo \"No start needed for static site\""
   },
-  "keywords": ["automatizacion", "ia", "procesos", "negocios"],
+  "keywords": [
+    "automatizacion",
+    "ia",
+    "procesos",
+    "negocios"
+  ],
   "author": "HerencIAs",
   "license": "ISC"
 }
