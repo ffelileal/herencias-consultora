@@ -93,7 +93,8 @@
     .modal-overlay{
       position:fixed;top:0;left:0;right:0;bottom:0;
       z-index:9999;
-      background:rgba(30,18,10,.65);
+      background:rgba(30,18,10,.88);
+      backdrop-filter:blur(8px);
       display:none;
       align-items:flex-start;justify-content:center;
       padding:24px 16px 40px;
@@ -119,8 +120,8 @@
     .mh-badge{display:inline-block;background:rgba(200,130,74,.22);color:var(--accent-s);font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:12px;}
     .mh h3{font-family:'DM Serif Display',serif;font-size:clamp(1.2rem,2.5vw,1.7rem);color:#fff;margin-bottom:7px;line-height:1.2;}
     .mh p{color:rgba(255,255,255,.58);font-size:.85rem;font-weight:300;line-height:1.6;max-width:480px;}
-    .modal-close{background:rgba(255,255,255,.12);border:none;color:rgba(255,255,255,.7);width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;margin-top:2px;}
-    .modal-close:hover{background:rgba(255,255,255,.22);color:#fff;}
+    .modal-close{background:rgba(255,255,255,.18);border:none;color:rgba(255,255,255,.9);width:38px;height:38px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;position:absolute;top:18px;right:18px;z-index:2;transition:background .2s;}
+    .modal-close:hover{background:rgba(255,255,255,.28);color:#fff;}
 
     /* Stepper */
     .stepper{display:flex;align-items:center;padding:16px 44px;border-bottom:1px solid var(--border);background:#F8F3ED;overflow-x:auto;gap:0;}
@@ -278,10 +279,12 @@
     .btn-send:hover{background:var(--brown-mid);transform:translateY(-1px);}
 
     /* Success */
-    .f-ok{display:none;text-align:center;padding:52px 24px;}
-    .f-ok-ico{width:60px;height:60px;background:var(--accent-l);border:2px solid var(--accent-s);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 18px;}
+    .f-ok,.f-loading{display:none;text-align:center;padding:52px 24px;}
+    .f-ok-ico,.f-loading-ico{width:60px;height:60px;background:var(--accent-l);border:2px solid var(--accent-s);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 18px;}
+    .f-loading-ico{animation:spin 1.1s linear infinite;}
     .f-ok h2{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--brown);margin-bottom:9px;}
-    .f-ok p{color:var(--soft);font-size:.9rem;line-height:1.7;max-width:380px;margin:0 auto;font-weight:300;}
+    .f-ok p,.f-loading p{color:var(--soft);font-size:.95rem;line-height:1.75;max-width:420px;margin:0 auto;font-weight:300;}
+    @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 
     /* Responsive */
     @media(max-width:700px){
@@ -309,9 +312,45 @@
     function closeModal(){
       var el=document.getElementById('modalOverlay');
       if(el){el.style.display='none';}
+      resetModalForm();
     }
     function overlayClick(e){
       if(e.target===document.getElementById('modalOverlay')) closeModal();
+    }
+    function resetModalForm(){
+      currentStep = 1;
+      selectedSector = '';
+      if (typeof showStep === 'function') {
+        showStep(1);
+      } else {
+        document.querySelectorAll('.fs').forEach(section => section.classList.remove('active'));
+        const step1 = document.getElementById('step1');
+        if (step1) step1.classList.add('active');
+      }
+      const fOk = document.getElementById('fOk');
+      if (fOk) fOk.style.display = 'none';
+      const fLoading = document.getElementById('fLoading');
+      if (fLoading) fLoading.style.display = 'none';
+      const progressFill = document.getElementById('progressFill');
+      if (progressFill) progressFill.style.width = '33%';
+      const stepLabel = document.getElementById('stepLabel');
+      if (stepLabel) stepLabel.textContent = (typeof stepLabels !== 'undefined' ? stepLabels[1] : 'Paso 1 de 3');
+      const dot0 = document.getElementById('dot0'); if (dot0) dot0.style.background = 'var(--accent)';
+      const dot1 = document.getElementById('dot1'); if (dot1) dot1.style.background = 'var(--border)';
+      const dot2 = document.getElementById('dot2'); if (dot2) dot2.style.background = 'var(--border)';
+      document.querySelectorAll('.pill').forEach(pill => pill.classList.remove('sel'));
+      const fields = ['nombre','negocio','whatsapp','prefijo','otroRubro','problema'];
+      fields.forEach(id => {
+        const field = document.getElementById(id);
+        if (field) field.value = id === 'prefijo' ? '+54' : '';
+      });
+      const otroField = document.getElementById('otroField');
+      if (otroField) otroField.style.display = 'none';
+      if (typeof showError === 'function') {
+        ['nombre','negocio','whatsapp','problema'].forEach(id => showError(id,false));
+      }
+      const errSector = document.getElementById('err-sector');
+      if (errSector) errSector.style.display = 'none';
     }
   </script>
 </head>
@@ -322,6 +361,7 @@
   <div class="logo">Herenc<span>IAs</span></div>
   <nav>
     <a href="#servicios">Servicios</a>
+    <a href="#precios">Precios</a>
     <a href="#como-funciona">Cómo funciona</a>
     <a href="#contacto">Contacto</a>
     <button class="nav-btn" onclick="openModal()">Iniciar diagnóstico</button>
@@ -340,7 +380,7 @@
 </div>
 
 <div class="stats">
-  <div class="stat"><div class="stat-num">8+</div><div class="stat-lbl">Tipos de automatización</div></div>
+  <div class="stat"><div class="stat-num">5+</div><div class="stat-lbl">Tipos de automatización</div></div>
   <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Soluciones a medida</div></div>
   <div class="stat"><div class="stat-num">PyMEs</div><div class="stat-lbl">Nuestro foco principal</div></div>
 </div>
@@ -374,39 +414,9 @@
     </div>
 
     <div class="srv-card">
-      <span class="srv-icon">📋</span>
-      <div class="srv-name">Seguimiento de presupuestos</div>
-      <div class="srv-desc">El sistema detecta cuándo un cliente no respondió un presupuesto y envía recordatorios automáticos en el momento justo, sin que nadie lo haga manualmente.</div>
-    </div>
-
-    <div class="srv-card">
-      <span class="srv-icon">📆</span>
-      <div class="srv-name">Agenda y turnos automáticos</div>
-      <div class="srv-desc">Los clientes reservan, modifican o cancelan turnos solos, sin necesidad de que alguien de tu equipo intervenga. Las confirmaciones y recordatorios se envían solos.</div>
-    </div>
-
-    <div class="srv-card">
-      <span class="srv-icon">📦</span>
-      <div class="srv-name">Gestión y seguimiento de pedidos</div>
-      <div class="srv-desc">Notifica automáticamente al cliente el estado de su pedido en cada etapa: preparación, despacho, en camino y entrega. Sin llamadas ni mensajes manuales.</div>
-    </div>
-
-    <div class="srv-card">
-      <span class="srv-icon">📊</span>
+      <span class="srv-icon">�</span>
       <div class="srv-name">Reportes automáticos de ventas</div>
       <div class="srv-desc">Generá informes diarios, semanales o mensuales de facturación, rendimiento y tendencias directamente desde tus datos — sin abrir una sola planilla.</div>
-    </div>
-
-    <div class="srv-card">
-      <span class="srv-icon">🧾</span>
-      <div class="srv-name">Facturación y registro contable</div>
-      <div class="srv-desc">Automatizá el registro de ventas, gastos y generación de facturas electrónicas al momento en que se realiza una transacción, sin carga manual de datos.</div>
-    </div>
-
-    <div class="srv-card">
-      <span class="srv-icon">📧</span>
-      <div class="srv-name">Campañas de email y WhatsApp</div>
-      <div class="srv-desc">Enviá mensajes segmentados a tus clientes en base a su comportamiento: compras previas, consultas sin respuesta, fechas importantes o inactividad.</div>
     </div>
 
     <div class="srv-card">
@@ -416,16 +426,75 @@
     </div>
 
     <div class="srv-card">
-      <span class="srv-icon">🛒</span>
-      <div class="srv-name">Recuperación de carritos abandonados</div>
-      <div class="srv-desc">Detecta cuando alguien no completó una compra y activa automáticamente una secuencia de mensajes para recuperar esa venta perdida.</div>
-    </div>
-
-    <div class="srv-card">
       <span class="srv-icon">⚙️</span>
       <div class="srv-name">Automatización personalizada</div>
       <div class="srv-desc">Si tu proceso no encaja en los anteriores, lo analizamos y diseñamos una solución a medida. Cada negocio es distinto — cada solución también.</div>
       <span class="srv-badge">A medida</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ PRECIOS ══ -->
+<section class="ls" id="precios">
+  <h2>Precios</h2>
+  <p>Sección informativa. No es un checkout ni permite pagos directos; aquí mostramos planes y valores de referencia para tu proyecto.</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:28px;justify-content:center;max-width:1000px;margin-left:auto;margin-right:auto;">
+
+    <!-- Plan Starter -->
+    <div class="srv-card" style="flex:1 1 320px;min-width:280px;border:2px solid var(--accent-s);padding:28px;background:var(--accent-l);">
+      <div class="srv-name" style="font-size:1.2rem;font-weight:600;margin-bottom:8px;color:var(--brown);">Plan 1 — Starter</div>
+      <div style="font-size:.95rem;color:var(--soft);margin-bottom:18px;">Precio: $120 – $200 USD</div>
+      <div style="font-weight:600;color:var(--brown);margin-bottom:10px;">Incluye:</div>
+      <ul style="list-style:none;padding:0;margin:0 0 18px;font-size:.92rem;color:var(--text);line-height:1.7;">
+        <li>• 1 workflow n8n funcional</li>
+        <li>• 1 integración (WhatsApp, Sheets, Calendar, etc.)</li>
+        <li>• Entrega en 3–5 días hábiles</li>
+        <li>• 1 ronda de ajustes incluida</li>
+        <li>• Soporte por WhatsApp 7 días post-entrega</li>
+      </ul>
+      <div style="font-weight:600;color:var(--brown);margin-bottom:10px;">No incluye:</div>
+      <ul style="list-style:none;padding:0;margin:0;font-size:.92rem;color:var(--text);line-height:1.7;">
+        <li>• Agente IA conversacional</li>
+        <li>• Integraciones complejas</li>
+      </ul>
+    </div>
+
+    <!-- Plan Profesional -->
+    <div class="srv-card" style="flex:1 1 320px;min-width:280px;border:2px solid var(--accent);padding:28px;background:#fff;">
+      <div class="srv-name" style="font-size:1.2rem;font-weight:600;margin-bottom:8px;color:var(--brown);">Plan 2 — Profesional</div>
+      <div style="font-size:.95rem;color:var(--soft);margin-bottom:18px;">Precio: $350 – $600 USD</div>
+      <div style="font-weight:600;color:var(--brown);margin-bottom:10px;">Incluye:</div>
+      <ul style="list-style:none;padding:0;margin:0 0 18px;font-size:.92rem;color:var(--text);line-height:1.7;">
+        <li>• Agente IA conversacional (WhatsApp / web)</li>
+        <li>• 2–4 integraciones (CRM, Calendar, Sheets, etc.)</li>
+        <li>• Sistema de memoria de conversación</li>
+        <li>• Panel de control básico (Google Sheets)</li>
+        <li>• 2 rondas de ajustes</li>
+        <li>• Soporte 30 días</li>
+        <li>• Capacitación de 1 hora</li>
+      </ul>
+      <div style="font-size:.92rem;color:var(--soft);">Entrega: 7–14 días</div>
+    </div>
+
+    <!-- Plan Completo -->
+    <div class="srv-card" style="flex:1 1 320px;min-width:280px;border:2px solid var(--border);padding:28px;background:var(--warm);">
+      <div class="srv-name" style="font-size:1.2rem;font-weight:600;margin-bottom:8px;color:var(--brown);">Plan 3 — Sistema Completo</div>
+      <div style="font-size:.95rem;color:var(--soft);margin-bottom:18px;">Precio: $800 – $1500 USD</div>
+      <div style="font-weight:600;color:var(--brown);margin-bottom:10px;">Incluye:</div>
+      <ul style="list-style:none;padding:0;margin:0 0 18px;font-size:.92rem;color:var(--text);line-height:1.7;">
+        <li>• Múltiples agentes IA coordinados</li>
+        <li>• 5+ integraciones entre sistemas</li>
+        <li>• Automatización de área completa</li>
+        <li>• Dashboard de métricas en tiempo real</li>
+        <li>• Ajustes ilimitados</li>
+        <li>• Soporte 60 días</li>
+        <li>• Capacitación completa del equipo</li>
+      </ul>
+      <div style="font-size:.92rem;color:var(--soft);">Entrega: 3–6 semanas</div>
     </div>
 
   </div>
@@ -477,7 +546,7 @@
   <p>¿Tenés dudas antes de arrancar? Escribinos directamente.</p>
   <div class="contact-card">
     <div class="contact-row"><span class="lbl">Empresa</span><span>HerencIAs</span></div>
-    <div class="contact-row"><span class="lbl">Email</span><a href="mailto:info@herencias.com.ar">info@herencias.com.ar</a></div>
+    <div class="contact-row"><span class="lbl">Email</span><a href="mailto:herencias.asist@gmail.com">herencias.asist@gmail.com</a></div>
     <div class="contact-row"><span class="lbl">Ubicación</span><span>Córdoba, Argentina</span></div>
   </div>
 </section>
@@ -493,13 +562,13 @@
     <h3>Almacenamiento y seguridad</h3>
     <p>La información es tratada de manera confidencial y almacenada con medidas de seguridad razonables para protegerla de accesos no autorizados.</p>
     <h3>Derechos del usuario</h3>
-    <p>Podés solicitar acceso, rectificación o eliminación de tus datos en cualquier momento escribiendo a <a href="mailto:info@herencias.com.ar" style="color:var(--accent);">info@herencias.com.ar</a>.</p>
+    <p>Podés solicitar acceso, rectificación o eliminación de tus datos en cualquier momento escribiendo a <a href="mailto:herencias.asist@gmail.com" style="color:var(--accent);">herencias.asist@gmail.com</a>.</p>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <strong>HerencIAs</strong> · Córdoba, Argentina · <a href="mailto:info@herencias.com.ar" style="color:var(--accent);text-decoration:none;">info@herencias.com.ar</a><br/>
+  <strong>HerencIAs</strong> · Córdoba, Argentina · <a href="mailto:herencias.asist@gmail.com" style="color:var(--accent);text-decoration:none;">herencias.asist@gmail.com</a><br/>
   <span style="margin-top:6px;display:inline-block;">© 2025 HerencIAs. Todos los derechos reservados.</span>
 </footer>
 
@@ -520,306 +589,113 @@
       </div>
     </div>
 
-    <div class="stepper" id="stepper"></div>
+    <!-- Progress bar -->
+    <div class="prog-bar" style="padding:11px 44px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);background:var(--cream);">
+      <div style="flex:1;height:4px;background:var(--border);border-radius:100px;overflow:hidden;"><div class="prog-fill" id="progressFill" style="height:100%;background:var(--accent);border-radius:100px;transition:width .5s cubic-bezier(.4,0,.2,1);width:33%;"></div></div>
+      <span id="stepLabel" style="font-size:11px;font-weight:500;color:var(--soft);min-width:60px;text-align:right;">Paso 1 de 3</span>
+    </div>
 
-    <div class="prog-bar">
-      <span class="prog-lbl" id="progLbl">Paso 1 de 9</span>
-      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
-      <span class="prog-pct" id="progPct">0%</span>
+    <!-- Steps dots -->
+    <div style="display:flex;gap:6px;padding:16px 44px;align-items:center;">
+      <div class="step-dot active" id="dot0" style="width:6px;height:6px;border-radius:50%;background:var(--accent);transition:all 0.3s ease;"></div>
+      <div class="step-dot" id="dot1" style="width:6px;height:6px;border-radius:50%;background:var(--border);transition:all 0.3s ease;"></div>
+      <div class="step-dot" id="dot2" style="width:6px;height:6px;border-radius:50%;background:var(--border);transition:all 0.3s ease;"></div>
     </div>
 
     <div class="fb">
 
-      <!-- ─── PASO 1 · IDENTIFICACIÓN ─── -->
-      <div class="fs active" id="fs1">
+      <!-- STEP 1: Datos personales -->
+      <div class="fs active" id="step1">
         <div class="fs-head">
-          <div class="fs-eyebrow"><span>🏢 · Paso 1 de 9 · Identificación</span></div>
-          <h4>Datos del negocio y del proceso</h4>
-          <p>Necesitamos saber quién sos y qué proceso vamos a mapear.</p>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿Con quién hablamos?</h4>
         </div>
-        <div class="two-col">
-          <div class="fc"><div class="fc-label"><span class="req">*</span>Nombre del negocio</div><input type="text" id="g-negocio" placeholder="Ej: Peluquería Sofía"/></div>
-          <div class="fc"><div class="fc-label"><span class="req">*</span>Tu nombre</div><input type="text" id="g-nombre" placeholder="Ej: Sofía Martínez"/></div>
-        </div>
-        <div class="two-col">
-          <div class="fc"><div class="fc-label"><span class="req">*</span>Email de contacto</div><input type="email" id="g-email" placeholder="sofia@negocio.com"/></div>
-          <div class="fc"><div class="fc-label">Teléfono</div><input type="tel" id="g-tel" placeholder="+54 9 351 000 0000"/></div>
-        </div>
+
         <div class="fc">
-          <div class="fc-label"><span class="req">*</span>¿Cómo llamarías a este proceso?</div>
-          <div class="fc-hint">Un nombre corto y descriptivo. Ej: <strong>"Venta por WhatsApp"</strong>, <strong>"Atención de reclamos"</strong>, <strong>"Registro de gastos"</strong>.</div>
-          <input type="text" id="g-proceso" placeholder="Nombre del proceso..."/>
+          <div class="fc-label"><span class="req">*</span>Tu nombre</div>
+          <input type="text" id="nombre" placeholder="Ej: María González" autocomplete="given-name">
+          <div class="fc-hint" id="err-nombre" style="display:none;background:#fff8f8;border-left-color:#c0392b;color:#c0392b;margin-top:5px;">Ingresá tu nombre</div>
         </div>
+
         <div class="fc">
-          <div class="fc-label"><span class="req">*</span>¿A qué área del negocio pertenece?</div>
-          <div class="pills" id="areaPills">
-            <label class="pill" onclick="selPill(this,'area')"><input type="radio" name="area" value="ventas"> 🛒 Ventas</label>
-            <label class="pill" onclick="selPill(this,'area')"><input type="radio" name="area" value="atencion"> 💬 Atención al cliente</label>
-            <label class="pill" onclick="selPill(this,'area')"><input type="radio" name="area" value="marketing"> 📣 Marketing</label>
-            <label class="pill" onclick="selPill(this,'area')"><input type="radio" name="area" value="admin"> 📊 Administración</label>
-            <label class="pill" onclick="selPill(this,'area')"><input type="radio" name="area" value="logistica"> 📦 Logística</label>
-            <label class="pill" onclick="selPill(this,'area')"><input type="radio" name="area" value="otro"> ➕ Otro</label>
+          <div class="fc-label"><span class="req">*</span>Nombre del negocio</div>
+          <input type="text" id="negocio" placeholder="Ej: Inmobiliaria del Centro">
+          <div class="fc-hint" id="err-negocio" style="display:none;background:#fff8f8;border-left-color:#c0392b;color:#c0392b;margin-top:5px;">Ingresá el nombre del negocio</div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-label"><span class="req">*</span>WhatsApp de contacto</div>
+          <div class="two-col" style="display:grid;grid-template-columns:90px 1fr;gap:12px;">
+            <select id="prefijo" style="width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--text);background:var(--warm);outline:none;">
+              <option value="+54">🇦🇷 +54</option>
+              <option value="+598">🇺🇾 +598</option>
+              <option value="+56">🇨🇱 +56</option>
+              <option value="+591">🇧🇴 +591</option>
+              <option value="+595">🇵🇾 +595</option>
+            </select>
+            <input type="tel" id="whatsapp" placeholder="Ej: 3512345678" autocomplete="tel" style="width:100%;">
           </div>
+          <div class="fc-hint" id="err-whatsapp" style="display:none;background:#fff8f8;border-left-color:#c0392b;color:#c0392b;margin-top:5px;">Ingresá un número válido</div>
         </div>
-        <div class="fc" id="areaOtroW" style="display:none;">
-          <div class="fc-label">Especificá el área</div>
-          <input type="text" id="g-areaOtro" placeholder="Ej: Recursos Humanos, Producción..."/>
-        </div>
-        <div class="fnav"><div></div><button class="btn-fwd" onclick="go(1,2)">Continuar →</button></div>
+
+        <div class="fnav"><div></div><button class="btn-fwd" onclick="goNext(1)">Siguiente →</button></div>
       </div>
 
-      <!-- ─── PASO 2 · EVENTO DE INICIO ─── -->
-      <div class="fs" id="fs2">
+      <!-- STEP 2: Sector -->
+      <div class="fs" id="step2">
         <div class="fs-head">
-          <div class="fs-eyebrow"><span>🟢 · Paso 2 de 9 · Evento de inicio</span></div>
-          <h4>¿Qué dispara este proceso?</h4>
-          <p>Todo proceso empieza con algo concreto. Necesitamos saber exactamente qué lo activa.</p>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿A qué se dedica tu negocio?</h4>
         </div>
 
-        <div class="fc">
-          <div class="fc-label"><span class="req">*</span>¿Qué hace que este proceso comience?</div>
-          <div class="fc-hint">Podés marcar más de una opción si aplica.</div>
-          <div class="opts">
-            <label class="opt" onclick="tog(this,'cb','trig')"><input type="checkbox" name="trig" value="msg"> 💬 Un cliente manda un mensaje (WhatsApp, Instagram, email, etc.)</label>
-            <label class="opt" onclick="tog(this,'cb','trig')"><input type="checkbox" name="trig" value="visita"> 🚪 Un cliente visita el local o llama por teléfono</label>
-            <label class="opt" onclick="tog(this,'cb','trig')"><input type="checkbox" name="trig" value="web"> 🌐 Llega un pedido desde la página web o tienda online</label>
-            <label class="opt" onclick="tog(this,'cb','trig')"><input type="checkbox" name="trig" value="interno"> 👤 Alguien de la empresa lo inicia manualmente</label>
-            <label class="opt" onclick="tog(this,'cb','trig')"><input type="checkbox" name="trig" value="tiempo"> 🕐 Se activa en un día u hora fija (cierre de mes, fin de turno, etc.)</label>
-            <label class="opt" onclick="tog(this,'cb','trig')"><input type="checkbox" name="trig" value="sistema"> ⚙️ Un sistema lo dispara automáticamente</label>
-            <label class="opt" onclick="tog(this,'cb','trig')"><input type="checkbox" name="trig" value="otro-trig"> ➕ Otro</label>
-          </div>
+        <div class="opts-2" id="pillGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;">
+          <label class="pill" onclick="selectPill(this, 'Inmobiliaria')"><input type="radio" name="sector" value="Inmobiliaria" style="display:none;"> 🏠 Inmobiliaria</label>
+          <label class="pill" onclick="selectPill(this, 'Clínica / salud')"><input type="radio" name="sector" value="Clínica / salud" style="display:none;"> 🏥 Clínica / salud</label>
+          <label class="pill" onclick="selectPill(this, 'Alquiler vacacional')"><input type="radio" name="sector" value="Alquiler vacacional" style="display:none;"> 🏖️ Alquiler vacacional</label>
+          <label class="pill" onclick="selectPill(this, 'Comercio / retail')"><input type="radio" name="sector" value="Comercio / retail" style="display:none;"> 🛍️ Comercio / retail</label>
+          <label class="pill" onclick="selectPill(this, 'Estudio contable / legal')"><input type="radio" name="sector" value="Estudio contable / legal" style="display:none;"> 📊 Contable / legal</label>
+          <label class="pill" onclick="selectPill(this, 'Otro')"><input type="radio" name="sector" value="Otro" style="display:none;"> ⚡ Otro rubro</label>
         </div>
-        <div class="fc">
-          <div class="fc-label"><span class="req">*</span>Describí con tus palabras cómo empieza exactamente</div>
-          <div class="fc-hint">Ej: <strong>"El cliente escribe 'hola' por WhatsApp preguntando si hay turnos disponibles para el sábado"</strong>.</div>
-          <textarea id="ini-desc" placeholder="Describí el inicio del proceso..."></textarea>
+        <div class="fc-hint" id="err-sector" style="display:none;background:#fff8f8;border-left-color:#c0392b;color:#c0392b;margin-bottom:12px;">Seleccioná un rubro</div>
+
+        <div class="fc" id="otroField" style="display:none;">
+          <div class="fc-label">¿Cuál es tu rubro?</div>
+          <input type="text" id="otroRubro" placeholder="Describí brevemente a qué se dedica">
         </div>
-        <div class="fc">
-          <div class="fc-label"><span class="req">*</span>¿Quién o qué dispara el proceso?</div>
-          <div class="opts opts-2">
-            <label class="opt" onclick="tog(this,'radio','actor-ini')"><input type="radio" name="actor-ini" value="cliente"> Cliente externo</label>
-            <label class="opt" onclick="tog(this,'radio','actor-ini')"><input type="radio" name="actor-ini" value="empleado"> Empleado / equipo interno</label>
-            <label class="opt" onclick="tog(this,'radio','actor-ini')"><input type="radio" name="actor-ini" value="sistema-auto"> Sistema automático</label>
-            <label class="opt" onclick="tog(this,'radio','actor-ini')"><input type="radio" name="actor-ini" value="tiempo-fecha"> Tiempo / fecha programada</label>
-          </div>
-        </div>
-        <div class="fc">
-          <div class="fc-label">¿Qué información llega al inicio del proceso?</div>
-          <div class="fc-hint">Datos que ya vienen desde el disparador. Ej: nombre del cliente, producto consultado, número de pedido.</div>
-          <textarea id="ini-datos" placeholder="Ej: Nombre del cliente, producto que consulta, canal por el que llegó..." style="min-height:60px;"></textarea>
-        </div>
+
         <div class="fnav">
           <button class="btn-back" onclick="go(2,1)">← Atrás</button>
-          <button class="btn-fwd" onclick="go(2,3)">Continuar →</button>
+          <button class="btn-fwd" onclick="goNext(2)">Siguiente →</button>
         </div>
       </div>
 
-      <!-- ─── PASO 3 · PARTICIPANTES ─── -->
-      <div class="fs" id="fs3">
+      <!-- STEP 3: Problema -->
+      <div class="fs" id="step3">
         <div class="fs-head">
-          <div class="fs-eyebrow"><span>👥 · Paso 3 de 9 · Participantes</span></div>
-          <h4>¿Quiénes intervienen en este proceso?</h4>
-          <p>Cada participante se convierte en un carril separado del diagrama.</p>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿Qué problema querés resolver?</h4>
         </div>
 
         <div class="fc">
-          <div class="fc-label"><span class="req">*</span>Agregá todos los que participan en este proceso</div>
-          <div class="fc-hint">Indicá nombre o rol de cada uno, y si es una persona interna, un cliente/externo, o un sistema.</div>
-          <div id="partContainer"></div>
-          <button class="add-btn" onclick="addPart()">＋ Agregar participante</button>
-        </div>
-        <div class="fc">
-          <div class="fc-label">¿Qué herramientas o sistemas participan?</div>
-          <div class="opts opts-2">
-            <label class="opt" onclick="tog(this,'cb','sis')"><input type="checkbox" name="sis" value="whatsapp"> WhatsApp</label>
-            <label class="opt" onclick="tog(this,'cb','sis')"><input type="checkbox" name="sis" value="excel"> Excel / Google Sheets</label>
-            <label class="opt" onclick="tog(this,'cb','sis')"><input type="checkbox" name="sis" value="crm"> CRM / sistema de clientes</label>
-            <label class="opt" onclick="tog(this,'cb','sis')"><input type="checkbox" name="sis" value="mp"> Mercado Pago / cobro online</label>
-            <label class="opt" onclick="tog(this,'cb','sis')"><input type="checkbox" name="sis" value="redes"> Instagram / redes sociales</label>
-            <label class="opt" onclick="tog(this,'cb','sis')"><input type="checkbox" name="sis" value="soft"> Software contable / facturación</label>
-            <label class="opt" onclick="tog(this,'cb','sis')"><input type="checkbox" name="sis" value="sin-sis"> Sin sistema — todo manual</label>
-            <label class="opt" onclick="tog(this,'cb','sis')"><input type="checkbox" name="sis" value="otro-sis"> Otro</label>
-          </div>
-        </div>
-        <div class="fc">
-          <div class="fc-label">Si usás otro sistema, describilo</div>
-          <input type="text" id="otro-sis-txt" placeholder="Ej: Sistema propio de gestión de turnos"/>
-        </div>
-        <div class="fnav">
-          <button class="btn-back" onclick="go(3,2)">← Atrás</button>
-          <button class="btn-fwd" onclick="go(3,4)">Continuar →</button>
-        </div>
-      </div>
-
-      <!-- ─── PASO 4 · FLUJO DE TAREAS ─── -->
-      <div class="fs" id="fs4">
-        <div class="fs-head">
-          <div class="fs-eyebrow"><span>⚙️ · Paso 4 de 9 · Flujo de tareas</span></div>
-          <h4>¿Cuáles son los pasos del proceso?</h4>
-          <p>Describí cada acción que se realiza, en el orden en que ocurre. No omitas nada aunque te parezca obvio.</p>
-        </div>
-
-        <div class="fc">
-          <div class="fc-label"><span class="req">*</span>Pasos del proceso — en orden</div>
-          <div class="fc-hint">Los pasos de ejemplo ya están cargados para orientarte. Editálos según tu proceso real y agregá los que falten.</div>
-          <div id="tasksContainer"></div>
-          <button class="add-btn" onclick="addTask()">＋ Agregar paso</button>
-        </div>
-        <div class="fnav">
-          <button class="btn-back" onclick="go(4,3)">← Atrás</button>
-          <button class="btn-fwd" onclick="go(4,5)">Continuar →</button>
-        </div>
-      </div>
-
-      <!-- ─── PASO 5 · DECISIONES ─── -->
-      <div class="fs" id="fs5">
-        <div class="fs-head">
-          <div class="fs-eyebrow"><span>🔀 · Paso 5 de 9 · Decisiones</span></div>
-          <h4>¿En qué momentos el proceso puede tomar distintos rumbos?</h4>
-          <p>Cada vez que hay que elegir entre dos o más caminos, eso es una decisión.</p>
-        </div>
-
-        <div class="fc">
-          <div class="fc-label">Decisiones del proceso</div>
-          <div class="fc-hint">Si el proceso es siempre lineal y no tiene bifurcaciones, podés dejar esta sección vacía y avanzar.</div>
-          <div id="gwContainer"></div>
-          <button class="add-btn" onclick="addGw()">＋ Agregar decisión</button>
-        </div>
-        <div class="fnav">
-          <button class="btn-back" onclick="go(5,4)">← Atrás</button>
-          <button class="btn-fwd" onclick="go(5,6)">Continuar →</button>
-        </div>
-      </div>
-
-      <!-- ─── PASO 6 · ESPERAS ─── -->
-      <div class="fs" id="fs6">
-        <div class="fs-head">
-          <div class="fs-eyebrow"><span>⏳ · Paso 6 de 9 · Esperas y pausas</span></div>
-          <h4>¿En qué momentos el proceso se detiene a esperar algo?</h4>
-          <p>Momentos donde el proceso queda en pausa hasta que alguien o algo responde.</p>
-        </div>
-
-        <div class="fc">
-          <div class="fc-label">Esperas del proceso</div>
-          <div class="fc-hint">Si el proceso no tiene esperas (es todo continuo), avanzá sin completar esta sección.</div>
-          <div id="waitsContainer"></div>
-          <button class="add-btn" onclick="addWait()">＋ Agregar espera o pausa</button>
-        </div>
-        <div class="fnav">
-          <button class="btn-back" onclick="go(6,5)">← Atrás</button>
-          <button class="btn-fwd" onclick="go(6,7)">Continuar →</button>
-        </div>
-      </div>
-
-      <!-- ─── PASO 7 · ERRORES ─── -->
-      <div class="fs" id="fs7">
-        <div class="fs-head">
-          <div class="fs-eyebrow"><span>⚠️ · Paso 7 de 9 · Errores y excepciones</span></div>
-          <h4>¿Qué puede salir mal y en qué paso?</h4>
-          <p>Los problemas frecuentes y los caminos alternativos que se toman cuando ocurren.</p>
-        </div>
-
-        <div class="fc">
-          <div class="fc-label">Errores y excepciones conocidos</div>
-          <div class="fc-hint">Pensá en situaciones que ocurren regularmente y complican el proceso.</div>
-          <div id="errContainer"></div>
-          <button class="add-btn" onclick="addErr()">＋ Agregar error o excepción</button>
-        </div>
-        <div class="fc">
-          <div class="fc-label">¿Hay algún error que directamente cancela el proceso?</div>
-          <div class="fc-hint">Ej: el cliente no paga en 48 hs → el pedido se cancela automáticamente.</div>
-          <textarea id="err-cancel" placeholder="Describí si hay algún error que termine el proceso por completo..." style="min-height:55px;"></textarea>
-        </div>
-        <div class="fnav">
-          <button class="btn-back" onclick="go(7,6)">← Atrás</button>
-          <button class="btn-fwd" onclick="go(7,8)">Continuar →</button>
-        </div>
-      </div>
-
-      <!-- ─── PASO 8 · EVENTO DE FIN ─── -->
-      <div class="fs" id="fs8">
-        <div class="fs-head">
-          <div class="fs-eyebrow"><span>🔴 · Paso 8 de 9 · Evento de fin</span></div>
-          <h4>¿Cómo y cuándo termina este proceso?</h4>
-          <p>Un proceso puede tener varios finales — el exitoso y los alternativos.</p>
-        </div>
-
-        <div class="fc">
-          <div class="fc-label"><span class="req">*</span>Fin exitoso — ¿Cómo termina cuando todo sale bien?</div>
-          <div class="end-block">
-            <div class="end-head"><span class="end-ok">✓ Fin exitoso</span></div>
-            <div class="end-grid">
-              <div><div class="fc-sub">¿Cuándo considerás que terminó?</div><input class="end-i" type="text" id="fin-cuando" placeholder="Ej: Cuando el cliente recibe el producto"/></div>
-              <div><div class="fc-sub">¿Qué resultado concreto queda?</div>
-                <select class="end-s" id="fin-resultado">
-                  <option value="">Seleccioná...</option>
-                  <option>Pago confirmado</option>
-                  <option>Pedido entregado</option>
-                  <option>Registro / documento guardado</option>
-                  <option>Cliente notificado / conforme</option>
-                  <option>Tarea completada en el sistema</option>
-                  <option>Otro</option>
-                </select>
-              </div>
-            </div>
-            <div style="margin-top:7px;"><div class="fc-sub">Descripción del resultado final</div>
-              <textarea class="end-ta" id="fin-desc" placeholder="Ej: El pedido queda marcado como entregado, el cliente recibe una confirmación por WhatsApp y el pago se acredita en el sistema."></textarea>
-            </div>
-          </div>
-        </div>
-        <div class="fc">
-          <div class="fc-label">Fines alternativos — ¿Hay otros modos en que puede terminar?</div>
-          <div class="fc-hint">Ej: cliente cancela, pago rechazado, sin stock, sin respuesta. Cada uno es un <strong>End Event</strong> distinto en el diagrama.</div>
-          <div id="altEndsContainer"></div>
-          <button class="add-btn" onclick="addAltEnd()">＋ Agregar fin alternativo</button>
-        </div>
-        <div class="fnav">
-          <button class="btn-back" onclick="go(8,7)">← Atrás</button>
-          <button class="btn-fwd" onclick="go(8,9)">Continuar →</button>
-        </div>
-      </div>
-
-      <!-- ─── PASO 9 · OTROS PROCESOS ─── -->
-      <div class="fs" id="fs9">
-        <div class="fs-head">
-          <div class="fs-eyebrow"><span>➕ · Paso 9 de 9 · Otros procesos</span></div>
-          <h4>¿Tenés más procesos que querés que analicemos?</h4>
-          <p>Si tu empresa tiene otros procesos que podrían mejorarse o automatizarse, podés listarlos acá con una breve descripción. Los analizamos en una segunda etapa — sin que tengas que completar el formulario entero de nuevo.</p>
-        </div>
-
-        <div class="fc" style="background:var(--accent-l);border-color:var(--accent-s);">
-          <div style="display:flex;gap:10px;align-items:flex-start;">
-            <span style="font-size:1.1rem;flex-shrink:0;margin-top:1px;">💡</span>
-            <p style="font-size:.82rem;color:var(--brown-mid);line-height:1.55;font-weight:300;">Muchas empresas tienen entre 3 y 8 procesos que se pueden automatizar. Al listarlos acá nos ahorramos reuniones previas — podemos enviarte una propuesta directa para cada uno.</p>
-          </div>
-        </div>
-
-        <div class="fc">
-          <div class="fc-label">Otros procesos a analizar</div>
-          <div class="fc-hint">Para cada proceso, indicá el nombre y una descripción breve de cómo funciona hoy. No necesitás entrar en detalles — eso lo completamos juntos después.</div>
-          <div id="extraProcsContainer"></div>
-          <button class="add-btn" onclick="addExtraProc()">＋ Agregar otro proceso</button>
-        </div>
-
-        <div class="fc">
-          <div class="fc-label">¿Algo más que quieras contarnos?</div>
-          <div class="fc-hint">Contexto general del negocio, urgencias, herramientas que ya usás, o cualquier cosa que creas importante.</div>
-          <textarea id="comentario" placeholder="Escribí libremente..." style="min-height:70px;"></textarea>
+          <div class="fc-label"><span class="req">*</span>Contanos brevemente</div>
+          <textarea id="problema" placeholder="Ej: Paso mucho tiempo respondiendo WhatsApp con las mismas preguntas. Querría que alguien lo hiciera por mí mientras atiendo otras cosas." style="min-height:76px;"></textarea>
+          <div class="fc-hint" id="err-problema" style="display:none;background:#fff8f8;border-left-color:#c0392b;color:#c0392b;margin-top:5px;">Contanos un poco sobre tu problema</div>
         </div>
 
         <div class="fnav">
-          <button class="btn-back" onclick="go(9,8)">← Atrás</button>
-          <button class="btn-send" onclick="submitForm()">Enviar diagnóstico →</button>
+          <button class="btn-back" onclick="go(3,2)">← Atrás</button>
+          <button class="btn-send" id="submitBtn" onclick="submitForm()" style="flex:1;">Quiero mi diagnóstico →</button>
         </div>
       </div>
 
       <!-- SUCCESS -->
-      <div class="f-ok" id="fOk">
+      <div class="f-ok" id="fOk" style="display:none;text-align:center;padding:52px 24px;">
         <div class="f-ok-ico">✓</div>
-        <h2>¡Diagnóstico recibido!</h2>
-        <p>Recibimos la información completa. En los próximos días te enviamos el diagrama BPMN del proceso principal y un análisis de oportunidades de automatización para todos los procesos que listaste.</p>
+        <h2>¡Gracias, <span id="successNombre"></span>!</h2>
+        <p id="finalMessage">Hemos recibido su información. En un plazo de 2 a 3 días nos contactaremos.</p>
       </div>
 
+      <div class="f-loading" id="fLoading" style="display:none;text-align:center;padding:52px 24px;">
+        <div class="f-loading-ico">⏳</div>
+        <p>Procesando tu diagnóstico...</p>
+      </div>
     </div><!-- /fb -->
   </div><!-- /modal -->
 </div><!-- /modal-overlay -->
@@ -833,283 +709,190 @@
     }
   </script>
   <script>
-const LABELS=['🏢 Datos','🟢 Inicio','👥 Partic.','⚙️ Tareas','🔀 Decisiones','⏳ Esperas','⚠️ Errores','🔴 Fin','➕ Más'];
-const TOTAL=LABELS.length;
-let cur=1;
-let pc=0,tc=0,gc=0,wc=0,ec=0,ac=0,xpc=0;
-let gwBranches={};
+    // ===============================
+    // FORMULARIO DE 3 PASOS
+    // ===============================
+    let currentStep = 1;
+    let selectedSector = '';
 
-// ── STEPPER ─────────────────────────────
-(function(){
-  const el=document.getElementById('stepper');
-  LABELS.forEach((l,i)=>{
-    const n=i+1,s=document.createElement('div');
-    s.className='st-step'+(n===1?' active':'');s.id='st'+n;
-    s.innerHTML=`<div class="st-circle">${n}</div><div class="st-label">${l}</div>`;
-    el.appendChild(s);
-    if(n<TOTAL){const ln=document.createElement('div');ln.className='st-line';ln.id='stl'+n;el.appendChild(ln);}
-  });
-})();
+    const progress = { 1: 33, 2: 66, 3: 100 };
+    const stepLabels = { 1: 'Paso 1 de 3', 2: 'Paso 2 de 3', 3: 'Paso 3 de 3' };
 
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+    function updateUI(step) {
+      // Progress bar
+      document.getElementById('progressFill').style.width = progress[step] + '%';
+      // Step label
+      document.getElementById('stepLabel').textContent = stepLabels[step];
+      // Dots
+      for (let i = 0; i < 3; i++) {
+        const dot = document.getElementById('dot' + i);
+        dot.className = 'step-dot';
+        dot.style.width = '6px';
+        dot.style.height = '6px';
+        dot.style.borderRadius = '50%';
+        dot.style.background = 'var(--border)';
+        if (i + 1 < step) {
+          dot.className = 'step-dot done';
+          dot.style.background = 'var(--border)';
+        }
+        if (i + 1 === step) {
+          dot.className = 'step-dot active';
+          dot.style.background = 'var(--accent)';
+        }
+      }
+    }
 
-// ── UI UPDATE ───────────────────────────
-function updateUI(){
-  const pct=Math.round(((cur-1)/(TOTAL-1))*100);
-  document.getElementById('progFill').style.width=pct+'%';
-  document.getElementById('progPct').textContent=pct+'%';
-  document.getElementById('progLbl').textContent=`Paso ${cur} de ${TOTAL}`;
-  LABELS.forEach((_,i)=>{
-    const n=i+1;
-    document.getElementById('st'+n).className='st-step'+(n<cur?' done':n===cur?' active':'');
-    if(n<TOTAL) document.getElementById('stl'+n).className='st-line'+(n<cur?' done':'');
-  });
-}
+    function goNext(from) {
+      if (from === 1) {
+        if (!validateStep1()) return;
+        showStep(2);
+      } else if (from === 2) {
+        if (!validateStep2()) return;
+        showStep(3);
+      }
+    }
 
-function go(from,to){
-  document.getElementById('fs'+from).classList.remove('active');
-  document.getElementById('fs'+to).classList.add('active');
-  cur=to; updateUI();
-  document.getElementById('modal').scrollTop=0;
-}
+    function go(from, to) {
+      showStep(to);
+    }
 
-// ── AREA OTRO ───────────────────────────
-document.querySelectorAll('[name="area"]').forEach(r=>r.addEventListener('change',()=>{
-  document.getElementById('areaOtroW').style.display=r.value==='otro'?'block':'none';
-}));
+    function goBack(from) {
+      showStep(from - 1);
+    }
 
-// ── GENERIC HELPERS ─────────────────────
-function tog(el,type,name){
-  if(type==='radio'){
-    document.querySelectorAll(`[name="${name}"]`).forEach(i=>i.closest('.opt')?.classList.remove('sel'));
-    el.classList.add('sel');
-    const i=el.querySelector('input[type="radio"]');if(i)i.checked=true;
-  } else {
-    el.classList.toggle('sel');
-    const i=el.querySelector('input[type="checkbox"]');if(i)i.checked=!i.checked;
-  }
-}
-function selPill(el,name){
-  document.querySelectorAll(`[name="${name}"]`).forEach(i=>i.closest('.pill')?.classList.remove('sel'));
-  el.classList.add('sel');
-  const inp=el.querySelector('input');
-  inp.checked=true;
-  inp.dispatchEvent(new Event('change',{bubbles:true}));
-}
-function rmEl(id){const e=document.getElementById(id);if(e)e.remove();}
+    function showStep(step) {
+      document.querySelectorAll('.fs').forEach(p => p.classList.remove('active'));
+      document.getElementById('step' + step).classList.add('active');
+      currentStep = step;
+      updateUI(step);
+    }
 
-// ── PARTICIPANTS ─────────────────────────
-function addPart(pre){
-  pc++;const n=pc;
-  const d=document.createElement('div');d.className='part-row';d.id='part-'+n;
-  d.innerHTML=`
-    <input class="part-inp" type="text" value="${pre?.nombre||''}" placeholder="Nombre o rol (Ej: Vendedor, Cliente, Sistema de cobro)"/>
-    <select class="part-sel">
-      <option value="">Tipo...</option>
-      <option${pre?.tipo==='interna'?' selected':''}>Persona interna</option>
-      <option${pre?.tipo==='externo'?' selected':''}>Cliente / externo</option>
-      <option${pre?.tipo==='sistema'?' selected':''}>Sistema / app</option>
-    </select>
-    <button class="rm-btn" onclick="rmEl('part-${n}')">✕</button>`;
-  document.getElementById('partContainer').appendChild(d);
-}
-addPart({nombre:'Cliente',tipo:'externo'});
-addPart({nombre:'',tipo:'interna'});
+    function selectPill(el, sector) {
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('sel'));
+      el.classList.add('sel');
+      selectedSector = sector;
+      document.getElementById('err-sector').style.display = 'none';
+      // Show/hide otro field
+      const otroField = document.getElementById('otroField');
+      otroField.style.display = sector === 'Otro' ? 'block' : 'none';
+      if (sector !== 'Otro') document.getElementById('otroRubro').value = '';
+    }
 
-// ── TASKS (con ejemplos contextuales) ───
-// Los ejemplos muestran un proceso de venta simple como referencia visual
-const TASK_EXAMPLES=[
-  {
-    desc:'El cliente envía un mensaje de WhatsApp preguntando por el servicio o producto.',
-    quien:'Cliente',tipo:'Manual — lo hace una persona',
-    output:'Consulta recibida por el vendedor.'
-  },
-  {
-    desc:'El vendedor revisa el mensaje y verifica la disponibilidad o el stock en el sistema.',
-    quien:'Vendedor',tipo:'Con sistema — persona + herramienta',
-    output:'Disponibilidad confirmada o descartada.'
-  },
-  {
-    desc:'El vendedor responde al cliente con la información, precio y opciones disponibles.',
-    quien:'Vendedor',tipo:'Manual — lo hace una persona',
-    output:'Cliente informado, pendiente de respuesta.'
-  }
-];
-const WHO_OPTS=['Cliente','Vendedor','Administrativo','Encargado','Recepcionista','Repartidor','Community manager','Diseñador','Dueño/Encargado','Sistema automático','Otro'];
-const TIPO_OPTS=['Manual — lo hace una persona','Con sistema — persona + herramienta','Automático — lo hace el sistema solo'];
+    function validateStep1() {
+      let ok = true;
+      const nombre = document.getElementById('nombre').value.trim();
+      const negocio = document.getElementById('negocio').value.trim();
+      const wa = document.getElementById('whatsapp').value.trim();
 
-function addTask(pre){
-  tc++;const n=tc;
-  const isEx=!!pre;
-  const d=document.createElement('div');d.className='task-row';d.id='task-'+n;
-  d.innerHTML=`
-    <div class="task-num">${n}</div>
-    <div class="task-body">
-      ${isEx?`<div class="task-example">💡 <strong>Ejemplo orientativo</strong> — editalo según tu proceso real</div>`:''}
-      <input class="task-inp" type="text" value="${isEx?pre.desc:''}" placeholder="Describí qué se hace en este paso. Ej: El vendedor responde al cliente con el precio y la disponibilidad del producto."/>
-      <div class="task-selects">
-        <select class="task-sel">
-          <option value="">¿Quién lo hace?</option>
-          ${WHO_OPTS.map(o=>`<option${isEx&&o===pre.quien?' selected':''}>${o}</option>`).join('')}
-        </select>
-        <select class="task-sel">
-          <option value="">¿Cómo se hace?</option>
-          ${TIPO_OPTS.map(o=>`<option${isEx&&o===pre.tipo?' selected':''}>${o}</option>`).join('')}
-        </select>
-      </div>
-      <div class="task-output-lbl">¿Qué resultado deja esta tarea antes de pasar a la siguiente? (opcional)</div>
-      <input class="task-out" type="text" value="${isEx?pre.output:''}" placeholder="Ej: Presupuesto enviado y pendiente de confirmación del cliente."/>
-    </div>
-    <button class="rm-btn" onclick="rmEl('task-${n}')" style="margin-top:2px;">✕</button>`;
-  document.getElementById('tasksContainer').appendChild(d);
-}
-TASK_EXAMPLES.forEach(e=>addTask(e));
+      if (!nombre) {
+        showError('nombre', true); ok = false;
+      } else showError('nombre', false);
 
-// ── GATEWAYS ────────────────────────────
-function addGw(){
-  gc++;const n=gc;gwBranches[n]=2;
-  const d=document.createElement('div');d.className='gw-block';d.id='gw-'+n;
-  d.innerHTML=`
-    <div class="gw-head">
-      <span class="gw-badge">Decisión ${n}</span>
-      <input class="gw-q" type="text" placeholder="¿Qué se decide? Ej: ¿El cliente acepta el presupuesto?"/>
-      <button class="rm-btn" onclick="rmEl('gw-${n}')">✕</button>
-    </div>
-    <div class="fc-hint" style="margin-bottom:8px;font-size:.73rem;">Para cada salida indicá la condición y a qué paso del proceso lleva (Paso 4).</div>
-    <div id="gwb-${n}">
-      ${mkBranch(n,1,'yes','SÍ')}
-      ${mkBranch(n,2,'no','NO')}
-    </div>
-    <span class="gw-add-branch" onclick="addBranch(${n})">＋ Otra salida posible</span>`;
-  document.getElementById('gwContainer').appendChild(d);
-}
-function mkBranch(gn,bn,cls,pre){
-  return `<div class="gw-branch-row" id="gwb-${gn}-${bn}">
-    <div class="gw-lbl ${cls}">${pre} →</div>
-    <div class="gw-inp">
-      <input type="text" placeholder="Condición (Ej: El cliente acepta)"/>
-      <input type="text" placeholder="¿A qué paso lleva? (Ej: Paso 5)"/>
-    </div>
-    ${bn>2?`<button class="rm-btn" onclick="rmEl('gwb-${gn}-${bn}')">✕</button>`:'<div style="width:26px;"></div>'}
-  </div>`;
-}
-function addBranch(gn){
-  gwBranches[gn]++;const bn=gwBranches[gn];
-  const c=document.getElementById('gwb-'+gn);
-  const t=document.createElement('div');
-  t.innerHTML=mkBranch(gn,bn,'other','OPT '+(bn-2));
-  c.appendChild(t.firstElementChild);
-}
+      if (!negocio) {
+        showError('negocio', true); ok = false;
+      } else showError('negocio', false);
 
-// ── WAITS ────────────────────────────────
-function addWait(){
-  wc++;const n=wc;
-  const d=document.createElement('div');d.className='wait-block';d.id='wait-'+n;
-  d.innerHTML=`
-    <div class="wait-ico">⏳</div>
-    <div class="wait-body">
-      <span class="wait-lbl">Espera ${n}</span>
-      <div class="wait-grid">
-        <div><div class="wait-sub">¿Después de qué paso ocurre?</div><input class="wait-inp" type="text" placeholder="Ej: Después del paso 3 — Enviar presupuesto"/></div>
-        <div><div class="wait-sub">¿Qué se espera?</div>
-          <select class="wait-sel">
-            <option value="">Seleccioná...</option>
-            <option>Respuesta del cliente</option>
-            <option>Confirmación de pago</option>
-            <option>Aprobación interna</option>
-            <option>Entrega de proveedor</option>
-            <option>Tiempo / fecha programada</option>
-            <option>Otro</option>
-          </select>
-        </div>
-        <div><div class="wait-sub">¿Cuánto tiempo máximo se espera?</div><input class="wait-inp" type="text" placeholder="Ej: 48 horas, 3 días hábiles"/></div>
-        <div><div class="wait-sub">¿Qué pasa si el tiempo se agota sin respuesta?</div><input class="wait-inp" type="text" placeholder="Ej: Se envía un recordatorio / se cancela el proceso"/></div>
-      </div>
-    </div>
-    <button class="rm-btn" onclick="rmEl('wait-${n}')">✕</button>`;
-  document.getElementById('waitsContainer').appendChild(d);
-}
+      if (!wa || wa.length < 8) {
+        showError('whatsapp', true); ok = false;
+      } else showError('whatsapp', false);
 
-// ── ERRORS ──────────────────────────────
-function addErr(){
-  ec++;const n=ec;
-  const d=document.createElement('div');d.className='err-block';d.id='err-'+n;
-  d.innerHTML=`
-    <div class="err-head">
-      <span class="err-badge">Error / Excepción ${n}</span>
-      <button class="rm-btn" style="margin-left:auto;" onclick="rmEl('err-${n}')">✕</button>
-    </div>
-    <div class="err-grid">
-      <div class="err-f"><label>¿Cuál es el problema?</label><input class="err-i" type="text" placeholder="Ej: El cliente no responde"/></div>
-      <div class="err-f"><label>¿En qué paso ocurre? (Nº del Paso 4)</label><input class="err-i" type="text" placeholder="Ej: Paso 3 — Enviar presupuesto"/></div>
-      <div class="err-f"><label>¿Con qué frecuencia ocurre?</label>
-        <select class="err-s">
-          <option value="">Seleccioná...</option>
-          <option>Muy frecuente (varios por día)</option>
-          <option>Frecuente (varias veces por semana)</option>
-          <option>Ocasional</option>
-          <option>Raro</option>
-        </select>
-      </div>
-      <div class="err-f"><label>¿Qué consecuencia tiene?</label>
-        <select class="err-s">
-          <option value="">Seleccioná...</option>
-          <option>El proceso se retrasa</option>
-          <option>Se toma un camino alternativo</option>
-          <option>El proceso se cancela</option>
-          <option>Hay que reiniciarlo</option>
-          <option>Se escala a otra persona</option>
-        </select>
-      </div>
-    </div>
-    <div class="err-full"><label>¿Qué se hace exactamente cuando ocurre?</label>
-      <input class="err-i" type="text" placeholder="Ej: Se espera 24 hs, se manda un seguimiento, y si no responde en 72 hs se archiva el caso."/>
-    </div>`;
-  document.getElementById('errContainer').appendChild(d);
-}
+      return ok;
+    }
 
-// ── ALT ENDS ────────────────────────────
-function addAltEnd(){
-  ac++;const n=ac;
-  const d=document.createElement('div');d.className='end-block';d.id='altend-'+n;
-  d.innerHTML=`
-    <div class="end-head">
-      <span class="end-alt">Fin alternativo ${n}</span>
-      <button class="rm-btn" style="margin-left:auto;" onclick="rmEl('altend-${n}')">✕</button>
-    </div>
-    <div class="end-grid">
-      <div><div class="fc-sub">¿Cómo termina en este caso?</div><input class="end-i" type="text" placeholder="Ej: El cliente cancela antes del pago"/></div>
-      <div><div class="fc-sub">¿Qué estado queda?</div>
-        <select class="end-s">
-          <option value="">Seleccioná...</option>
-          <option>Proceso cancelado</option>
-          <option>Pedido rechazado</option>
-          <option>Sin resolución / pendiente</option>
-          <option>Reintento programado</option>
-          <option>Derivado a otra área</option>
-          <option>Otro</option>
-        </select>
-      </div>
-    </div>`;
-  document.getElementById('altEndsContainer').appendChild(d);
-}
+    function validateStep2() {
+      if (!selectedSector) {
+        document.getElementById('err-sector').style.display = 'block';
+        return false;
+      }
+      if (selectedSector === 'Otro' && !document.getElementById('otroRubro').value.trim()) {
+        document.getElementById('otroRubro').classList.add('error');
+        return false;
+      }
+      return true;
+    }
 
-// ── EXTRA PROCESSES ─────────────────────
-function addExtraProc(){
-  xpc++;const n=xpc;
-  const d=document.createElement('div');d.className='extra-proc-row';d.id='xp-'+n;
-  d.innerHTML=`
-    <div class="extra-proc-n">${n}</div>
-    <div class="extra-proc-body">
-      <input class="extra-inp" type="text" placeholder="Nombre del proceso. Ej: Registro de gastos diarios, Seguimiento de clientes, Publicación en redes..."/>
-      <textarea class="extra-ta" placeholder="Descripción breve: ¿cómo empieza, quiénes participan, cómo termina? No hace falta entrar en detalle — eso lo vemos juntos."></textarea>
-    </div>
-    <button class="rm-btn" onclick="rmEl('xp-${n}')" style="margin-top:2px;">✕</button>`;
-  document.getElementById('extraProcsContainer').appendChild(d);
-}
-</script>
+    function showError(id, show) {
+      const input = document.getElementById(id);
+      const err = document.getElementById('err-' + id);
+      input.classList.toggle('error', show);
+      if (show) {
+        err.style.display = 'block';
+      } else {
+        err.style.display = 'none';
+      }
+    }
 
-<!-- ══ FORM HANDLER ══ -->
-<script src="js/form-handler.js"></script>
+    function submitForm() {
+      const problema = document.getElementById('problema').value.trim();
+      if (!problema || problema.length < 15) {
+        showError('problema', true);
+        return;
+      }
+      showError('problema', false);
+
+      const btn = document.getElementById('submitBtn');
+      const originalText = btn.textContent;
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+
+      const data = {
+        to_email: 'herencias.asist@gmail.com',
+        from_name: document.getElementById('nombre').value.trim(),
+        from_email: 'web@herencias.com',
+        negocio: document.getElementById('negocio').value.trim(),
+        whatsapp: document.getElementById('prefijo').value + document.getElementById('whatsapp').value.trim(),
+        sector: selectedSector === 'Otro' ? document.getElementById('otroRubro').value.trim() : selectedSector,
+        problema: problema,
+        timestamp: new Date().toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' })
+      };
+
+      emailjs.send('service_9rl9itj', 'template_pqdf7qo', data)
+        .then(() => {
+          document.querySelectorAll('.fs').forEach(p => p.classList.remove('active'));
+          document.getElementById('fOk').style.display = 'none';
+          const loading = document.getElementById('fLoading');
+          loading.style.display = 'block';
+          document.getElementById('stepLabel').textContent = 'Procesando...';
+          document.getElementById('progressFill').style.width = '100%';
+
+          setTimeout(() => {
+            loading.style.display = 'none';
+            const success = document.getElementById('fOk');
+            document.getElementById('successNombre').textContent = data.from_name.split(' ')[0];
+            success.style.display = 'block';
+
+            setTimeout(() => {
+              closeModal();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 2800);
+          }, 1400);
+        })
+        .catch(err => {
+          console.error('EmailJS error:', err);
+          alert('Error al enviar el formulario. Por favor intentá nuevamente.');
+        })
+        .finally(() => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+        });
+    }
+
+    // Real-time field validation on blur
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('nombre').addEventListener('blur', () => {
+        if (document.getElementById('nombre').value.trim()) showError('nombre', false);
+      });
+      document.getElementById('negocio').addEventListener('blur', () => {
+        if (document.getElementById('negocio').value.trim()) showError('negocio', false);
+      });
+      document.getElementById('whatsapp').addEventListener('blur', () => {
+        if (document.getElementById('whatsapp').value.trim().length >= 8) showError('whatsapp', false);
+      });
+      document.getElementById('problema').addEventListener('input', () => {
+        if (document.getElementById('problema').value.trim().length >= 15) showError('problema', false);
+      });
+    });
+
+  </script>
 </body>
 </html>
