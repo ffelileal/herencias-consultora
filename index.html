@@ -14,19 +14,42 @@
       --text:#2E1F14;--soft:#7A5C4A;--border:#E2D4C8;
       --radius:12px;
     }
+    html[data-theme="dark"]{
+      --cream:#1A1A1E;--warm:#252529;--brown:#E8C4A0;
+      --brown-mid:#D4A574;--brown-light:#C8824A;
+      --accent:#F5A962;--accent-s:#C8824A;--accent-l:#3D3D47;
+      --text:#E8E0D5;--soft:#B8A894;--border:#3D3D47;
+    }
     html{scroll-behavior:smooth;}
     body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);line-height:1.6;overflow-x:hidden;}
     body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4;}
 
     /* ── NAV ── */
-    header{position:sticky;top:0;z-index:300;background:rgba(250,247,242,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:18px 48px;display:flex;justify-content:space-between;align-items:center;}
+    header{position:sticky;top:0;z-index:300;background:rgba(250,247,242,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:18px 48px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,border-color .3s;flex-wrap:wrap;gap:12px;}
+    html[data-theme="dark"] header{background:rgba(26,26,30,.94);}
     .logo{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--brown);letter-spacing:-.5px;}
     .logo span{color:var(--accent);}
     nav{display:flex;align-items:center;gap:0;}
     nav a{text-decoration:none;color:var(--soft);font-size:.88rem;font-weight:500;margin-left:28px;transition:color .2s;}
     nav a:hover{color:var(--accent);}
+    .hamburger{display:none;flex-direction:column;gap:4px;background:transparent;border:none;cursor:pointer;padding:6px;margin-left:auto;z-index:301;}
+    .hamburger span{width:22px;height:2px;background:var(--brown);border-radius:2px;transition:all .3s;}
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(8px, 8px);}
+    .hamburger.active span:nth-child(2){opacity:0;}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(8px, -8px);}
+    .nav-menu{display:flex;gap:0;}
+    .nav-menu.mobile-open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(250,247,242,.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:12px 18px;gap:0;width:100%;z-index:300;}
+    .nav-menu.mobile-open a{display:block;padding:12px 0;border-bottom:1px solid var(--border);margin-left:0;font-size:.9rem;}
+    .nav-menu.mobile-open a:last-child{border-bottom:none;}
+    .nav-menu.mobile-open .nav-btn{width:100%;margin-left:0;margin-top:8px;}
+    .nav-menu.mobile-open .theme-toggle{width:100%;margin-left:0;margin-top:8px;}
     .nav-btn{margin-left:28px;background:var(--accent);color:#fff;border:none;padding:9px 22px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;white-space:nowrap;}
     .nav-btn:hover{background:var(--brown-mid);transform:translateY(-1px);}
+    .theme-toggle{margin-left:28px;background:transparent;border:1.5px solid var(--accent-s);color:var(--brown);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;cursor:pointer;transition:all .2s;flex-shrink:0;}
+    .theme-toggle:hover{background:var(--accent-l);border-color:var(--accent);}
+    html[data-theme="dark"] .theme-toggle{border-color:var(--accent-s);color:var(--accent);}
+    html[data-theme="dark"] .theme-toggle:hover{background:var(--accent-l);border-color:var(--accent);}
+    body.modal-open{overflow:hidden;}
 
     /* ── HERO ── */
     .hero{max-width:900px;margin:0 auto;padding:100px 48px 80px;text-align:center;animation:fadeUp .8s ease both;}
@@ -56,6 +79,9 @@
 
     /* ── SERVICES GRID ── */
     .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:8px;}
+    @media(max-width:1024px){.services-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}}
+    @media(max-width:768px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:640px){.services-grid{grid-template-columns:1fr;}}
     .srv-card{background:var(--warm);border:1px solid var(--border);border-radius:14px;padding:20px 18px;transition:border-color .2s,transform .2s,box-shadow .2s;cursor:default;}
     .srv-card:hover{border-color:var(--accent-s);transform:translateY(-3px);box-shadow:0 8px 24px rgba(61,43,31,.08);}
     .srv-icon{font-size:1.5rem;margin-bottom:10px;display:block;}
@@ -70,6 +96,18 @@
     .how-n{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:1rem;flex-shrink:0;margin-top:2px;}
     .how-content h4{font-size:.95rem;font-weight:500;color:var(--brown);margin-bottom:4px;}
     .how-content p{font-size:.85rem;color:var(--soft);line-height:1.6;font-weight:300;}
+    @media(max-width:768px){
+      .how-step{gap:16px;padding:16px 0;}
+      .how-n{width:32px;height:32px;font-size:.9rem;}
+      .how-content h4{font-size:.9rem;}
+      .how-content p{font-size:.8rem;}
+    }
+    @media(max-width:640px){
+      .how-step{gap:14px;padding:14px 0;}
+      .how-n{width:30px;height:30px;font-size:.85rem;}
+      .how-content h4{font-size:.88rem;}
+      .how-content p{font-size:.78rem;}
+    }
 
     /* ── CONTACT / PRIVACY ── */
     .contact-card,.privacy-box{background:var(--warm);border:1px solid var(--border);border-radius:16px;padding:32px 36px;margin-top:16px;}
@@ -82,8 +120,11 @@
     .privacy-box p{font-size:.91rem;color:var(--soft);line-height:1.75;}
 
     /* ── FOOTER ── */
-    footer{border-top:1px solid var(--border);padding:28px 48px;text-align:center;font-size:.82rem;color:var(--brown-light);}
+    footer{border-top:1px solid var(--border);padding:28px 48px;text-align:center;font-size:.82rem;color:var(--brown-light);margin-top:80px;}
     footer strong{color:var(--brown-mid);}
+    @media(max-width:768px){footer{margin-top:60px;padding:24px 28px;font-size:.78rem;}}
+    @media(max-width:640px){footer{margin-top:50px;padding:20px 18px;font-size:.75rem;}footer strong{display:block;margin-bottom:4px;}}
+    @media(max-width:419px){footer{margin-top:40px;padding:16px 14px;font-size:.7rem;}}
 
     @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
@@ -109,7 +150,10 @@
       box-shadow:0 24px 80px rgba(30,18,10,.35);
       animation:modalIn .3s cubic-bezier(.2,.8,.3,1) both;
       flex-shrink:0;
+      margin:0 16px;
     }
+    @media(max-width:640px){.modal{max-width:calc(100% - 20px);}}
+    @media(max-width:419px){.modal{max-width:calc(100% - 16px);border-radius:16px;}}
     @keyframes modalIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
     /* Modal header */
@@ -169,6 +213,12 @@
       width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 12px;
       font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--text);background:var(--warm);
       transition:border-color .2s,box-shadow .2s;outline:none;resize:vertical;
+    }
+    @media(max-width:640px){
+      .fc input[type=text],.fc input[type=email],.fc input[type=tel],.fc textarea,.fc select{padding:10px 11px;font-size:.82rem;}
+    }
+    @media(max-width:419px){
+      .fc input[type=text],.fc input[type=email],.fc input[type=tel],.fc textarea,.fc select{padding:9px 10px;font-size:.8rem;}
     }
     .fc input:focus,.fc textarea:focus,.fc select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,130,74,.12);background:#fff;}
     .fc textarea{min-height:76px;}
@@ -286,36 +336,146 @@
     .f-ok p,.f-loading p{color:var(--soft);font-size:.95rem;line-height:1.75;max-width:420px;margin:0 auto;font-weight:300;}
     @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 
-    /* Responsive */
-    @media(max-width:700px){
-      header{padding:14px 18px;}
-      nav a{margin-left:12px;font-size:.8rem;}
-      .nav-btn{margin-left:12px;padding:8px 16px;}
-      .hero,.ls{padding-left:20px;padding-right:20px;}
-      .hero{padding-top:56px;}
-      .contact-card,.privacy-box{padding:22px 18px;}
-      .fb,.mh,.stepper,.prog-bar{padding-left:18px;padding-right:18px;}
-      .two-col,.task-selects,.gw-inp,.wait-grid,.err-grid,.end-grid,.opts-2{grid-template-columns:1fr;}
-      .pills{flex-direction:column;}
-      .services-grid{grid-template-columns:1fr 1fr;}
-      .stats{gap:24px;}
+    /* Responsive - Tablet (640px - 1024px) */
+    @media(min-width:641px) and (max-width:1024px){
+      header{padding:16px 32px;}
+      nav{gap:4px;}
+      nav a{margin-left:16px;font-size:.85rem;}
+      .nav-btn,.theme-toggle{margin-left:16px;padding:10px 18px;}
+      .hero{padding:80px 32px 60px;}
+      .hero h1{font-size:clamp(2.2rem,4vw,3.2rem);}
+      .hero p{font-size:1rem;}
+      .tag-pill{font-size:.75rem;padding:5px 14px;}
+      .stats{gap:30px;padding:0 32px;}
+      .ls{padding:0 32px 60px;}
+      .ls h2{font-size:1.5rem;}
+      .services-grid{grid-template-columns:repeat(2,1fr);}
+      .srv-card{padding:18px 16px;}
+      .contact-card,.privacy-box{padding:28px 32px;}
+      .fb,.mh,.stepper,.prog-bar{padding-left:32px;padding-right:32px;}
+      .modal{max-width:680px;}
+      .two-col,.task-selects,.gw-inp,.wait-grid,.err-grid,.end-grid,.opts-2{grid-template-columns:1fr 1fr;}
+      footer{padding:24px 32px;font-size:.8rem;}
     }
-    @media(max-width:420px){
-      .services-grid{grid-template-columns:1fr;}
+    
+    /* Responsive - Mobile (420px - 640px) */
+    @media(max-width:640px){
+      header{padding:14px 18px;position:relative;}
+      .hamburger{display:flex;}
+      nav.nav-menu{display:none;}
+      nav.nav-menu.mobile-open{display:flex;}
+      nav{position:relative;width:auto;}
+      .nav-menu{position:absolute;top:100%;left:-18px;right:-18px;width:calc(100% + 36px);}
+      nav a{margin-left:0;font-size:.8rem;}
+      .nav-btn,.theme-toggle{margin-left:0;padding:8px 14px;font-size:.85rem;}
+      .logo{font-size:1.3rem;}
+      .hero{padding:60px 18px 50px;}
+      .hero h1{font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:16px;}
+      .hero p{font-size:.95rem;margin-bottom:28px;}
+      .tag-pill{font-size:.7rem;padding:4px 12px;margin-bottom:20px;}
+      .hero-btns{gap:10px;}
+      .btn-cta,.btn-outline{padding:12px 24px;font-size:.88rem;width:100%;}
+      .stats{gap:20px;padding:0 18px;margin-bottom:48px;flex-direction:column;}
+      .stat-num{font-size:1.8rem;}
+      .stat-lbl{font-size:.75rem;}
+      .divider{margin:48px auto;}
+      .ls{padding:0 18px 56px;}
+      .ls h2{font-size:1.4rem;margin-bottom:12px;}
+      .ls>p{font-size:.9rem;margin-bottom:20px;}
+      .services-grid{grid-template-columns:1fr;gap:12px;}
+      .srv-card{padding:16px 14px;}
+      .srv-icon{font-size:1.3rem;}
+      .srv-name{font-size:.85rem;}
+      .srv-desc{font-size:.75rem;}
+      .srv-badge{font-size:.6rem;padding:1px 7px;}
+      .how-step{gap:12px;padding:16px 0;}
+      .how-n{width:32px;height:32px;font-size:.9rem;}
+      .how-content h4{font-size:.9rem;}
+      .how-content p{font-size:.8rem;}
+      .contact-card,.privacy-box{padding:18px 14px;}
+      .contact-row{padding:8px 0;font-size:.9rem;}
+      .privacy-box h3{font-size:1rem;margin:16px 0 6px;}
+      .privacy-box p{font-size:.85rem;}
+      .fb,.mh,.stepper,.prog-bar{padding-left:16px;padding-right:16px;}
+      .mh h3{font-size:clamp(1rem,2vw,1.4rem);}
+      .mh p{font-size:.8rem;max-width:100%;}
+      .modal{max-width:calc(100% - 20px);}
+      .mh-badge{font-size:9px;padding:4px 10px;}
+      .fc-label{font-size:.82rem;}
+      .fc input,.fc textarea,.fc select{font-size:.82rem;padding:9px 10px;}
+      .fc-hint{font-size:.72rem;padding:6px 9px;}
+      .two-col,.task-selects,.gw-inp,.wait-grid,.err-grid,.end-grid,.opts-2{grid-template-columns:1fr;}
+      .opt{font-size:.8rem;padding:7px 10px;}
+      .pill{font-size:.78rem;padding:7px 12px;}
+      .pills{gap:5px;}
+      .add-btn{font-size:.78rem;padding:6px 10px;}
+      .fnav{flex-direction:column;}
+      .btn-back,.btn-fwd,.btn-send{width:100%;padding:10px 16px;font-size:.82rem;}
+      footer{padding:20px 18px;font-size:.78rem;}
+      footer strong{display:block;margin-bottom:4px;}
+    }
+    
+    /* Responsive - Mobile Small (< 420px) */
+    @media(max-width:419px){
+      header{padding:12px 14px;}
+      .hamburger{display:flex;}
+      .logo{font-size:1.2rem;}
+      nav.nav-menu{display:none;}
+      nav.nav-menu.mobile-open{display:flex;}
+      nav{gap:6px;}
+      nav a{margin-left:0;font-size:.75rem;}
+      .nav-btn,.theme-toggle{margin-left:0;padding:7px 12px;font-size:.75rem;width:36px;height:36px;}
+      .theme-toggle{padding:0;display:flex;align-items:center;justify-content:center;}
+      .hero{padding:48px 14px 40px;}
+      .hero h1{font-size:clamp(1.6rem,3vw,2.4rem);}
+      .hero p{font-size:.9rem;}
+      .tag-pill{font-size:.65rem;padding:3px 10px;}
+      .btn-cta,.btn-outline{padding:10px 20px;font-size:.82rem;}
+      .stats{gap:16px;padding:0 14px;}
+      .stat-num{font-size:1.5rem;}
+      .ls{padding:0 14px 48px;}
+      .ls h2{font-size:1.2rem;}
+      .ls>p{font-size:.85rem;}
+      .services-grid{grid-template-columns:1fr;gap:10px;}
+      .srv-card{padding:12px 12px;}
+      .srv-icon{font-size:1.2rem;}
+      .srv-name{font-size:.8rem;}
+      .srv-desc{font-size:.72rem;}
+      .contact-card,.privacy-box{padding:14px 12px;}
+      .contact-row{padding:6px 0;font-size:.85rem;}
+      .fb,.mh,.stepper,.prog-bar{padding-left:14px;padding-right:14px;}
+      .mh h3{font-size:1.1rem;}
+      .fc input,.fc textarea,.fc select{font-size:.8rem;padding:8px 9px;}
+      footer{padding:16px 14px;font-size:.75rem;}
     }
   </style>
   <script>
     function openModal(){
       var el=document.getElementById('modalOverlay');
       if(el){el.style.display='flex';}
+      document.body.classList.add('modal-open');
     }
     function closeModal(){
       var el=document.getElementById('modalOverlay');
       if(el){el.style.display='none';}
+      document.body.classList.remove('modal-open');
       resetModalForm();
+      closeMenu();
     }
     function overlayClick(e){
       if(e.target===document.getElementById('modalOverlay')) closeModal();
+    }
+    function toggleMenu(){
+      const menu = document.querySelector('.nav-menu');
+      const hamburger = document.getElementById('hamburger');
+      if (menu) menu.classList.toggle('mobile-open');
+      if (hamburger) hamburger.classList.toggle('active');
+    }
+    function closeMenu(){
+      const menu = document.querySelector('.nav-menu');
+      const hamburger = document.getElementById('hamburger');
+      if (menu) menu.classList.remove('mobile-open');
+      if (hamburger) hamburger.classList.remove('active');
     }
     function resetModalForm(){
       currentStep = 1;
@@ -359,13 +519,19 @@
 <!-- ══ HEADER ══ -->
 <header>
   <div class="logo">Herenc<span>IAs</span></div>
-  <nav>
+  <nav class="nav-menu">
     <a href="#servicios">Servicios</a>
-    <a href="#precios">Precios</a>
+    <a href="precios.html">Precios</a>
     <a href="#como-funciona">Cómo funciona</a>
     <a href="#contacto">Contacto</a>
     <button class="nav-btn" onclick="openModal()">Iniciar diagnóstico</button>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Cambiar tema">🌙</button>
   </nav>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
 <!-- ══ HERO ══ -->
@@ -430,71 +596,6 @@
       <div class="srv-name">Automatización personalizada</div>
       <div class="srv-desc">Si tu proceso no encaja en los anteriores, lo analizamos y diseñamos una solución a medida. Cada negocio es distinto — cada solución también.</div>
       <span class="srv-badge">A medida</span>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══ PRECIOS ══ -->
-<section class="ls" id="precios">
-  <h2>Precios</h2>
-  <p>Sección informativa. No es un checkout ni permite pagos directos; aquí mostramos planes y valores de referencia para tu proyecto.</p>
-
-  <div style="display:flex;flex-wrap:wrap;gap:22px;margin-top:28px;justify-content:center;max-width:1000px;margin-left:auto;margin-right:auto;">
-
-    <!-- Plan Starter -->
-    <div class="srv-card" style="flex:1 1 320px;min-width:280px;border:2px solid var(--accent-s);padding:28px;background:var(--accent-l);">
-      <div class="srv-name" style="font-size:1.2rem;font-weight:600;margin-bottom:8px;color:var(--brown);">Plan 1 — Starter</div>
-      <div style="font-size:.95rem;color:var(--soft);margin-bottom:18px;">Precio: $120 – $200 USD</div>
-      <div style="font-weight:600;color:var(--brown);margin-bottom:10px;">Incluye:</div>
-      <ul style="list-style:none;padding:0;margin:0 0 18px;font-size:.92rem;color:var(--text);line-height:1.7;">
-        <li>• 1 workflow n8n funcional</li>
-        <li>• 1 integración (WhatsApp, Sheets, Calendar, etc.)</li>
-        <li>• Entrega en 3–5 días hábiles</li>
-        <li>• 1 ronda de ajustes incluida</li>
-        <li>• Soporte por WhatsApp 7 días post-entrega</li>
-      </ul>
-      <div style="font-weight:600;color:var(--brown);margin-bottom:10px;">No incluye:</div>
-      <ul style="list-style:none;padding:0;margin:0;font-size:.92rem;color:var(--text);line-height:1.7;">
-        <li>• Agente IA conversacional</li>
-        <li>• Integraciones complejas</li>
-      </ul>
-    </div>
-
-    <!-- Plan Profesional -->
-    <div class="srv-card" style="flex:1 1 320px;min-width:280px;border:2px solid var(--accent);padding:28px;background:#fff;">
-      <div class="srv-name" style="font-size:1.2rem;font-weight:600;margin-bottom:8px;color:var(--brown);">Plan 2 — Profesional</div>
-      <div style="font-size:.95rem;color:var(--soft);margin-bottom:18px;">Precio: $350 – $600 USD</div>
-      <div style="font-weight:600;color:var(--brown);margin-bottom:10px;">Incluye:</div>
-      <ul style="list-style:none;padding:0;margin:0 0 18px;font-size:.92rem;color:var(--text);line-height:1.7;">
-        <li>• Agente IA conversacional (WhatsApp / web)</li>
-        <li>• 2–4 integraciones (CRM, Calendar, Sheets, etc.)</li>
-        <li>• Sistema de memoria de conversación</li>
-        <li>• Panel de control básico (Google Sheets)</li>
-        <li>• 2 rondas de ajustes</li>
-        <li>• Soporte 30 días</li>
-        <li>• Capacitación de 1 hora</li>
-      </ul>
-      <div style="font-size:.92rem;color:var(--soft);">Entrega: 7–14 días</div>
-    </div>
-
-    <!-- Plan Completo -->
-    <div class="srv-card" style="flex:1 1 320px;min-width:280px;border:2px solid var(--border);padding:28px;background:var(--warm);">
-      <div class="srv-name" style="font-size:1.2rem;font-weight:600;margin-bottom:8px;color:var(--brown);">Plan 3 — Sistema Completo</div>
-      <div style="font-size:.95rem;color:var(--soft);margin-bottom:18px;">Precio: $800 – $1500 USD</div>
-      <div style="font-weight:600;color:var(--brown);margin-bottom:10px;">Incluye:</div>
-      <ul style="list-style:none;padding:0;margin:0 0 18px;font-size:.92rem;color:var(--text);line-height:1.7;">
-        <li>• Múltiples agentes IA coordinados</li>
-        <li>• 5+ integraciones entre sistemas</li>
-        <li>• Automatización de área completa</li>
-        <li>• Dashboard de métricas en tiempo real</li>
-        <li>• Ajustes ilimitados</li>
-        <li>• Soporte 60 días</li>
-        <li>• Capacitación completa del equipo</li>
-      </ul>
-      <div style="font-size:.92rem;color:var(--soft);">Entrega: 3–6 semanas</div>
     </div>
 
   </div>
@@ -891,7 +992,43 @@
       document.getElementById('problema').addEventListener('input', () => {
         if (document.getElementById('problema').value.trim().length >= 15) showError('problema', false);
       });
+      
+      // Cerrar menú al hacer click en links de navegación
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
     });
+
+    // ═══════════════════════════════════
+    // DARK MODE TOGGLE
+    // ═══════════════════════════════════
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeButton(savedTheme);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeButton(newTheme);
+    }
+
+    function updateThemeButton(theme) {
+      const btn = document.getElementById('themeToggle');
+      if (btn) {
+        btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
+    }
+
+    // Initialize theme on load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTheme);
+    } else {
+      initTheme();
+    }
 
   </script>
 </body>
