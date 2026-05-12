@@ -886,10 +886,24 @@ footer{
   .compare-table thead th,.compare-table tbody td{padding:10px 12px;font-size:12px}
   .compare-table tbody td:first-child{width:auto}
   .mes-test-block{padding:28px 24px}
-  .modal{max-width:100%;border-radius:20px;}
-  .mh,.fb,.prog-bar,.step-dots{padding-left:24px;padding-right:24px;}
+  .modal{max-width:100%;border-radius:20px;width:100%;max-height:calc(100vh - 32px);overflow-y:auto;}
+  .modal-overlay{padding:16px;}
+  .mh{padding:24px 20px 20px;}
+  .mh h3{font-size:1.25rem;}
+  .mh p{font-size:14px;}
+  .prog-bar{padding:12px 20px;}
+  .step-dots{padding:12px 20px;}
+  .mh,.fb,.prog-bar,.step-dots{padding-left:0;padding-right:0;}
   .step-dots{padding-top:16px;padding-bottom:16px;}
   .progress-track{height:4px;}
+  .fb{padding:20px 0 24px;}
+  .fc{padding:14px 16px;margin-bottom:14px;}
+  .fc input[type=text],.fc textarea,.fc select{padding:12px 14px;font-size:14px;}
+  .btn-back,.btn-fwd,.btn-send{padding:10px 18px;font-size:14px;}
+  .pill{padding:12px 14px;font-size:14px;}
+  .opts-2{gap:10px;}
+  .modal-close{top:14px;right:14px;width:34px;height:34px;font-size:17px;}
+  .f-ok,.f-loading{padding:42px 16px;}
   .two-col{grid-template-columns:1fr;}
 }
 
