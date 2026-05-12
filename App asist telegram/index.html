@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="theme-color" content="#0d0d0d"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="HerencIAs"/>
+<title>HerencIAs</title>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="icon-192.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+<style>
+:root{
+  --bg:#0d0d0d;
+  --surface:#161616;
+  --surface2:#1e1e1e;
+  --cream:#f4f1ea;
+  --cream2:rgba(244,241,234,0.55);
+  --cream3:rgba(244,241,234,0.18);
+  --acc:#c8553d;
+  --acc2:rgba(200,85,61,0.15);
+  --green:#22c55e;
+  --border:rgba(244,241,234,0.1);
+  --r:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;background:var(--bg);}
+body{
+  color:var(--cream);
+  font-family:'DM Sans',system-ui,sans-serif;
+  font-size:14px;
+  max-width:430px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  height:100dvh;
+}
+
+/* SCREENS */
+.screen{display:none;flex:1;flex-direction:column;overflow:hidden;animation:fadeIn 0.15s ease;}
+.screen.active{display:flex;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+/* TOPBAR */
+.topbar{
+  padding:env(safe-area-inset-top,0) 16px 0;
+  padding-top:calc(env(safe-area-inset-top,0) + 12px);
+  padding-bottom:10px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:0.5px solid var(--border);
+  flex-shrink:0;
+  background:var(--bg);
+}
+.topbar-title{font-size:16px;font-weight:700;letter-spacing:-0.4px;}
+.topbar-sub{font-size:11px;color:var(--cream2);margin-top:2px;}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--cream3);transition:background 0.4s;}
+.status-dot.online{background:var(--green);}
+
+/* SCROLL */
+.scroll-area{flex:1;overflow-y:auto;padding:14px 16px;-webkit-overflow-scrolling:touch;}
+.scroll-area::-webkit-scrollbar{width:2px;}
+.scroll-area::-webkit-scrollbar-thumb{background:var(--border);}
+
+/* NAV */
+.nav{
+  display:flex;
+  background:var(--surface);
+  border-top:0.5px solid var(--border);
+  padding-bottom:env(safe-area-inset-bottom,0);
+  flex-shrink:0;
+}
+.nav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  background:none;border:none;color:var(--cream3);cursor:pointer;
+  padding:8px 0 6px;transition:color 0.15s;
+}
+.nav-btn.active{color:var(--acc);}
+.nav-btn i{font-size:22px;}
+.nav-btn span{font-size:9px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;}
+
+/* CHAT */
+.msgs{display:flex;flex-direction:column;gap:10px;padding-bottom:8px;}
+.msg{max-width:82%;padding:11px 14px;border-radius:18px;font-size:13px;line-height:1.55;word-break:break-word;}
+.msg.user{align-self:flex-end;background:var(--acc);color:white;border-bottom-right-radius:4px;}
+.msg.bot{align-self:flex-start;background:var(--surface2);color:var(--cream);border-bottom-left-radius:4px;border:0.5px solid var(--border);}
+.msg-time{font-size:10px;opacity:0.4;margin-top:4px;}
+.chat-footer{padding:10px 16px calc(10px + env(safe-area-inset-bottom,0));border-top:0.5px solid var(--border);display:flex;gap:8px;flex-shrink:0;background:var(--bg);}
+.chat-input{flex:1;background:var(--surface);border:0.5px solid var(--border);border-radius:24px;padding:11px 16px;color:var(--cream);font-size:13px;outline:none;font-family:inherit;}
+.chat-input::placeholder{color:var(--cream3);}
+.send-btn{width:42px;height:42px;border-radius:50%;background:var(--acc);border:none;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.15s;}
+.send-btn:active{background:#a8432d;}
+.typing{display:flex;gap:4px;align-items:center;}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--cream3);animation:blink 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:0.2s;}
+.typing span:nth-child(3){animation-delay:0.4s;}
+@keyframes blink{0%,60%,100%{opacity:0.3;}30%{opacity:1;}}
+
+/* POSTS */
+.type-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.pill{padding:6px 12px;border-radius:20px;border:0.5px solid var(--border);background:none;color:var(--cream2);font-size:12px;cursor:pointer;transition:all 0.15s;font-family:inherit;}
+.pill.active{background:var(--acc2);border-color:var(--acc);color:var(--acc);}
+.gen-btn{width:100%;padding:14px;background:var(--acc);border:none;color:white;border-radius:var(--r);font-size:14px;font-weight:700;cursor:pointer;margin-bottom:14px;font-family:inherit;letter-spacing:-0.2px;transition:background 0.15s;}
+.gen-btn:active{background:#a8432d;}
+.gen-btn:disabled{opacity:0.5;cursor:default;}
+.post-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;}
+.post-img{width:100%;aspect-ratio:1;background:var(--surface2);display:flex;align-items:center;justify-content:center;}
+.post-img svg{width:100%;height:100%;}
+.post-spinner{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--acc);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.post-actions{display:flex;gap:8px;padding:12px;}
+.post-btn{flex:1;padding:10px;border-radius:var(--r);border:0.5px solid var(--border);background:none;color:var(--cream);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:background 0.15s;}
+.post-btn:active{background:var(--surface2);}
+.post-btn.approve{background:var(--acc);border-color:var(--acc);color:white;}
+.post-btn.approve:active{background:#a8432d;}
+.post-caption-text{padding:0 12px 12px;font-size:12px;color:var(--cream2);line-height:1.6;}
+.edit-area{padding:0 12px 12px;}
+.edit-input{width:100%;background:var(--surface2);border:0.5px solid var(--border);border-radius:var(--r);padding:10px 12px;color:var(--cream);font-size:12px;font-family:inherit;outline:none;resize:none;}
+.edit-send{margin-top:8px;width:100%;padding:9px;background:var(--surface2);border:0.5px solid var(--border);border-radius:var(--r);color:var(--acc);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;}
+
+/* PIPELINE */
+.col-wrap{margin-bottom:18px;}
+.col-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.col-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;}
+.col-badge{font-size:11px;background:var(--surface2);padding:2px 8px;border-radius:10px;color:var(--cream2);}
+.client-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:8px;}
+.client-name{font-size:13px;font-weight:600;margin-bottom:3px;display:flex;align-items:center;gap:6px;}
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.client-meta{font-size:11px;color:var(--cream2);}
+.client-next{margin-top:8px;font-size:11px;color:var(--acc);display:flex;align-items:center;gap:4px;}
+
+/* GASTOS */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.stat-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:13px;}
+.stat-lbl{font-size:10px;color:var(--cream2);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:5px;}
+.stat-num{font-size:22px;font-weight:700;letter-spacing:-0.5px;}
+.bar-wrap{display:flex;flex-direction:column;gap:11px;margin-bottom:16px;}
+.bar-row{}
+.bar-meta{display:flex;justify-content:space-between;margin-bottom:5px;}
+.bar-name{font-size:12px;}
+.bar-val{font-size:12px;color:var(--cream2);}
+.bar-track{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;background:var(--acc);transition:width 0.6s ease;}
+.tx-list{display:flex;flex-direction:column;gap:7px;}
+.tx-row{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;background:var(--surface);border-radius:var(--r);border:0.5px solid var(--border);}
+.tx-left{display:flex;flex-direction:column;gap:2px;}
+.tx-name{font-size:13px;}
+.tx-date{font-size:11px;color:var(--cream2);}
+.tx-amount{font-size:13px;font-weight:600;color:var(--acc);}
+
+/* TAREAS */
+.task-add{display:flex;gap:8px;margin-bottom:12px;}
+.task-input-field{flex:1;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--r);padding:10px 13px;color:var(--cream);font-size:13px;outline:none;font-family:inherit;}
+.task-input-field::placeholder{color:var(--cream3);}
+.task-add-btn{padding:10px 15px;background:var(--acc);border:none;color:white;border-radius:var(--r);cursor:pointer;font-size:18px;font-family:inherit;line-height:1;}
+.filter-row{display:flex;gap:6px;margin-bottom:12px;}
+.f-btn{padding:5px 13px;border-radius:20px;border:0.5px solid var(--border);background:none;color:var(--cream2);font-size:12px;cursor:pointer;font-family:inherit;}
+.f-btn.active{background:var(--acc2);border-color:var(--acc);color:var(--acc);}
+.task-list{display:flex;flex-direction:column;gap:8px;}
+.task-row{display:flex;align-items:center;gap:10px;padding:12px 13px;background:var(--surface);border-radius:var(--r);border:0.5px solid var(--border);}
+.tchk{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+.tchk.done{background:var(--acc);border-color:var(--acc);}
+.ttxt{flex:1;font-size:13px;line-height:1.4;}
+.ttxt.done{text-decoration:line-through;color:var(--cream2);}
+.tright{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex-shrink:0;}
+.tdate{font-size:10px;color:var(--cream2);}
+.pri{font-size:9px;padding:2px 7px;border-radius:8px;font-weight:700;}
+.p-alta{background:rgba(200,85,61,0.2);color:var(--acc);}
+.p-media{background:rgba(245,158,11,0.15);color:#f59e0b;}
+.p-baja{background:rgba(34,197,94,0.15);color:var(--green);}
+
+/* UTIL */
+.sec-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--cream2);margin:14px 0 8px;}
+</style>
+</head>
+<body>
+
+<!-- CHAT -->
+<div class="screen active" id="s-chat">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">Asistente HerencIAs</div>
+      <div class="topbar-sub" id="conn-label">Conectando...</div>
+    </div>
+    <div class="status-dot" id="sdot"></div>
+  </div>
+  <div class="scroll-area" id="chat-scroll">
+    <div class="msgs" id="msgs">
+      <div class="msg bot">
+        Hola Julian! Soy tu asistente. Escribime lo que necesitás — tareas, gastos, notas, clientes o el estado de tus workflows.
+        <div class="msg-time">ahora</div>
+      </div>
+    </div>
+  </div>
+  <div class="chat-footer">
+    <input class="chat-input" id="chat-in" placeholder="Escribí algo..." autocomplete="off"/>
+    <button class="send-btn" onclick="sendMsg()" aria-label="Enviar">
+      <i class="ti ti-send" style="font-size:18px"></i>
+    </button>
+  </div>
+</div>
+
+<!-- POSTS -->
+<div class="screen" id="s-posts">
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">Generador de Posts</div>
+      <div class="topbar-sub">Instagram · cada 3 días</div>
+    </div>
+    <i class="ti ti-photo" style="color:var(--acc);font-size:20px"></i>
+  </div>
+  <div class="scroll-area">
+    <div class="type-pills" id="pills">
+      <button class="pill active" onclick="selectPill(this,'caso de uso')">Caso de uso</button>
+      <button class="pill" onclick="selectPill(this,'tip')">Tip</button>
+      <button class="pill" onclick="selectPill(this,'detras de escena')">Detrás de escena</button>
+      <button class="pill" onclick="selectPill(this,'motivacional')">Motivacional</button>
+      <button class="pill" onclick="selectPill(this,'oferta')">Oferta</button>
+    </div>
+    <button class="gen-btn" id="gen-btn" onclick="generatePost()">Generar post →</button>
+    <div class="post-card" id="post-card">
+      <div class="post-img" id="post-img">
+        <svg viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
+          <rect width="340" height="340" fill="#0d0d0d"/>
+          <rect x="14" y="14" width="312" height="312" rx="2" fill="none" stroke="#f4f1ea" stroke-width="0.4" opacity="0.1"/>
+          <rect x="14" y="14" width="24" height="2" fill="#c8553d"/>
+          <rect x="14" y="14" width="2" height="24" fill="#c8553d"/>
+          <rect x="302" y="324" width="24" height="2" fill="#c8553d"/>
+          <rect x="324" y="302" width="2" height="24" fill="#c8553d"/>
+          <rect x="28" y="28" width="64" height="13" rx="2" fill="rgba(244,241,234,0.08)"/>
+          <text x="60" y="38" text-anchor="middle" font-family="Arial" font-size="6" fill="#f4f1ea" opacity="0.5" letter-spacing="1.5">CASO DE USO</text>
+          <text x="28" y="72" font-family="Arial" font-size="18" font-weight="800" fill="#f4f1ea">Tu negocio</text>
+          <text x="28" y="92" font-family="Arial" font-size="18" font-weight="800" fill="#f4f1ea">responde solo.</text>
+          <text x="28" y="112" font-family="Arial" font-size="18" font-weight="800" fill="#c8553d">Las 24 horas.</text>
+          <rect x="28" y="120" width="28" height="2" fill="#c8553d"/>
+          <rect x="28" y="148" width="56" height="56" rx="2" fill="none" stroke="rgba(244,241,234,0.15)" stroke-width="0.8"/>
+          <circle cx="56" cy="168" r="8" stroke="#f4f1ea" stroke-width="0.8" fill="none"/>
+          <path d="M44 188 Q44 178 56 178 Q68 178 68 188" stroke="#f4f1ea" stroke-width="0.8" fill="none"/>
+          <text x="56" y="200" text-anchor="middle" font-family="Arial" font-size="5" fill="#f4f1ea" opacity="0.5">CLIENTE</text>
+          <line x1="84" y1="176" x2="96" y2="176" stroke="#c8553d" stroke-width="0.8"/>
+          <polygon points="94,173 99,176 94,179" fill="#c8553d"/>
+          <rect x="101" y="144" width="60" height="60" rx="2" fill="rgba(200,85,61,0.12)" stroke="#c8553d" stroke-width="0.8"/>
+          <rect x="117" y="162" width="28" height="20" rx="4" stroke="#c8553d" stroke-width="0.8" fill="none"/>
+          <circle cx="123" cy="172" r="2" fill="#c8553d"/>
+          <circle cx="131" cy="172" r="2" fill="#c8553d"/>
+          <circle cx="139" cy="172" r="2" fill="#c8553d"/>
+          <text x="131" y="202" text-anchor="middle" font-family="Arial" font-size="5" fill="#c8553d">WHATSAPP</text>
+          <line x1="161" y1="176" x2="173" y2="176" stroke="#c8553d" stroke-width="0.8"/>
+          <polygon points="171,173 176,176 171,179" fill="#c8553d"/>
+          <rect x="178" y="148" width="56" height="56" rx="2" fill="none" stroke="rgba(244,241,234,0.15)" stroke-width="0.8"/>
+          <circle cx="206" cy="166" r="8" stroke="#f4f1ea" stroke-width="0.8" fill="none"/>
+          <circle cx="206" cy="166" r="2.5" fill="#f4f1ea" opacity="0.8"/>
+          <circle cx="194" cy="176" r="2" stroke="#f4f1ea" stroke-width="0.6" fill="none"/>
+          <circle cx="218" cy="176" r="2" stroke="#f4f1ea" stroke-width="0.6" fill="none"/>
+          <text x="206" y="202" text-anchor="middle" font-family="Arial" font-size="5" fill="#f4f1ea" opacity="0.5">IA</text>
+          <line x1="234" y1="176" x2="246" y2="176" stroke="#c8553d" stroke-width="0.8"/>
+          <polygon points="244,173 249,176 244,179" fill="#c8553d"/>
+          <rect x="251" y="152" width="46" height="46" rx="2" fill="none" stroke="rgba(244,241,234,0.15)" stroke-width="0.8"/>
+          <circle cx="274" cy="170" r="8" stroke="#f4f1ea" stroke-width="0.8" fill="none"/>
+          <path d="M267 170 L272 176 L281 163" stroke="#f4f1ea" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <text x="274" y="198" text-anchor="middle" font-family="Arial" font-size="5" fill="#f4f1ea" opacity="0.5">LISTO</text>
+          <text x="28" y="238" font-family="Arial" font-size="6" fill="#f4f1ea" opacity="0.4" letter-spacing="1">TIEMPO DE RESPUESTA</text>
+          <text x="28" y="265" font-family="Arial" font-size="28" font-weight="800" fill="#f4f1ea">~40</text>
+          <text x="68" y="265" font-family="Arial" font-size="28" font-weight="800" fill="#c8553d"> seg</text>
+          <text x="28" y="292" font-family="Arial" font-size="7" fill="#f4f1ea" opacity="0.38">Automatizamos la atención para que te enfoques</text>
+          <text x="28" y="304" font-family="Arial" font-size="7" fill="#f4f1ea" opacity="0.38">en lo que realmente importa.</text>
+          <text x="28" y="322" font-family="Arial" font-size="7" fill="#c8553d">¿Querés esto para tu negocio? → @herencias.ia</text>
+          <text x="326" y="322" text-anchor="end" font-family="Arial" font-size="6" fill="#f4f1ea" opacity="0.18">HerencIAs</text>
+        </svg>
+      </div>
+      <div class="post-caption-text" id="post-caption">
+        Tu negocio nunca duerme — ¿y el tuyo tampoco? Automatizamos la atención 24/7 para que ninguna consulta quede sin respuesta. 🤖 #automatizacion #ia #pymes #herencias
+      </div>
+      <div class="post-actions">
+        <button class="post-btn" onclick="sendMsg('❌ Descartar este post')">❌ Descartar</button>
+        <button class="post-btn" onclick="showEdit()">✏️ Editar</button>
+        <button class="post-btn approve" onclick="sendMsg('✅ Publicar en Instagram')">✅ Publicar</button>
+      </div>
+      <div class="edit-area" id="edit-area" style="display:none;">
+        <textarea class="edit-input" id="edit-input" rows="3" placeholder="¿Qué querés cambiar?"></textarea>
+        <button class="edit-send" onclick="sendEdit()">Regenerar →</button>
+      </div>
+    </div>
+    <div class="sec-title">Historial</div>
+    <div class="tx-list">
+      <div class="tx-row"><div class="tx-left"><div class="tx-name">Caso de uso · WhatsApp</div><div class="tx-date">07/05/2026</div></div><div style="font-size:11px;color:var(--green)">Publicado ✓</div></div>
+      <div class="tx-row"><div class="tx-left"><div class="tx-name">Tip · Recordatorios</div><div class="tx-date">04/05/2026</div></div><div style="font-size:11px;color:var(--green)">Publicado ✓</div></div>
+      <div class="tx-row"><div class="tx-left"><div class="tx-name">Motivacional</div><div class="tx-date">01/05/2026</div></div><div style="font-size:11px;color:var(--cream2)">Descartado ✕</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PIPELINE -->
+<div class="screen" id="s-pipe">
+  <div class="topbar">
+    <div><div class="topbar-title">Clientes</div><div class="topbar-sub">Pipeline HerencIAs</div></div>
+    <i class="ti ti-layout-kanban" style="color:var(--acc);font-size:20px"></i>
+  </div>
+  <div class="scroll-area">
+    <div class="col-wrap">
+      <div class="col-header"><span class="col-label" style="color:#f59e0b">Prospecto</span><span class="col-badge">2</span></div>
+      <div class="client-card">
+        <div class="client-name"><div class="sdot" style="background:#f59e0b"></div>Salón de belleza Mafe</div>
+        <div class="client-meta">Contacto inicial · 28/04/2026</div>
+        <div class="client-next"><i class="ti ti-arrow-right" style="font-size:12px"></i>Enviar propuesta esta semana</div>
+      </div>
+      <div class="client-card">
+        <div class="client-name"><div class="sdot" style="background:#f59e0b"></div>Contaduría Pérez</div>
+        <div class="client-meta">Demo agendada · 12/05/2026</div>
+        <div class="client-next"><i class="ti ti-arrow-right" style="font-size:12px"></i>Preparar demo para el lunes</div>
+      </div>
+    </div>
+    <div class="col-wrap">
+      <div class="col-header"><span class="col-label" style="color:#3b82f6">Negociación</span><span class="col-badge">1</span></div>
+      <div class="client-card">
+        <div class="client-name"><div class="sdot" style="background:#3b82f6"></div>Inmobiliaria Valentina</div>
+        <div class="client-meta">Propuesta enviada · 01/05/2026</div>
+        <div class="client-next"><i class="ti ti-arrow-right" style="font-size:12px"></i>Seguimiento el jueves</div>
+      </div>
+    </div>
+    <div class="col-wrap">
+      <div class="col-header"><span class="col-label" style="color:var(--green)">Activo</span><span class="col-badge">1</span></div>
+      <div class="client-card">
+        <div class="client-name"><div class="sdot" style="background:var(--green)"></div>Jhonny · Hospedajes</div>
+        <div class="client-meta">Sistema v2.5 · desde 01/04/2026</div>
+        <div class="client-next"><i class="ti ti-arrow-right" style="font-size:12px"></i>Monitoreo semanal</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GASTOS -->
+<div class="screen" id="s-gastos">
+  <div class="topbar">
+    <div><div class="topbar-title">Gastos</div><div class="topbar-sub">Mayo 2026</div></div>
+    <i class="ti ti-chart-bar" style="color:var(--acc);font-size:20px"></i>
+  </div>
+  <div class="scroll-area">
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-lbl">Total mes</div><div class="stat-num" style="color:var(--acc)">$42</div></div>
+      <div class="stat-card"><div class="stat-lbl">vs anterior</div><div class="stat-num" style="color:var(--green);font-size:18px">↓ 12%</div></div>
+    </div>
+    <div class="sec-title">Por plataforma</div>
+    <div class="bar-wrap">
+      <div class="bar-row"><div class="bar-meta"><span class="bar-name">Hostinger VPS</span><span class="bar-val">$18</span></div><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span class="bar-name">OpenAI API</span><span class="bar-val">$12</span></div><div class="bar-track"><div class="bar-fill" style="width:57%"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span class="bar-name">Claude.ai Pro</span><span class="bar-val">$8</span></div><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div></div>
+      <div class="bar-row"><div class="bar-meta"><span class="bar-name">Chatwoot</span><span class="bar-val">$4</span></div><div class="bar-track"><div class="bar-fill" style="width:19%"></div></div></div>
+    </div>
+    <div class="sec-title">Últimos movimientos</div>
+    <div class="tx-list">
+      <div class="tx-row"><div class="tx-left"><div class="tx-name">OpenAI API</div><div class="tx-date">08/05/2026</div></div><div class="tx-amount">$4.20</div></div>
+      <div class="tx-row"><div class="tx-left"><div class="tx-name">Hostinger VPS</div><div class="tx-date">01/05/2026</div></div><div class="tx-amount">$18.00</div></div>
+      <div class="tx-row"><div class="tx-left"><div class="tx-name">Claude.ai Pro</div><div class="tx-date">01/05/2026</div></div><div class="tx-amount">$8.00</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAREAS -->
+<div class="screen" id="s-tasks">
+  <div class="topbar">
+    <div><div class="topbar-title">Tareas</div><div class="topbar-sub" id="task-sub">3 pendientes</div></div>
+    <i class="ti ti-checklist" style="color:var(--acc);font-size:20px"></i>
+  </div>
+  <div class="scroll-area">
+    <div class="task-add">
+      <input class="task-input-field" id="task-in" placeholder="Nueva tarea..." autocomplete="off"/>
+      <button class="task-add-btn" onclick="addTask()">+</button>
+    </div>
+    <div class="filter-row">
+      <button class="f-btn active" onclick="filterTasks(this,'all')">Todas</button>
+      <button class="f-btn" onclick="filterTasks(this,'pending')">Pendientes</button>
+      <button class="f-btn" onclick="filterTasks(this,'done')">Hechas</button>
+    </div>
+    <div class="task-list" id="task-list">
+      <div class="task-row" data-status="pending">
+        <div class="tchk" onclick="toggleTask(this)"></div>
+        <div class="ttxt">Reunión con Jhonny</div>
+        <div class="tright"><span class="tdate">Mañana</span><span class="pri p-alta">ALTA</span></div>
+      </div>
+      <div class="task-row" data-status="pending">
+        <div class="tchk" onclick="toggleTask(this)"></div>
+        <div class="ttxt">Armar propuesta inmobiliaria</div>
+        <div class="tright"><span class="tdate">Viernes</span><span class="pri p-media">MEDIA</span></div>
+      </div>
+      <div class="task-row" data-status="pending">
+        <div class="tchk" onclick="toggleTask(this)"></div>
+        <div class="ttxt">Revisar workflow Instagram</div>
+        <div class="tright"><span class="tdate">Sin fecha</span><span class="pri p-baja">BAJA</span></div>
+      </div>
+      <div class="task-row" data-status="done">
+        <div class="tchk done" onclick="toggleTask(this)"><i class="ti ti-check" style="font-size:12px;color:white"></i></div>
+        <div class="ttxt done">Crear bot de Telegram</div>
+        <div class="tright"><span class="tdate">07/05</span><span class="pri p-alta">ALTA</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Navegación principal">
+  <button class="nav-btn active" onclick="goTo('chat',this)" aria-label="Chat">
+    <i class="ti ti-message-circle" aria-hidden="true"></i><span>Chat</span>
+  </button>
+  <button class="nav-btn" onclick="goTo('posts',this)" aria-label="Posts">
+    <i class="ti ti-photo" aria-hidden="true"></i><span>Posts</span>
+  </button>
+  <button class="nav-btn" onclick="goTo('pipe',this)" aria-label="Clientes">
+    <i class="ti ti-layout-kanban" aria-hidden="true"></i><span>Clientes</span>
+  </button>
+  <button class="nav-btn" onclick="goTo('gastos',this)" aria-label="Gastos">
+    <i class="ti ti-chart-bar" aria-hidden="true"></i><span>Gastos</span>
+  </button>
+  <button class="nav-btn" onclick="goTo('tasks',this)" aria-label="Tareas">
+    <i class="ti ti-checklist" aria-hidden="true"></i><span>Tareas</span>
+  </button>
+</nav>
+
+<script>
+const WEBHOOK = 'https://herencias-n8n.pwo9f3.easypanel.host/webhook/asistente-julian';
+let currentType = 'caso de uso';
+let currentFilter = 'all';
+let editVisible = false;
+
+// Check connection
+fetch(WEBHOOK, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'ping',source:'app'})})
+  .then(() => {
+    document.getElementById('conn-label').textContent = '● Conectado a n8n';
+    document.getElementById('conn-label').style.color = '#22c55e';
+    document.getElementById('sdot').classList.add('online');
+  })
+  .catch(() => {
+    document.getElementById('conn-label').textContent = '○ Sin conexión';
+  });
+
+function goTo(id, btn) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function selectPill(el, type) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  currentType = type;
+}
+
+function generatePost() {
+  document.getElementById('gen-btn').disabled = true;
+  document.getElementById('gen-btn').textContent = 'Generando...';
+  document.getElementById('post-img').innerHTML = '<div class="post-spinner"><div class="spinner"></div><span style="font-size:12px;color:var(--cream2)">Generando imagen...</span></div>';
+  sendMsg('Generá un post de Instagram tipo ' + currentType + ' para HerencIAs', true);
+  setTimeout(() => {
+    document.getElementById('gen-btn').disabled = false;
+    document.getElementById('gen-btn').textContent = 'Generar post →';
+  }, 8000);
+}
+
+function showEdit() {
+  editVisible = !editVisible;
+  document.getElementById('edit-area').style.display = editVisible ? 'block' : 'none';
+}
+
+function sendEdit() {
+  const txt = document.getElementById('edit-input').value.trim();
+  if (!txt) return;
+  document.getElementById('edit-input').value = '';
+  editVisible = false;
+  document.getElementById('edit-area').style.display = 'none';
+  sendMsg('Modificá el post anterior: ' + txt);
+}
+
+async function sendMsg(override, fromPosts) {
+  const inp = document.getElementById('chat-in');
+  const text = override || inp.value.trim();
+  if (!text) return;
+  inp.value = '';
+  if (!fromPosts) goTo('chat', document.querySelectorAll('.nav-btn')[0]);
+  const msgs = document.getElementById('msgs');
+  const now = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  if (!fromPosts) {
+    msgs.innerHTML += `<div class="msg user">${text}<div class="msg-time">${now}</div></div>`;
+  }
+  const typing = document.createElement('div');
+  typing.className = 'msg bot';
+  typing.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+  if (!fromPosts) {
+    msgs.appendChild(typing);
+    const scroll = document.getElementById('chat-scroll');
+    scroll.scrollTop = scroll.scrollHeight;
+  }
+  try {
+    const res = await fetch(WEBHOOK, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({message:text, source:'app'})
+    });
+    const data = await res.json();
+    typing.remove();
+    const reply = data.reply || data.output || data.message || '✓';
+    if (!fromPosts) {
+      msgs.innerHTML += `<div class="msg bot">${reply}<div class="msg-time">${new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'})}</div></div>`;
+      const scroll = document.getElementById('chat-scroll');
+      scroll.scrollTop = scroll.scrollHeight;
+    }
+  } catch(e) {
+    typing.remove();
+    if (!fromPosts) {
+      msgs.innerHTML += `<div class="msg bot" style="border-color:var(--acc)">⚠️ No se pudo conectar a n8n. Verificá que el workflow esté activo.<div class="msg-time">${now}</div></div>`;
+    }
+  }
+}
+
+document.getElementById('chat-in').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+});
+
+function toggleTask(el) {
+  const row = el.closest('.task-row');
+  const done = el.classList.toggle('done');
+  el.innerHTML = done ? '<i class="ti ti-check" style="font-size:12px;color:white"></i>' : '';
+  row.querySelector('.ttxt').classList.toggle('done', done);
+  row.dataset.status = done ? 'done' : 'pending';
+  filterTasks(document.querySelector('.f-btn.active'), currentFilter);
+  updateTaskCount();
+}
+
+function updateTaskCount() {
+  const n = document.querySelectorAll('.task-row[data-status="pending"]').length;
+  document.getElementById('task-sub').textContent = n + ' pendiente' + (n !== 1 ? 's' : '');
+}
+
+function filterTasks(btn, filter) {
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = filter;
+  document.querySelectorAll('.task-row').forEach(r => {
+    r.style.display = (filter === 'all' || r.dataset.status === filter) ? 'flex' : 'none';
+  });
+}
+
+function addTask() {
+  const inp = document.getElementById('task-in');
+  const text = inp.value.trim();
+  if (!text) return;
+  inp.value = '';
+  const list = document.getElementById('task-list');
+  const el = document.createElement('div');
+  el.className = 'task-row';
+  el.dataset.status = 'pending';
+  el.innerHTML = `<div class="tchk" onclick="toggleTask(this)"></div><div class="ttxt">${text}</div><div class="tright"><span class="tdate">Hoy</span><span class="pri p-media">MEDIA</span></div>`;
+  list.prepend(el);
+  updateTaskCount();
+}
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+</script>
+</body>
+</html>

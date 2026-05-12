@@ -13,9 +13,10 @@
 <body>
 
 <!-- HEADER -->
+<!-- HEADER -->
 <header>
   <nav>
-    <a href="#" class="logo">
+    <a href="index.html" class="logo">
       <span class="logo-mark">H</span>
       <span class="logo-text">HerencIAs</span>
     </a>
@@ -25,7 +26,7 @@
       <a href="precios.html">Precios</a>
       <a href="proceso.html">Cómo funciona</a>
       <a href="#contacto">Contacto</a>
-      <a href="#" onclick="openModal(); return false;" class="btn-primary">Iniciar diagnóstico</a>
+      <button class="nav-btn" onclick="openModal()">Iniciar diagnóstico</button>
     </div>
     <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -108,203 +109,83 @@
   </div>
 </section>
 
-<!-- PRECIOS -->
-<section id="precios">
+
+<!-- COMO FUNCIONA -->
+<section id="proceso">
   <div class="container">
     <div class="section-header">
-      <div class="kicker">Inversión</div>
-      <h2 class="section-title">Planes <em>de implementación</em></h2>
-      <p class="section-sub">Tres planes mensuales según el alcance que quieras automatizar. Sin setup separado: empezás con un Mes Test que se acredita al primer mes del plan elegido. Lo que cobramos ya incluye el desarrollo, las herramientas, el hosting y el mantenimiento.</p>
+      <div class="kicker">El recorrido</div>
+      <h2 class="section-title">¿Cómo es <em>el proceso?</em></h2>
+      <p class="section-sub">De la primera conversación al sistema funcionando, en cinco pasos. Vos contás cómo trabajás hoy, nosotros lo traducimos en automatización.</p>
     </div>
 
-    <div class="pricing-disclaimer">
-      <span class="pricing-disclaimer-icon">ℹ</span>
-      <div>
-        <strong>Sección informativa.</strong> Los valores son de referencia. La cotización final se ajusta al alcance específico que se releva en el diagnóstico gratuito previo.
-      </div>
-    </div>
-    <div class="fx-note">
-      <strong>Cotización referencia:</strong> USD 1 ≈ AR$ 1.500 · Precios en ARS son orientativos y pueden ajustarse según tipo de cambio al momento de facturar.
-    </div>
+    <div class="process-timeline">
 
-    <!-- Mes Test -->
-    <div class="mes-test-block">
-      <div>
-        <div class="mes-test-label">El primer paso</div>
-        <h3 class="mes-test-title">El <em>Mes Test</em>: probá antes de elegir plan</h3>
-        <p class="mes-test-desc">
-          Después del diagnóstico, en lugar de pagar un setup grande de entrada, pagás un Mes Test del plan que pensamos que mejor se ajusta. Durante 30 días construyo el sistema y lo dejo corriendo en producción real para que lo pruebes con tus clientes y tu equipo. Si te convence, el monto del Mes Test se acredita al primer mes del plan elegido. Si no, no debés nada más.
-        </p>
-      </div>
-      <div class="mes-test-conditions">
-        <div class="mes-test-condition">
-          <div class="mes-test-condition-num">i.</div>
-          <div class="mes-test-condition-text"><strong>Aplicable una sola vez por cliente.</strong> <span>El alcance del Mes Test se define en el diagnóstico previo gratuito.</span></div>
-        </div>
-        <div class="mes-test-condition">
-          <div class="mes-test-condition-num">ii.</div>
-          <div class="mes-test-condition-text"><strong>Funciona como primer mes anticipado.</strong> <span>El monto pagado se acredita al primer mes del plan que elijas continuar.</span></div>
-        </div>
-        <div class="mes-test-condition">
-          <div class="mes-test-condition-num">iii.</div>
-          <div class="mes-test-condition-text"><strong>No es reembolsable.</strong> <span>Cubre el trabajo de construcción ya entregado y la infraestructura del mes.</span></div>
-        </div>
-        <div class="mes-test-condition">
-          <div class="mes-test-condition-num">iv.</div>
-          <div class="mes-test-condition-text"><strong>Si decidís no continuar,</strong> <span>el sistema construido se detiene al cerrar el mes y no se transfiere.</span></div>
+      <div class="process-step">
+        <div class="step-marker"><div class="step-num">1</div></div>
+        <div class="step-content">
+          <span class="step-tag cliente">Lo hace el cliente · 5 min</span>
+          <h3 class="step-title">Contanos sobre tu negocio</h3>
+          <p class="step-desc">Completás un formulario corto en la web con tus datos de contacto, el rubro de tu empresa y una descripción breve del problema que querés resolver. No necesitás tecnicismos ni preparar nada — alcanza con que cuentes lo esencial.</p>
+          <div class="step-meta">
+            <span><strong>Tu rol:</strong> rellenar el formulario</span>
+            <span><strong>Nuestra respuesta:</strong> en menos de 24hs</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Cards de planes -->
-    <div class="pricing-grid">
-
-      <!-- ESENCIAL -->
-      <div class="plan">
-        <div class="plan-kicker">Plan 1 · Esencial</div>
-        <h3 class="plan-name">Una sola área, automatizada</h3>
-        <div class="plan-tagline">Para negocios que quieren empezar por el problema más urgente — típicamente atención al cliente por WhatsApp.</div>
-
-        <div class="plan-price-block">
-          <div class="plan-price-ars">AR$ 195.000<span class="plan-price-ars-suffix">/mes</span></div>
-          <div class="plan-price-usd">≈ USD 130 / mes</div>
-          <div class="plan-mes-test-line">Mes Test: AR$ 135.000 (≈ USD 90)</div>
+      <div class="process-step">
+        <div class="step-marker"><div class="step-num">2</div></div>
+        <div class="step-content">
+          <span class="step-tag">Diagnóstico colaborativo · 60–90 min</span>
+          <h3 class="step-title">Evaluamos tus procesos juntos</h3>
+          <p class="step-desc">Coordinamos una videollamada (o reunión presencial si estás en Córdoba) donde recorremos en detalle cómo funciona tu operación hoy. Usamos plantillas de diagnóstico estructuradas para identificar dónde se pierde tiempo, qué procesos se repiten y cuáles son automatizables. Al final, vos tenés un mapa claro de tu propio negocio que probablemente nunca habías visto así.</p>
+          <div class="step-meta">
+            <span><strong>Resultado:</strong> diagnóstico escrito en PDF</span>
+            <span><strong>Costo:</strong> sin cargo</span>
+          </div>
         </div>
-
-        <div class="plan-divider"></div>
-        <div class="plan-features-label">Incluye</div>
-        <ul class="plan-features">
-          <li>1 área operativa cubierta · workflows ilimitados dentro de esa área</li>
-          <li>Hasta 4 integraciones externas (WhatsApp, Sheets, Calendar, etc.)</li>
-          <li>Asistente IA con memoria de sesión + calificación básica de leads</li>
-          <li>Construido con Claude Max — modelo IA premium</li>
-          <li>Hasta 2 hs/mes de monitoreo y corrección de bugs</li>
-          <li>Reporte mensual de uso (conversaciones, costos IA)</li>
-          <li>1 reunión mensual de 30 min</li>
-          <li>Respuesta a incidencias en 24 hs hábiles</li>
-          <li>1 sesión de capacitación de 30 min al equipo</li>
-        </ul>
-
-        <div class="plan-features-label">No incluye</div>
-        <ul class="plan-features">
-          <li class="excluded">Cobertura de áreas adicionales</li>
-          <li class="excluded">Mejoras o workflows nuevos pasada la entrega</li>
-          <li class="excluded">Dashboard en tiempo real</li>
-        </ul>
       </div>
 
-      <!-- PROFESIONAL -->
-      <div class="plan featured">
-        <div class="plan-badge">Recomendado</div>
-        <div class="plan-kicker">Plan 2 · Profesional</div>
-        <h3 class="plan-name">Dos áreas trabajando juntas</h3>
-        <div class="plan-tagline">Cuando ya viste que automatizar funciona y querés que dos partes del negocio (atención + ventas) corran en paralelo.</div>
-
-        <div class="plan-price-block">
-          <div class="plan-price-ars">AR$ 390.000<span class="plan-price-ars-suffix">/mes</span></div>
-          <div class="plan-price-usd">≈ USD 260 / mes</div>
-          <div class="plan-mes-test-line">Mes Test: AR$ 270.000 (≈ USD 180)</div>
+      <div class="process-step">
+        <div class="step-marker"><div class="step-num">3</div></div>
+        <div class="step-content">
+          <span class="step-tag">Propuesta · 2–3 días</span>
+          <h3 class="step-title">Recibís la propuesta y elegís el alcance</h3>
+          <p class="step-desc">Te entrego un documento con las áreas operativas que detecté como automatizables, agrupadas por impacto. Vos decidís qué alcance querés cubrir — eso determina el plan (Esencial, Profesional o Premium). Sin sorpresas ni costos ocultos. Sin compromiso hasta firmar.</p>
+          <div class="step-meta">
+            <span><strong>Validez:</strong> 30 días</span>
+            <span><strong>Compromiso:</strong> ninguno hasta firmar</span>
+          </div>
         </div>
-
-        <div class="plan-divider"></div>
-        <div class="plan-features-label">Incluye</div>
-        <ul class="plan-features">
-          <li>2 áreas operativas cubiertas · workflows ilimitados</li>
-          <li>Hasta 10 integraciones externas (CRM, Google Workspace, etc.)</li>
-          <li>Memoria avanzada + calificación + clasificación automática</li>
-          <li>Panel de control en Sheets con tablero de leads y métricas</li>
-          <li>Construido con Claude Max — modelo IA premium</li>
-          <li>Hasta 5 hs/mes de monitoreo, correcciones y optimizaciones</li>
-          <li>1 mejora o automatización nueva por mes</li>
-          <li>1 reunión mensual de 30 min · prioridad alta</li>
-          <li>Respuesta a incidencias en 12 hs hábiles</li>
-          <li>1 sesión de capacitación de 1 hora al equipo</li>
-          <li>Canal directo conmigo (WhatsApp + email)</li>
-        </ul>
-
-        <div class="plan-features-label">No incluye</div>
-        <ul class="plan-features">
-          <li class="excluded">Cobertura de una tercera área operativa</li>
-          <li class="excluded">Atención fuera de horario hábil</li>
-          <li class="excluded">Dashboard con datos en tiempo real</li>
-        </ul>
       </div>
 
-      <!-- PREMIUM -->
-      <div class="plan">
-        <div class="plan-kicker">Plan 3 · Premium</div>
-        <h3 class="plan-name">La operación completa, funcionando sola</h3>
-        <div class="plan-tagline">Cuando entendés que esto es infraestructura del negocio, no una herramienta más. Atención + ventas + reportes + lo que haga falta.</div>
-
-        <div class="plan-price-block">
-          <div class="plan-price-ars">AR$ 825.000<span class="plan-price-ars-suffix">/mes</span></div>
-          <div class="plan-price-usd">≈ USD 550 / mes</div>
-          <div class="plan-mes-test-line">Mes Test: AR$ 600.000 (≈ USD 400)</div>
+      <div class="process-step">
+        <div class="step-marker"><div class="step-num">4</div></div>
+        <div class="step-content">
+          <span class="step-tag">Mes Test · 30 días</span>
+          <h3 class="step-title">Construyo el sistema y lo testeás en producción</h3>
+          <p class="step-desc">Pagás el Mes Test del plan elegido. Durante esos 30 días construyo el sistema en n8n integrando IA con las herramientas que ya usás (WhatsApp, Sheets, Calendar, tu CRM). Lo dejo corriendo en producción real con tus clientes y tu equipo, ajusto en vivo lo que aparezca, y al final del mes vos decidís si continuás al plan completo.</p>
+          <div class="step-meta">
+            <span><strong>Tu rol:</strong> dar accesos y feedback</span>
+            <span><strong>Si continuás:</strong> el monto se acredita al mes 1</span>
+          </div>
         </div>
-
-        <div class="plan-divider"></div>
-        <div class="plan-features-label">Incluye</div>
-        <ul class="plan-features">
-          <li>Áreas operativas ilimitadas (3+ típicamente)</li>
-          <li>Workflows e integraciones ilimitadas</li>
-          <li>Multi-agente coordinado (agentes IA especializados)</li>
-          <li>Memoria persistente entre sesiones</li>
-          <li>Dashboard en tiempo real con métricas operativas</li>
-          <li>Construido con Claude Max — modelo IA premium</li>
-          <li>Hasta 12 hs/mes de monitoreo y optimizaciones</li>
-          <li>2 mejoras o automatizaciones nuevas por mes</li>
-          <li>Reunión quincenal de 45 min · prioridad máxima</li>
-          <li>Incidencias críticas respondidas en 4 hs hábiles</li>
-          <li>3 sesiones de capacitación de 1 hora c/u</li>
-          <li>Canal directo + disponibilidad fuera de horario para emergencias</li>
-        </ul>
-
-        <div class="plan-features-label">No incluye</div>
-        <ul class="plan-features">
-          <li class="excluded">Garantía 24/7/365 (horario lun-vie 9-19 ART)</li>
-          <li class="excluded">Desarrollo de software fuera de n8n</li>
-        </ul>
       </div>
 
-    </div>
+      <div class="process-step">
+        <div class="step-marker"><div class="step-num">5</div></div>
+        <div class="step-content">
+          <span class="step-tag">Mantenimiento · recurrente</span>
+          <h3 class="step-title">Operación continua y mantenimiento</h3>
+          <p class="step-desc">Desde el mes 2 entrás al precio mensual estándar del plan. Monitoreo el sistema, corrijo bugs, agrego mejoras según lo que incluya tu plan, y hacemos las reuniones de revisión correspondientes. El sistema evoluciona con tu negocio.</p>
+          <div class="step-meta">
+            <span><strong>Comunicación:</strong> según plan elegido</span>
+            <span><strong>Reportes:</strong> según plan elegido</span>
+          </div>
+        </div>
+      </div>
 
-    <!-- TABLA COMPARATIVA EXPANDIBLE -->
-    <button class="compare-toggle" id="compareToggle" aria-expanded="false" aria-controls="compareTableWrap">
-      Comparar los tres planes lado a lado <span class="arrow">▼</span>
-    </button>
-    <div class="compare-table-wrap" id="compareTableWrap" data-open="false">
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Esencial</th>
-            <th class="feat-col">Profesional</th>
-            <th>Premium</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="compare-row-section"><td colspan="4">Alcance</td></tr>
-          <tr><td>Áreas operativas</td><td>1</td><td class="feat-col">2</td><td>Ilimitadas</td></tr>
-          <tr><td>Workflows</td><td>Ilimitados (en su área)</td><td class="feat-col">Ilimitados (en sus 2 áreas)</td><td>Ilimitados</td></tr>
-          <tr><td>Integraciones externas</td><td>Hasta 4</td><td class="feat-col">Hasta 10</td><td>Ilimitadas</td></tr>
-          <tr><td>Memoria del asistente</td><td>De sesión</td><td class="feat-col">Avanzada + calificación</td><td>Persistente entre sesiones</td></tr>
-          <tr><td>Multi-agente coordinado</td><td>—</td><td class="feat-col">—</td><td>Sí</td></tr>
-          <tr><td>Modelo IA</td><td>Claude Max</td><td class="feat-col">Claude Max</td><td>Claude Max</td></tr>
-
-          <tr class="compare-row-section"><td colspan="4">Soporte mensual</td></tr>
-          <tr><td>Horas de soporte</td><td>2 hs/mes</td><td class="feat-col">5 hs/mes</td><td>12 hs/mes</td></tr>
-          <tr><td>Mejoras nuevas por mes</td><td>—</td><td class="feat-col">1</td><td>2</td></tr>
-          <tr><td>Reuniones</td><td>1/mes (30 min) · prioridad estándar</td><td class="feat-col">1/mes (30 min) · prioridad alta</td><td>Quincenal (45 min) · prioridad máxima</td></tr>
-          <tr><td>Dashboard / reporte</td><td>Reporte mensual</td><td class="feat-col">Panel Sheets</td><td>Tiempo real</td></tr>
-          <tr><td>Tiempo de respuesta</td><td>24 hs hábiles</td><td class="feat-col">12 hs hábiles</td><td>4 hs (críticas)</td></tr>
-          <tr><td>Capacitación inicial</td><td>1 sesión × 30 min</td><td class="feat-col">1 sesión × 1 hr</td><td>3 sesiones × 1 hr</td></tr>
-          <tr><td>Canal de comunicación</td><td>WhatsApp + email</td><td class="feat-col">WhatsApp + email + canal directo</td><td>Canal directo + disponibilidad off-hours</td></tr>
-
-          <tr class="compare-row-section"><td colspan="4">Precio</td></tr>
-          <tr><td>Mes Test</td><td>AR$ 135.000 (≈ USD 90)</td><td class="feat-col">AR$ 270.000 (≈ USD 180)</td><td>AR$ 600.000 (≈ USD 400)</td></tr>
-          <tr><td>Mensual desde mes 2</td><td>AR$ 195.000 (≈ USD 130)</td><td class="feat-col">AR$ 390.000 (≈ USD 260)</td><td>AR$ 825.000 (≈ USD 550)</td></tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </section>

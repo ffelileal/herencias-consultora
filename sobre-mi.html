@@ -13,6 +13,7 @@
 <body>
 
 <!-- HEADER -->
+<!-- HEADER -->
 <header>
   <nav>
     <a href="index.html" class="logo">
@@ -41,7 +42,7 @@
     <h1 class="hero-title reveal d2">Tu empresa funciona.<br>Imaginate que funciona <em>sola.</em></h1>
     <p class="hero-sub reveal d3">Analizamos cómo trabajás, mapeamos tus procesos y los automatizamos con IA — para que tu equipo se enfoque en lo que realmente genera valor.</p>
     <div class="hero-cta reveal d4">
-      <button class="btn-cta" onclick="openModal()">Iniciar diagnóstico</button>
+      <a href="#" onclick="openModal(); return false;" class="btn-primary">Iniciar diagnóstico gratuito →</a>
       <a href="#servicios" class="btn-secondary">Ver servicios</a>
     </div>
 
@@ -62,97 +63,85 @@
   </div>
 </section>
 
-<!-- SERVICIOS -->
-<section id="servicios">
+<!-- SOBRE MÍ -->
+<section id="sobre-mi" class="about-section">
   <div class="container">
     <div class="section-header">
-      <div class="kicker">Nuestros servicios</div>
-      <h2 class="section-title">¿Qué <em>automatizamos?</em></h2>
-      <p class="section-sub">Diseñamos e implementamos soluciones de Inteligencia Artificial adaptadas a cada proceso de tu negocio. Estos son algunos de los sistemas que desarrollamos:</p>
+      <div class="kicker">Sobre quién está detrás</div>
+      <h2 class="section-title">HerencIAs no es una agencia.<br>Es <em>Julian</em>, dedicado a tiempo completo a que tu negocio funcione solo.</h2>
     </div>
 
-    <div class="services-grid">
-      <div class="service">
-        <span class="service-tag">más solicitado</span>
-        <div class="service-icon">💬</div>
-        <h3 class="service-title">Asistente de atención al cliente</h3>
-        <p class="service-desc">Un agente de IA que responde consultas frecuentes por WhatsApp, Instagram o tu sitio web, las 24 horas del día, sin intervención humana.</p>
+    <div class="about-grid">
+      <div class="about-photo-col">
+        <div class="about-photo">
+          <!-- Cuando tengas la foto, reemplazá la línea de abajo por:
+               <img src="ruta-a-tu-foto.jpg" alt="Julian Leal"> -->
+          <div class="about-photo-placeholder">
+            Reemplazar con foto<br>de Julian (4:5)
+          </div>
+        </div>
+        <dl class="about-quickfacts">
+          <div class="about-fact"><dt>Nombre</dt><dd>Julian Leal</dd></div>
+          <div class="about-fact"><dt>Edad</dt><dd>17 años</dd></div>
+          <div class="about-fact"><dt>Base</dt><dd>Córdoba, AR</dd></div>
+          <div class="about-fact"><dt>Con n8n desde</dt><dd>Feb 2026</dd></div>
+          <div class="about-fact"><dt>Demos funcionales</dt><dd>+5 listos</dd></div>
+        </dl>
       </div>
-      <div class="service">
-        <div class="service-icon">📣</div>
-        <h3 class="service-title">Gestor de redes sociales</h3>
-        <p class="service-desc">Genera, programa y publica contenido en Instagram, Facebook y LinkedIn de forma automática, manteniendo la voz de tu marca.</p>
-      </div>
-      <div class="service">
-        <div class="service-icon">🎯</div>
-        <h3 class="service-title">Buscador de clientes potenciales</h3>
-        <p class="service-desc">Identifica y contacta automáticamente personas o empresas que podrían interesarse en tus productos o servicios, según criterios que vos definís.</p>
-      </div>
-      <div class="service">
-        <div class="service-icon">📊</div>
-        <h3 class="service-title">Reportes automáticos de ventas</h3>
-        <p class="service-desc">Generá informes diarios, semanales o mensuales de facturación, rendimiento y tendencias directamente desde tus datos — sin abrir una sola planilla.</p>
-      </div>
-      <div class="service">
-        <div class="service-icon">🔁</div>
-        <h3 class="service-title">Flujos de onboarding automático</h3>
-        <p class="service-desc">Cuando entra un nuevo cliente o empleado, el sistema envía bienvenidas, materiales y pasos a seguir de forma automática y personalizada.</p>
-      </div>
-      <div class="service">
-        <span class="service-tag">a medida</span>
-        <div class="service-icon">⚙️</div>
-        <h3 class="service-title">Automatización personalizada</h3>
-        <p class="service-desc">Si tu proceso no encaja en los anteriores, lo analizamos y diseñamos una solución a medida. Cada negocio es distinto — cada solución también.</p>
+
+      <div class="about-bio">
+        <blockquote class="about-pullquote">
+          "Mientras la mayoría todavía está entendiendo qué es la IA, yo ya tengo demos funcionales listos para mostrar en vivo. Esa ventaja temporal es la única que existe en este momento."
+        </blockquote>
+
+        <p>
+          Empecé con la automatización a fines de febrero de 2026, casi por accidente. Tenía un proyecto paralelo de venta de pizzas y necesitaba un asistente para sacarme algunas tareas de encima. Armé un chatbot básico y, cuando lo vi funcionando, entendí <strong>el potencial real</strong> que tenía esto.
+        </p>
+
+        <p>
+          A partir de ahí, todo cambió de dirección. Empecé a estudiar n8n a fondo — principalmente con los cursos gratuitos de Juanpe en <em>Divisual Project</em> — y mucho de lo que sé hoy lo aprendí <strong>por mi cuenta</strong>, probando, rompiendo y arreglando workflows hasta que funcionaran exactamente como tenían que funcionar.
+        </p>
+
+        <p>
+          El nombre <em>HerencIAs</em> viene del proyecto original de las pizzas. En mi familia la cocina es una herencia que pasa de generación en generación. Hoy el nombre representa algo más amplio: <strong>los valores que heredé de mis padres</strong> — el trabajo bien hecho, la paciencia, no tomar atajos — y que están detrás de cada workflow que entrego.
+        </p>
+
+        <div class="about-callout">
+          <div class="about-callout-label">Obsesión técnica</div>
+          <p>
+            Dejé de jugar videojuegos, de mirar redes acostado en la cama, y prácticamente todo el ocio que tenía un chico de mi edad, para dedicarle el tiempo a HerencIAs. No es un side project ni una etapa. <strong>Es lo que voy a estar haciendo durante los próximos 10 años.</strong> La ventana de oportunidad para entender automatización con IA antes que el resto del mercado es <em>ahora</em> — y se está cerrando rápido.
+          </p>
+        </div>
+
+        <p>
+          En lo que más me enfoqué hasta hoy son los <strong>asistentes de WhatsApp con IA</strong>: sistemas que atienden consultas, califican leads, agendan turnos y registran todo automáticamente, sin que nadie tenga que estar pegado al teléfono. Tengo demos funcionales corriendo, <em>listos para mostrar en vivo</em>. El problema ya está resuelto — solo falta el cliente.
+        </p>
+
+        <div class="about-callout">
+          <div class="about-callout-label">Mucho más que WhatsApp</div>
+          <p>
+            Los asistentes conversacionales son solo una parte de lo que se puede automatizar. <strong>Con las mismas herramientas</strong>, un negocio puede tener su seguimiento de prospectos corriendo solo, sus reportes generados automáticamente, sus recordatorios enviados sin intervención humana, sus datos sincronizados entre sistemas que hoy no se hablan. <em>El denominador común no es el rubro ni el canal:</em> es que hay tareas repetitivas que alguien está haciendo a mano que no deberían estarlo.
+          </p>
+        </div>
+
+        <p>
+          Me gusta el básquet, las reuniones familiares y juntarme con amigos — son los momentos que me permiten despejar la cabeza para volver con claridad al trabajo. Sé que un emprendedor con un negocio que lo absorbe 12 horas por día no tiene esos momentos. <strong>Por eso hago lo que hago:</strong> para que el dueño de <em>cualquier negocio</em> tenga su operación automatizada y pueda vivir el resto.
+        </p>
+
+        <div class="about-vision">
+          <h3>A 5 años: <em>HerencIAs como agencia consolidada.</em></h3>
+          <p>
+            Mi visión es construir HerencIAs como una agencia reconocida en Argentina y a nivel global, con una base sólida de clientes recurrentes. No tengo apuro: prefiero ir <strong>lerdo pero certero</strong> antes que rápido y a medias. Es exactamente la misma filosofía con la que armo cada workflow.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- CONTACTO -->
-<section id="contacto">
-  <div class="container">
-    <div class="section-header">
-      <div class="kicker">Empezá ahora</div>
-      <h2 class="section-title">Contacto</h2>
-      <p class="section-sub">¿Tenés dudas antes de arrancar? Escribinos directamente.</p>
-    </div>
 
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="contact-row">
-          <div class="row-label">Empresa</div>
-          <div class="row-value">HerencIAs</div>
-        </div>
-        <div class="contact-row">
-          <div class="row-label">A cargo</div>
-          <div class="row-value">Julian Leal</div>
-        </div>
-        <div class="contact-row">
-          <div class="row-label">Email</div>
-          <div class="row-value"><a href="mailto:herencias.asist@gmail.com">herencias.asist@gmail.com</a></div>
-        </div>
-        <div class="contact-row">
-          <div class="row-label">Ubicación</div>
-          <div class="row-value">Córdoba, Argentina</div>
-        </div>
-        <div class="contact-row">
-          <div class="row-label">Horario de respuesta</div>
-          <div class="row-value" style="font-size:18px;color:var(--ink-mute)">Lunes a viernes, 9:00 — 19:00 (ART)</div>
-        </div>
-      </div>
-
-      <div>
-        <button class="btn-primary btn-block" onclick="openModal()">Iniciar diagnóstico gratuito →</button>
-        <p class="section-sub" style="margin-top:14px;text-align:center;line-height:1.5">El primer paso es un formulario corto. Sin compromiso, sin costo, sin spam.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     MODAL — FORMULARIO DE DIAGNÓSTICO
-══════════════════════════════════════ -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="overlayClick(event)">
   <div class="modal" id="modal">
 
@@ -168,15 +157,16 @@
     </div>
 
     <div class="prog-bar">
-        <div class="progress-track"><div class="prog-fill" id="progressFill"></div></div>
-        <span id="stepLabel" class="step-label">Paso 1 de 3</span>
-      </div>
+      <div class="progress-track"><div class="prog-fill" id="progressFill"></div></div>
+      <span id="stepLabel" class="step-label">Paso 1 de 3</span>
+    </div>
 
-      <div class="step-dots">
-        <div class="step-dot active" id="dot0"></div>
-        <div class="step-dot" id="dot1"></div>
-        <div class="step-dot" id="dot2"></div>
-      </div>
+    <div class="step-dots">
+      <div class="step-dot active" id="dot0"></div>
+      <div class="step-dot" id="dot1"></div>
+      <div class="step-dot" id="dot2"></div>
+    </div>
+
     <div class="fb">
 
       <div class="fs active" id="step1">

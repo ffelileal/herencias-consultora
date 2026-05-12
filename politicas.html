@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HerencIAs · Automatización con IA para PyMEs</title>
+<meta name="description" content="Automatización de procesos con IA para PyMEs argentinas. Asistentes WhatsApp, gestión de leads, reportes automáticos. Diagnóstico gratuito.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <nav>
+    <a href="index.html" class="logo">
+      <span class="logo-mark">H</span>
+      <span class="logo-text">HerencIAs</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#servicios">Servicios</a>
+      <a href="sobre-mi.html">Sobre mí</a>
+      <a href="precios.html">Precios</a>
+      <a href="proceso.html">Cómo funciona</a>
+      <a href="#contacto">Contacto</a>
+      <button class="nav-btn" onclick="openModal()">Iniciar diagnóstico</button>
+    </div>
+    <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-decoration">IA</div>
+  <div class="container">
+    <div class="kicker reveal d1">Automatización · Inteligencia Artificial</div>
+    <h1 class="hero-title reveal d2">Tu empresa funciona.<br>Imaginate que funciona <em>sola.</em></h1>
+    <p class="hero-sub reveal d3">Analizamos cómo trabajás, mapeamos tus procesos y los automatizamos con IA — para que tu equipo se enfoque en lo que realmente genera valor.</p>
+    <div class="hero-cta reveal d4">
+      <a href="#contacto" class="btn-primary">Iniciar diagnóstico gratuito →</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">tipos de automatización</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">soluciones a medida</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">PyMEs</div>
+        <div class="stat-label">nuestro foco principal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- POLITICA DE PRIVACIDAD -->
+<section class="privacy-section" id="privacidad">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Documento legal</div>
+      <h2 class="section-title">Política de <em>privacidad</em></h2>
+      <p class="section-sub">Última actualización: 7 de mayo de 2026. Esta política explica qué datos recopilamos, cómo los usamos y qué proveedores procesan información en nuestro nombre.</p>
+    </div>
+
+    <div class="privacy-block">
+      <div>
+        <div class="privacy-block-num">01 / 09</div>
+        <h3 class="privacy-block-title">Quiénes somos</h3>
+      </div>
+      <div class="privacy-block-content">
+        <p>HerencIAs es una consultora de automatización con IA con sede en Córdoba, Argentina. El responsable del tratamiento de los datos es <strong>Julian Leal</strong>, contactable en <a href="mailto:herencias.asist@gmail.com" style="color:var(--accent)">herencias.asist@gmail.com</a>. Esta política rige tanto para visitantes del sitio web como para clientes contratados y los usuarios finales que interactúan con los sistemas que implementamos.</p>
+      </div>
+    </div>
+
+    <div class="privacy-block">
+      <div>
+        <div class="privacy-block-num">02 / 09</div>
+        <h3 class="privacy-block-title">Qué datos recopilamos</h3>
+      </div>
+      <div class="privacy-block-content">
+        <p>Recopilamos diferentes tipos de datos según la etapa de la relación:</p>
+        <p><strong>De visitantes que completan el formulario de diagnóstico:</strong> nombre, email, número de WhatsApp, nombre del negocio, rubro y descripción del problema que querés resolver. No usamos cookies de seguimiento, ni recopilamos datos de navegación, IP, ni huella del dispositivo.</p>
+        <p><strong>De clientes contratados durante el diagnóstico:</strong> información sobre los procesos operativos del negocio, herramientas utilizadas, volúmenes de trabajo, datos comerciales y todo aquello que el cliente decida compartir voluntariamente durante las reuniones. Estas reuniones no se graban salvo que el cliente lo solicite expresamente y por escrito.</p>
+        <p><strong>De usuarios finales que interactúan con los sistemas que implementamos:</strong> contenido de las conversaciones (texto, eventualmente audio o imagen) que el usuario envíe al asistente automatizado, junto con identificadores básicos como el número de teléfono o cuenta de mensajería utilizada.</p>
+      </div>
+    </div>
+
+    <div class="privacy-block">
+      <div>
+        <div class="privacy-block-num">03 / 09</div>
+        <h3 class="privacy-block-title">Cómo usamos los datos</h3>
+      </div>
+      <div class="privacy-block-content">
+        <p>Los datos del formulario de diagnóstico se usan exclusivamente para contactarte y elaborar tu diagnóstico inicial. Los datos comerciales recolectados durante el diagnóstico se usan para diseñar la propuesta de automatización y, en caso de contratación, para construir y mantener el sistema.</p>
+        <p>El contenido de las conversaciones procesadas por los sistemas que implementamos se usa únicamente para que el asistente automatizado responda al usuario final y, cuando corresponde, para entrenar mejoras al propio asistente del cliente que lo contrató. <strong>No usamos los datos de un cliente para mejorar el sistema de otro cliente.</strong></p>
+        <p>No vendemos, alquilamos ni cedemos datos a terceros con fines comerciales.</p>
+      </div>
+    </div>
+
+    <div class="privacy-block">
+      <div>
+        <div class="privacy-block-num">04 / 09</div>
+        <h3 class="privacy-block-title">Subprocesadores</h3>
+      </div>
+      <div class="privacy-block-content">
+        <p>Para operar nuestros servicios, ciertos datos pasan por proveedores externos. Estos son los principales:</p>
+        <table>
+          <thead>
+            <tr><th>Proveedor</th><th>Servicio</th><th>Ubicación</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Hostinger</td><td>Servidor VPS donde corre n8n</td><td>Europa</td></tr>
+            <tr><td>OpenAI</td><td>Modelo IA para procesar consultas</td><td>EE.UU.</td></tr>
+            <tr><td>Anthropic (Claude)</td><td>Modelo IA alternativo</td><td>EE.UU.</td></tr>
+            <tr><td>Meta Platforms</td><td>WhatsApp Cloud API</td><td>EE.UU. / Irlanda</td></tr>
+            <tr><td>Google</td><td>Sheets, Calendar, Drive (cuando aplica)</td><td>EE.UU.</td></tr>
+            <tr><td>Chatwoot</td><td>Mediación de mensajería</td><td>Self-hosted en Hostinger</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:14px">El tratamiento de datos por parte de estos proveedores se rige por sus propias políticas y por los acuerdos de procesamiento de datos vigentes con cada uno. Esto implica una transferencia internacional de datos hacia países fuera de Argentina, lo cual aceptás al utilizar nuestros servicios.</p>
+      </div>
+    </div>
+
+    <div class="privacy-block">
+      <div>
+        <div class="privacy-block-num">05 / 09</div>
+        <h3 class="privacy-block-title">Almacenamiento y retención</h3>
+      </div>
+      <div class="privacy-block-content">
+        <ul>
+          <li><strong>Datos del formulario de diagnóstico:</strong> hasta 12 meses si no avanza la relación comercial; mientras dure la relación si se contrata.</li>
+          <li><strong>Diagnósticos escritos:</strong> conservados durante toda la relación comercial y hasta 24 meses después por motivos administrativos y de continuidad del servicio.</li>
+          <li><strong>Conversaciones procesadas por los sistemas:</strong> retención según política específica de cada cliente, definida en el contrato. Por defecto 90 días, salvo cuando el cliente requiera retención más corta o más larga por necesidades operativas.</li>
+          <li><strong>Datos de facturación:</strong> conservados según los plazos legales vigentes en Argentina (10 años para registros contables).</li>
+        </ul>
+        <p style="margin-top:14px">Los datos se almacenan principalmente en nuestro servidor self-hosted en Hostinger, con copias de respaldo cifradas. Aplicamos medidas de seguridad razonables: contraseñas robustas, autenticación de dos factores en accesos administrativos y cifrado en tránsito (HTTPS/TLS).</p>
+      </div>
+    </div>
+
+    <div class="privacy-block">
+      <div>
+        <div class="privacy-block-num">06 / 09</div>
+        <h3 class="privacy-block-title">Tus derechos</h3>
+      </div>
+      <div class="privacy-block-content">
+        <p>De acuerdo con la Ley 25.326 de Protección de Datos Personales de Argentina, tenés derecho a:</p>
+        <ul>
+          <li><strong>Acceso:</strong> solicitar copia de los datos que tenemos sobre vos.</li>
+          <li><strong>Rectificación:</strong> pedir que corrijamos datos inexactos.</li>
+          <li><strong>Supresión:</strong> solicitar que eliminemos tus datos cuando ya no sean necesarios.</li>
+          <li><strong>Oposición:</strong> oponerte al tratamiento de tus datos en ciertos casos.</li>
+          <li><strong>Portabilidad:</strong> recibir tus datos en un formato estructurado y reutilizable.</li>
+        </ul>
+        <p style="margin-top:14px">Para ejercer cualquiera de estos derechos, escribinos a <a href="mailto:herencias.asist@gmail.com" style="color:var(--accent)">herencias.asist@gmail.com</a>. Respondemos en un máximo de 10 días hábiles. También podés realizar denuncias ante la Agencia de Acceso a la Información Pública (autoridad de aplicación de la ley en Argentina).</p>
+      </div>
+    </div>
+
+    <div class="privacy-block">
+      <div>
+        <div class="privacy-block-num">07 / 09</div>
+        <h3 class="privacy-block-title">Datos de menores</h3>
+      </div>
+      <div class="privacy-block-content">
+        <p>Nuestros servicios están dirigidos exclusivamente a empresas y a profesionales mayores de 18 años. No recopilamos intencionalmente datos de menores de edad. Si detectamos que se ingresaron datos de un menor sin autorización del responsable parental, los eliminaremos en cuanto seamos notificados.</p>
+      </div>
+    </div>
+
+    <div class="privacy-block">
+      <div>
+        <div class="privacy-block-num">08 / 09</div>
+        <h3 class="privacy-block-title">Cookies y tecnologías similares</h3>
+      </div>
+      <div class="privacy-block-content">
+        <p>Este sitio web no usa cookies de seguimiento, analítica de terceros (Google Analytics, Meta Pixel, etc.), ni herramientas de remarketing. Solo utilizamos almacenamiento técnico estrictamente necesario para el funcionamiento del formulario de contacto.</p>
+      </div>
+    </div>
+
+    <div class="privacy-block">
+      <div>
+        <div class="privacy-block-num">09 / 09</div>
+        <h3 class="privacy-block-title">Cambios a esta política</h3>
+      </div>
+      <div class="privacy-block-content">
+        <p>Esta política puede actualizarse periódicamente. La fecha de la última actualización aparece al inicio del documento. Para cambios significativos, notificaremos a los clientes activos por email con al menos 30 días de anticipación.</p>
+      </div>
+    </div>
+
+    <div class="privacy-disclaimer">
+      <span style="font-size:18px">⚖</span>
+      <div><strong>Aviso legal:</strong> este texto fue redactado de buena fe siguiendo los principios de la Ley 25.326 de Argentina y prácticas habituales del sector. No reemplaza el asesoramiento de un abogado especializado en protección de datos. Para consultas legales específicas, consultá con un profesional matriculado.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <div><strong style="color:var(--ink)">HerencIAs</strong> · Córdoba, Argentina · <a href="mailto:herencias.asist@gmail.com" style="color:var(--ink-mute)">herencias.asist@gmail.com</a></div>
+      <div>© 2026 HerencIAs. Todos los derechos reservados. <a href="politicas.html" style="color:var(--ink-mute)">Política de privacidad</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Comparativa expandible
+const compareToggle = document.getElementById('compareToggle');
+const compareTableWrap = document.getElementById('compareTableWrap');
+compareToggle.addEventListener('click', () => {
+  const isOpen = compareTableWrap.dataset.open === 'true';
+  compareTableWrap.dataset.open = !isOpen;
+  compareToggle.setAttribute('aria-expanded', !isOpen);
+  compareToggle.firstChild.textContent = isOpen
+    ? 'Comparar los tres planes lado a lado '
+    : 'Cerrar comparativa ';
+});
+
+// Mobile menu toggle
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+// Cerrar menú al clickear un link
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="js/diagnostico.js"></script>
+
+</body>
+</html>
