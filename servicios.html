@@ -22,7 +22,8 @@
     <div class="nav-links" id="navLinks">
       <a href="servicios.html">Servicios</a>
       <a href="sobre-mi.html">Sobre mí</a>
-      <a href="precios.html">Precios</a>
+            <!--<a href="precios">Precios</a> -->
+
       <a href="proceso.html">Cómo funciona</a>
       <a href="#contacto">Contacto</a>
       <a href="#" onclick="openModal(); return false;" class="btn-primary">Iniciar diagnóstico</a>
@@ -41,7 +42,7 @@
     <p class="hero-sub reveal d3">Consultoría, workflows y asistentes inteligentes pensados para aliviar la carga operativa y acelerar decisiones.</p>
     <div class="hero-cta reveal d4">
       <a href="#" onclick="openModal(); return false;" class="btn-primary">Iniciar diagnóstico gratuito →</a>
-      <a href="precios.html" class="btn-secondary">Ver precios</a>
+      <a href="precios" class="btn-secondary">Ver precios</a>
     </div>
   </div>
 </section>
@@ -197,12 +198,14 @@
 <script>
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="js/diagnostico.js"></script>

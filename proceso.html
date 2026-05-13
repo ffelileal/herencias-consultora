@@ -23,7 +23,8 @@
     <div class="nav-links" id="navLinks">
       <a href="#servicios">Servicios</a>
       <a href="sobre-mi.html">Sobre mí</a>
-      <a href="precios.html">Precios</a>
+            <!--<a href="precios">Precios</a> -->
+
       <a href="proceso.html">Cómo funciona</a>
       <a href="#contacto">Contacto</a>
       <button class="nav-btn" onclick="openModal()">Iniciar diagnóstico</button>
@@ -325,25 +326,29 @@
 // Comparativa expandible
 const compareToggle = document.getElementById('compareToggle');
 const compareTableWrap = document.getElementById('compareTableWrap');
-compareToggle.addEventListener('click', () => {
-  const isOpen = compareTableWrap.dataset.open === 'true';
-  compareTableWrap.dataset.open = !isOpen;
-  compareToggle.setAttribute('aria-expanded', !isOpen);
-  compareToggle.firstChild.textContent = isOpen
-    ? 'Comparar los tres planes lado a lado '
-    : 'Cerrar comparativa ';
-});
+if (compareToggle && compareTableWrap) {
+  compareToggle.addEventListener('click', () => {
+    const isOpen = compareTableWrap.dataset.open === 'true';
+    compareTableWrap.dataset.open = !isOpen;
+    compareToggle.setAttribute('aria-expanded', !isOpen);
+    compareToggle.firstChild.textContent = isOpen
+      ? 'Comparar los tres planes lado a lado '
+      : 'Cerrar comparativa ';
+  });
+}
 
 // Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
-// Cerrar menú al clickear un link
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  // Cerrar menú al clickear un link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="js/diagnostico.js"></script>
