@@ -26,7 +26,7 @@
 
       <a href="proceso.html">Cómo funciona</a>
       <a href="#contacto">Contacto</a>
-      <a href="#" onclick="openModal(); return false;" class="btn-primary">Iniciar diagnóstico</a>
+      <a href="#" data-action="open-modal" class="btn-primary">Iniciar diagnóstico</a>
     </div>
     <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -41,7 +41,7 @@
     <h1 class="hero-title reveal d2">Soluciones de IA para que tu PyME funcione sin tanto control manual.</h1>
     <p class="hero-sub reveal d3">Consultoría, workflows y asistentes inteligentes pensados para aliviar la carga operativa y acelerar decisiones.</p>
     <div class="hero-cta reveal d4">
-      <a href="#" onclick="openModal(); return false;" class="btn-primary">Iniciar diagnóstico gratuito →</a>
+      <a href="#" data-action="open-modal" class="btn-primary">Iniciar diagnóstico gratuito →</a>
       <a href="precios" class="btn-secondary">Ver precios</a>
     </div>
   </div>
@@ -76,7 +76,7 @@
 </section>
 
 <!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="overlayClick(event)">
+<div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modal">
 
     <div class="mh">
@@ -86,7 +86,7 @@
           <h3>Contanos cómo funciona tu negocio</h3>
           <p>Describí el proceso como si se lo explicaras a alguien de confianza. Sin tecnicismos.</p>
         </div>
-        <button class="modal-close" onclick="closeModal()" title="Cerrar">✕</button>
+        <button class="modal-close" type="button" data-action="close-modal" title="Cerrar">✕</button>
       </div>
     </div>
 
@@ -130,7 +130,7 @@
           </div>
           <div class="fc-hint" id="err-whatsapp">Ingresá un número válido</div>
         </div>
-        <div class="fnav"><div></div><button class="btn-fwd" onclick="goNext(1)">Siguiente →</button></div>
+        <div class="fnav"><div></div><button class="btn-fwd" type="button" data-action="next" data-step="1">Siguiente →</button></div>
       </div>
 
       <div class="fs" id="step2">
@@ -138,12 +138,12 @@
           <h4 style="font-size:1.15rem;margin-bottom:10px;">¿A qué se dedica tu negocio?</h4>
         </div>
         <div class="opts-2" id="pillGrid">
-          <label class="pill" onclick="selectPill(this, 'Inmobiliaria')"><input type="radio" name="sector" value="Inmobiliaria" style="display:none;"> 🏠 Inmobiliaria</label>
-          <label class="pill" onclick="selectPill(this, 'Clínica / salud')"><input type="radio" name="sector" value="Clínica / salud" style="display:none;"> 🏥 Clínica / salud</label>
-          <label class="pill" onclick="selectPill(this, 'Alquiler vacacional')"><input type="radio" name="sector" value="Alquiler vacacional" style="display:none;"> 🏖️ Alquiler vacacional</label>
-          <label class="pill" onclick="selectPill(this, 'Comercio / retail')"><input type="radio" name="sector" value="Comercio / retail" style="display:none;"> 🛍️ Comercio / retail</label>
-          <label class="pill" onclick="selectPill(this, 'Estudio contable / legal')"><input type="radio" name="sector" value="Estudio contable / legal" style="display:none;"> 📊 Contable / legal</label>
-          <label class="pill" onclick="selectPill(this, 'Otro')"><input type="radio" name="sector" value="Otro" style="display:none;"> ⚡ Otro rubro</label>
+          <label class="pill" data-action="select-pill" data-value="Inmobiliaria"><input type="radio" name="sector" value="Inmobiliaria" style="display:none;"> 🏠 Inmobiliaria</label>
+          <label class="pill" data-action="select-pill" data-value="Clínica / salud"><input type="radio" name="sector" value="Clínica / salud" style="display:none;"> 🏥 Clínica / salud</label>
+          <label class="pill" data-action="select-pill" data-value="Alquiler vacacional"><input type="radio" name="sector" value="Alquiler vacacional" style="display:none;"> 🏖️ Alquiler vacacional</label>
+          <label class="pill" data-action="select-pill" data-value="Comercio / retail"><input type="radio" name="sector" value="Comercio / retail" style="display:none;"> 🛍️ Comercio / retail</label>
+          <label class="pill" data-action="select-pill" data-value="Estudio contable / legal"><input type="radio" name="sector" value="Estudio contable / legal" style="display:none;"> 📊 Contable / legal</label>
+          <label class="pill" data-action="select-pill" data-value="Otro"><input type="radio" name="sector" value="Otro" style="display:none;"> ⚡ Otro rubro</label>
         </div>
         <div class="fc-hint" id="err-sector">Seleccioná un rubro</div>
         <div class="fc" id="otroField" style="display:none;">
@@ -151,8 +151,8 @@
           <input type="text" id="otroRubro" placeholder="Describí brevemente a qué se dedica">
         </div>
         <div class="fnav">
-          <button class="btn-back" onclick="go(2,1)">← Atrás</button>
-          <button class="btn-fwd" onclick="goNext(2)">Siguiente →</button>
+          <button class="btn-back" type="button" data-action="back" data-step="1">← Atrás</button>
+          <button class="btn-fwd" type="button" data-action="next" data-step="2">Siguiente →</button>
         </div>
       </div>
 
@@ -166,8 +166,8 @@
           <div class="fc-hint" id="err-problema">Contanos un poco sobre tu problema</div>
         </div>
         <div class="fnav">
-          <button class="btn-back" onclick="go(3,2)">← Atrás</button>
-          <button class="btn-send" id="submitBtn" onclick="submitForm()" style="flex:1;">Quiero mi diagnóstico →</button>
+          <button class="btn-back" type="button" data-action="back" data-step="2">← Atrás</button>
+          <button class="btn-send" id="submitBtn" type="button" data-action="submit" style="flex:1;">Quiero mi diagnóstico →</button>
         </div>
       </div>
 
@@ -195,20 +195,9 @@
   </div>
 </footer>
 
-<script>
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-}
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="js/diagnostico.js"></script>
 
 </body>
 </html>
+

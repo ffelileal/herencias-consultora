@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HerencIAs · Automatización con IA para PyMEs</title>
-<meta name="description" content="Automatización de procesos con IA para PyMEs argentinas. Asistentes WhatsApp, gestión de leads, reportes automáticos. Diagnóstico gratuito.">
+<meta name="description" content="AutomatizaciÃ³n de procesos con IA para PyMEs argentinas. Asistentes WhatsApp, gestiÃ³n de leads, reportes automÃ¡ticos. DiagnÃ³stico gratuito.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
@@ -20,13 +20,12 @@
       <span class="logo-text">HerencIAs</span>
     </a>
     <div class="nav-links" id="navLinks">
-      <a href="#servicios">Servicios</a>
+      <a href="index.html">Servicios</a>
       <a href="sobre-mi.html">Sobre mí</a>
-      <      <!--<a href="precios">Precios</a> -->
->
+    <!--<a href="precios">Precios</a> -->
       <a href="proceso.html">Cómo funciona</a>
       <a href="#contacto">Contacto</a>
-      <button class="nav-btn" onclick="openModal()">Iniciar diagnóstico</button>
+      <button class="nav-btn" type="button" data-action="open-modal">Iniciar diagnóstico</button>
     </div>
     <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -38,27 +37,60 @@
 <section class="hero">
   <div class="hero-decoration">IA</div>
   <div class="container">
-    <div class="kicker reveal d1">Automatización · Inteligencia Artificial</div>
+    <div class="kicker reveal d1">AutomatizaciÃ³n Â· Inteligencia Artificial</div>
     <h1 class="hero-title reveal d2">Tu empresa funciona.<br>Imaginate que funciona <em>sola.</em></h1>
-    <p class="hero-sub reveal d3">Analizamos cómo trabajás, mapeamos tus procesos y los automatizamos con IA — para que tu equipo se enfoque en lo que realmente genera valor.</p>
+    <p class="hero-sub reveal d3">Analizamos cÃ³mo trabajÃ¡s, mapeamos tus procesos y los automatizamos con IA â€” para que tu equipo se enfoque en lo que realmente genera valor.</p>
     <div class="hero-cta reveal d4">
-      <a href="#contacto" class="btn-primary">Iniciar diagnóstico gratuito →</a>
+      <a href="#contacto" class="btn-primary">Iniciar diagnÃ³stico gratuito â†’</a>
       <a href="#servicios" class="btn-secondary">Ver servicios</a>
     </div>
 
+    <!-- HERO -->
+<section class="hero">
+  <div class="hero-decoration">IA</div>
+
+  <div class="container">
+
+    <div class="kicker reveal d1">
+      Automatización · Inteligencia Artificial
+    </div>
+
+    <h1 class="hero-title reveal d2">
+      Tu empresa funciona.<br>
+      Imaginate que funciona <em>sola.</em>
+    </h1>
+
+    <p class="hero-sub reveal d3">
+      Analizamos cómo trabajás, mapeamos tus procesos y los automatizamos con IA — para que tu equipo se enfoque en lo que realmente genera valor.
+    </p>
+
+    <div class="hero-cta reveal d4">
+      <a href="#contacto" class="btn-primary">
+        Iniciar diagnóstico gratuito →
+      </a>
+
+      <a href="#servicios" class="btn-secondary">
+        Ver servicios
+      </a>
+    </div>
+
     <div class="hero-stats">
+
       <div class="stat">
         <div class="stat-num">5+</div>
         <div class="stat-label">tipos de automatización</div>
       </div>
+
       <div class="stat">
         <div class="stat-num">100%</div>
         <div class="stat-label">soluciones a medida</div>
       </div>
+
       <div class="stat">
         <div class="stat-num">PyMEs</div>
         <div class="stat-label">nuestro foco principal</div>
       </div>
+
     </div>
   </div>
 </section>
@@ -213,36 +245,10 @@
   </div>
 </footer>
 
-<script>
-// Comparativa expandible
-const compareToggle = document.getElementById('compareToggle');
-const compareTableWrap = document.getElementById('compareTableWrap');
-if (compareToggle && compareTableWrap) {
-  compareToggle.addEventListener('click', () => {
-    const isOpen = compareTableWrap.dataset.open === 'true';
-    compareTableWrap.dataset.open = !isOpen;
-    compareToggle.setAttribute('aria-expanded', !isOpen);
-    compareToggle.firstChild.textContent = isOpen
-      ? 'Comparar los tres planes lado a lado '
-      : 'Cerrar comparativa ';
-  });
-}
 
-// Mobile menu toggle
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-  // Cerrar menú al clickear un link
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-}
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="js/diagnostico.js"></script>
 
 </body>
 </html>
+

@@ -215,6 +215,70 @@ function submitForm() {
   }
 }
 
+function initPageEvents() {
+  document.querySelectorAll('[data-action="open-modal"]').forEach(el => {
+    el.addEventListener('click', event => {
+      event.preventDefault();
+      openModal();
+    });
+  });
+
+  const overlay = document.getElementById('modalOverlay');
+  if (overlay) overlay.addEventListener('click', overlayClick);
+
+  document.querySelectorAll('[data-action="close-modal"]').forEach(btn => {
+    btn.addEventListener('click', closeModal);
+  });
+
+  document.querySelectorAll('[data-action="next"]').forEach(btn => {
+    const step = Number(btn.dataset.step);
+    if (!Number.isNaN(step)) {
+      btn.addEventListener('click', () => goNext(step));
+    }
+  });
+
+  document.querySelectorAll('[data-action="back"]').forEach(btn => {
+    const step = Number(btn.dataset.step);
+    if (!Number.isNaN(step)) {
+      btn.addEventListener('click', () => go(step + 1, step));
+    }
+  });
+
+  document.querySelectorAll('[data-action="submit"]').forEach(btn => {
+    btn.addEventListener('click', submitForm);
+  });
+
+  document.querySelectorAll('[data-action="select-pill"]').forEach(label => {
+    label.addEventListener('click', event => {
+      event.preventDefault();
+      const value = label.dataset.value;
+      if (value) selectPill(label, value);
+    });
+  });
+
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('open')));
+  }
+
+  const compareToggle = document.getElementById('compareToggle');
+  const compareTableWrap = document.getElementById('compareTableWrap');
+  if (compareToggle && compareTableWrap) {
+    compareToggle.addEventListener('click', () => {
+      const isOpen = compareTableWrap.dataset.open === 'true';
+      compareTableWrap.dataset.open = !isOpen;
+      compareToggle.setAttribute('aria-expanded', !isOpen);
+      compareToggle.firstChild.textContent = isOpen
+        ? 'Comparar los tres planes lado a lado '
+        : 'Cerrar comparativa ';
+    });
+  }
+}
+
 function initDiagnostico() {
   const nombre = document.getElementById('nombre');
   if (nombre) nombre.addEventListener('blur', () => { if (nombre.value.trim()) showError('nombre', false); });
@@ -227,11 +291,10 @@ function initDiagnostico() {
 
   const problema = document.getElementById('problema');
   if (problema) problema.addEventListener('input', () => { if (problema.value.trim().length >= 15) showError('problema', false); });
-
-  document.querySelectorAll('#navLinks a').forEach(link => link.addEventListener('click', closeMenu));
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   if (window.emailjs) { emailjs.init('adm4MXdWYT5iF8f7B'); }
   initDiagnostico();
+  initPageEvents();
 });

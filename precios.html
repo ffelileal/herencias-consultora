@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HerencIAs · Automatización con IA para PyMEs</title>
-<meta name="description" content="Automatización de procesos con IA para PyMEs argentinas. Asistentes WhatsApp, gestión de leads, reportes automáticos. Diagnóstico gratuito.">
+<meta name="description" content="AutomatizaciÃ³n de procesos con IA para PyMEs argentinas. Asistentes WhatsApp, gestiÃ³n de leads, reportes automÃ¡ticos. DiagnÃ³stico gratuito.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
@@ -21,14 +21,14 @@
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#servicios">Servicios</a>
-      <a href="sobre-mi.html">Sobre mí</a>
+      <a href="sobre-mi.html">Sobre mÃ­</a>
             <!--<a href="precios">Precios</a> -->
 
-      <a href="proceso.html">Cómo funciona</a>
+      <a href="proceso.html">CÃ³mo funciona</a>
       <a href="#contacto">Contacto</a>
-      <a href="#" onclick="openModal(); return false;" class="btn-primary">Iniciar diagnóstico</a>
+      <a href="#" data-action="open-modal" class="btn-primary">Iniciar diagnÃ³stico</a>
     </div>
-    <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
+    <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menÃº">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
   </nav>
@@ -38,27 +38,60 @@
 <section class="hero">
   <div class="hero-decoration">IA</div>
   <div class="container">
-    <div class="kicker reveal d1">Automatización · Inteligencia Artificial</div>
+    <div class="kicker reveal d1">AutomatizaciÃ³n Â· Inteligencia Artificial</div>
     <h1 class="hero-title reveal d2">Tu empresa funciona.<br>Imaginate que funciona <em>sola.</em></h1>
-    <p class="hero-sub reveal d3">Analizamos cómo trabajás, mapeamos tus procesos y los automatizamos con IA — para que tu equipo se enfoque en lo que realmente genera valor.</p>
+    <p class="hero-sub reveal d3">Analizamos cÃ³mo trabajÃ¡s, mapeamos tus procesos y los automatizamos con IA â€” para que tu equipo se enfoque en lo que realmente genera valor.</p>
     <div class="hero-cta reveal d4">
-      <a href="#" onclick="openModal(); return false;" class="btn-primary">Iniciar diagnóstico gratuito →</a>
+      <a href="#" data-action="open-modal" class="btn-primary">Iniciar diagnÃ³stico gratuito â†’</a>
       <a href="#servicios" class="btn-secondary">Ver servicios</a>
     </div>
 
+    <!-- HERO -->
+<section class="hero">
+  <div class="hero-decoration">IA</div>
+
+  <div class="container">
+
+    <div class="kicker reveal d1">
+      Automatización · Inteligencia Artificial
+    </div>
+
+    <h1 class="hero-title reveal d2">
+      Tu empresa funciona.<br>
+      Imaginate que funciona <em>sola.</em>
+    </h1>
+
+    <p class="hero-sub reveal d3">
+      Analizamos cómo trabajás, mapeamos tus procesos y los automatizamos con IA — para que tu equipo se enfoque en lo que realmente genera valor.
+    </p>
+
+    <div class="hero-cta reveal d4">
+      <a href="#contacto" class="btn-primary">
+        Iniciar diagnóstico gratuito →
+      </a>
+
+      <a href="#servicios" class="btn-secondary">
+        Ver servicios
+      </a>
+    </div>
+
     <div class="hero-stats">
+
       <div class="stat">
         <div class="stat-num">5+</div>
         <div class="stat-label">tipos de automatización</div>
       </div>
+
       <div class="stat">
         <div class="stat-num">100%</div>
         <div class="stat-label">soluciones a medida</div>
       </div>
+
       <div class="stat">
         <div class="stat-num">PyMEs</div>
         <div class="stat-label">nuestro foco principal</div>
       </div>
+
     </div>
   </div>
 </section>
@@ -68,42 +101,42 @@
   <div class="container">
     <div class="section-header">
       <div class="kicker">Nuestros servicios</div>
-      <h2 class="section-title">¿Qué <em>automatizamos?</em></h2>
-      <p class="section-sub">Diseñamos e implementamos soluciones de Inteligencia Artificial adaptadas a cada proceso de tu negocio. Estos son algunos de los sistemas que desarrollamos:</p>
+      <h2 class="section-title">Â¿QuÃ© <em>automatizamos?</em></h2>
+      <p class="section-sub">DiseÃ±amos e implementamos soluciones de Inteligencia Artificial adaptadas a cada proceso de tu negocio. Estos son algunos de los sistemas que desarrollamos:</p>
     </div>
 
     <div class="services-grid">
       <div class="service">
-        <span class="service-tag">más solicitado</span>
-        <div class="service-icon">💬</div>
-        <h3 class="service-title">Asistente de atención al cliente</h3>
-        <p class="service-desc">Un agente de IA que responde consultas frecuentes por WhatsApp, Instagram o tu sitio web, las 24 horas del día, sin intervención humana.</p>
+        <span class="service-tag">mÃ¡s solicitado</span>
+        <div class="service-icon">ðŸ’¬</div>
+        <h3 class="service-title">Asistente de atenciÃ³n al cliente</h3>
+        <p class="service-desc">Un agente de IA que responde consultas frecuentes por WhatsApp, Instagram o tu sitio web, las 24 horas del dÃ­a, sin intervenciÃ³n humana.</p>
       </div>
       <div class="service">
-        <div class="service-icon">📣</div>
+        <div class="service-icon">ðŸ“£</div>
         <h3 class="service-title">Gestor de redes sociales</h3>
-        <p class="service-desc">Genera, programa y publica contenido en Instagram, Facebook y LinkedIn de forma automática, manteniendo la voz de tu marca.</p>
+        <p class="service-desc">Genera, programa y publica contenido en Instagram, Facebook y LinkedIn de forma automÃ¡tica, manteniendo la voz de tu marca.</p>
       </div>
       <div class="service">
-        <div class="service-icon">🎯</div>
+        <div class="service-icon">ðŸŽ¯</div>
         <h3 class="service-title">Buscador de clientes potenciales</h3>
-        <p class="service-desc">Identifica y contacta automáticamente personas o empresas que podrían interesarse en tus productos o servicios, según criterios que vos definís.</p>
+        <p class="service-desc">Identifica y contacta automÃ¡ticamente personas o empresas que podrÃ­an interesarse en tus productos o servicios, segÃºn criterios que vos definÃ­s.</p>
       </div>
       <div class="service">
-        <div class="service-icon">📊</div>
-        <h3 class="service-title">Reportes automáticos de ventas</h3>
-        <p class="service-desc">Generá informes diarios, semanales o mensuales de facturación, rendimiento y tendencias directamente desde tus datos — sin abrir una sola planilla.</p>
+        <div class="service-icon">ðŸ“Š</div>
+        <h3 class="service-title">Reportes automÃ¡ticos de ventas</h3>
+        <p class="service-desc">GenerÃ¡ informes diarios, semanales o mensuales de facturaciÃ³n, rendimiento y tendencias directamente desde tus datos â€” sin abrir una sola planilla.</p>
       </div>
       <div class="service">
-        <div class="service-icon">🔁</div>
-        <h3 class="service-title">Flujos de onboarding automático</h3>
-        <p class="service-desc">Cuando entra un nuevo cliente o empleado, el sistema envía bienvenidas, materiales y pasos a seguir de forma automática y personalizada.</p>
+        <div class="service-icon">ðŸ”</div>
+        <h3 class="service-title">Flujos de onboarding automÃ¡tico</h3>
+        <p class="service-desc">Cuando entra un nuevo cliente o empleado, el sistema envÃ­a bienvenidas, materiales y pasos a seguir de forma automÃ¡tica y personalizada.</p>
       </div>
       <div class="service">
         <span class="service-tag">a medida</span>
-        <div class="service-icon">⚙️</div>
-        <h3 class="service-title">Automatización personalizada</h3>
-        <p class="service-desc">Si tu proceso no encaja en los anteriores, lo analizamos y diseñamos una solución a medida. Cada negocio es distinto — cada solución también.</p>
+        <div class="service-icon">âš™ï¸</div>
+        <h3 class="service-title">AutomatizaciÃ³n personalizada</h3>
+        <p class="service-desc">Si tu proceso no encaja en los anteriores, lo analizamos y diseÃ±amos una soluciÃ³n a medida. Cada negocio es distinto â€” cada soluciÃ³n tambiÃ©n.</p>
       </div>
     </div>
   </div>
@@ -113,34 +146,34 @@
 <section id="precios">
   <div class="container">
     <div class="section-header">
-      <div class="kicker">Inversión</div>
-      <h2 class="section-title">Planes <em>de implementación</em></h2>
-      <p class="section-sub">Tres planes mensuales según el alcance que quieras automatizar. Sin setup separado: empezás con un Mes Test que se acredita al primer mes del plan elegido. Lo que cobramos ya incluye el desarrollo, las herramientas, el hosting y el mantenimiento.</p>
+      <div class="kicker">InversiÃ³n</div>
+      <h2 class="section-title">Planes <em>de implementaciÃ³n</em></h2>
+      <p class="section-sub">Tres planes mensuales segÃºn el alcance que quieras automatizar. Sin setup separado: empezÃ¡s con un Mes Test que se acredita al primer mes del plan elegido. Lo que cobramos ya incluye el desarrollo, las herramientas, el hosting y el mantenimiento.</p>
     </div>
 
     <div class="pricing-disclaimer">
-      <span class="pricing-disclaimer-icon">ℹ</span>
+      <span class="pricing-disclaimer-icon">â„¹</span>
       <div>
-        <strong>Sección informativa.</strong> Los valores son de referencia. La cotización final se ajusta al alcance específico que se releva en el diagnóstico gratuito previo.
+        <strong>SecciÃ³n informativa.</strong> Los valores son de referencia. La cotizaciÃ³n final se ajusta al alcance especÃ­fico que se releva en el diagnÃ³stico gratuito previo.
       </div>
     </div>
     <div class="fx-note">
-      <strong>Cotización referencia:</strong> USD 1 ≈ AR$ 1.500 · Precios en ARS son orientativos y pueden ajustarse según tipo de cambio al momento de facturar.
+      <strong>CotizaciÃ³n referencia:</strong> USD 1 â‰ˆ AR$ 1.500 Â· Precios en ARS son orientativos y pueden ajustarse segÃºn tipo de cambio al momento de facturar.
     </div>
 
     <!-- Mes Test -->
     <div class="mes-test-block">
       <div>
         <div class="mes-test-label">El primer paso</div>
-        <h3 class="mes-test-title">El <em>Mes Test</em>: probá antes de elegir plan</h3>
+        <h3 class="mes-test-title">El <em>Mes Test</em>: probÃ¡ antes de elegir plan</h3>
         <p class="mes-test-desc">
-          Después del diagnóstico, en lugar de pagar un setup grande de entrada, pagás un Mes Test del plan que pensamos que mejor se ajusta. Durante 30 días construyo el sistema y lo dejo corriendo en producción real para que lo pruebes con tus clientes y tu equipo. Si te convence, el monto del Mes Test se acredita al primer mes del plan elegido. Si no, no debés nada más.
+          DespuÃ©s del diagnÃ³stico, en lugar de pagar un setup grande de entrada, pagÃ¡s un Mes Test del plan que pensamos que mejor se ajusta. Durante 30 dÃ­as construyo el sistema y lo dejo corriendo en producciÃ³n real para que lo pruebes con tus clientes y tu equipo. Si te convence, el monto del Mes Test se acredita al primer mes del plan elegido. Si no, no debÃ©s nada mÃ¡s.
         </p>
       </div>
       <div class="mes-test-conditions">
         <div class="mes-test-condition">
           <div class="mes-test-condition-num">i.</div>
-          <div class="mes-test-condition-text"><strong>Aplicable una sola vez por cliente.</strong> <span>El alcance del Mes Test se define en el diagnóstico previo gratuito.</span></div>
+          <div class="mes-test-condition-text"><strong>Aplicable una sola vez por cliente.</strong> <span>El alcance del Mes Test se define en el diagnÃ³stico previo gratuito.</span></div>
         </div>
         <div class="mes-test-condition">
           <div class="mes-test-condition-num">ii.</div>
@@ -148,11 +181,11 @@
         </div>
         <div class="mes-test-condition">
           <div class="mes-test-condition-num">iii.</div>
-          <div class="mes-test-condition-text"><strong>No es reembolsable.</strong> <span>Cubre el trabajo de construcción ya entregado y la infraestructura del mes.</span></div>
+          <div class="mes-test-condition-text"><strong>No es reembolsable.</strong> <span>Cubre el trabajo de construcciÃ³n ya entregado y la infraestructura del mes.</span></div>
         </div>
         <div class="mes-test-condition">
           <div class="mes-test-condition-num">iv.</div>
-          <div class="mes-test-condition-text"><strong>Si decidís no continuar,</strong> <span>el sistema construido se detiene al cerrar el mes y no se transfiere.</span></div>
+          <div class="mes-test-condition-text"><strong>Si decidÃ­s no continuar,</strong> <span>el sistema construido se detiene al cerrar el mes y no se transfiere.</span></div>
         </div>
       </div>
     </div>
@@ -162,33 +195,33 @@
 
       <!-- ESENCIAL -->
       <div class="plan">
-        <div class="plan-kicker">Plan 1 · Esencial</div>
-        <h3 class="plan-name">Una sola área, automatizada</h3>
-        <div class="plan-tagline">Para negocios que quieren empezar por el problema más urgente — típicamente atención al cliente por WhatsApp.</div>
+        <div class="plan-kicker">Plan 1 Â· Esencial</div>
+        <h3 class="plan-name">Una sola Ã¡rea, automatizada</h3>
+        <div class="plan-tagline">Para negocios que quieren empezar por el problema mÃ¡s urgente â€” tÃ­picamente atenciÃ³n al cliente por WhatsApp.</div>
 
         <div class="plan-price-block">
           <div class="plan-price-ars">AR$ 195.000<span class="plan-price-ars-suffix">/mes</span></div>
-          <div class="plan-price-usd">≈ USD 130 / mes</div>
-          <div class="plan-mes-test-line">Mes Test: AR$ 135.000 (≈ USD 90)</div>
+          <div class="plan-price-usd">â‰ˆ USD 130 / mes</div>
+          <div class="plan-mes-test-line">Mes Test: AR$ 135.000 (â‰ˆ USD 90)</div>
         </div>
 
         <div class="plan-divider"></div>
         <div class="plan-features-label">Incluye</div>
         <ul class="plan-features">
-          <li>1 área operativa cubierta · workflows ilimitados dentro de esa área</li>
+          <li>1 Ã¡rea operativa cubierta Â· workflows ilimitados dentro de esa Ã¡rea</li>
           <li>Hasta 4 integraciones externas (WhatsApp, Sheets, Calendar, etc.)</li>
-          <li>Asistente IA con memoria de sesión + calificación básica de leads</li>
-          <li>Construido con Claude Max — modelo IA premium</li>
-          <li>Hasta 2 hs/mes de monitoreo y corrección de bugs</li>
+          <li>Asistente IA con memoria de sesiÃ³n + calificaciÃ³n bÃ¡sica de leads</li>
+          <li>Construido con Claude Max â€” modelo IA premium</li>
+          <li>Hasta 2 hs/mes de monitoreo y correcciÃ³n de bugs</li>
           <li>Reporte mensual de uso (conversaciones, costos IA)</li>
-          <li>1 reunión mensual de 30 min</li>
-          <li>Respuesta a incidencias en 24 hs hábiles</li>
-          <li>1 sesión de capacitación de 30 min al equipo</li>
+          <li>1 reuniÃ³n mensual de 30 min</li>
+          <li>Respuesta a incidencias en 24 hs hÃ¡biles</li>
+          <li>1 sesiÃ³n de capacitaciÃ³n de 30 min al equipo</li>
         </ul>
 
         <div class="plan-features-label">No incluye</div>
         <ul class="plan-features">
-          <li class="excluded">Cobertura de áreas adicionales</li>
+          <li class="excluded">Cobertura de Ã¡reas adicionales</li>
           <li class="excluded">Mejoras o workflows nuevos pasada la entrega</li>
           <li class="excluded">Dashboard en tiempo real</li>
         </ul>
@@ -197,72 +230,72 @@
       <!-- PROFESIONAL -->
       <div class="plan featured">
         <div class="plan-badge">Recomendado</div>
-        <div class="plan-kicker">Plan 2 · Profesional</div>
-        <h3 class="plan-name">Dos áreas trabajando juntas</h3>
-        <div class="plan-tagline">Cuando ya viste que automatizar funciona y querés que dos partes del negocio (atención + ventas) corran en paralelo.</div>
+        <div class="plan-kicker">Plan 2 Â· Profesional</div>
+        <h3 class="plan-name">Dos Ã¡reas trabajando juntas</h3>
+        <div class="plan-tagline">Cuando ya viste que automatizar funciona y querÃ©s que dos partes del negocio (atenciÃ³n + ventas) corran en paralelo.</div>
 
         <div class="plan-price-block">
           <div class="plan-price-ars">AR$ 390.000<span class="plan-price-ars-suffix">/mes</span></div>
-          <div class="plan-price-usd">≈ USD 260 / mes</div>
-          <div class="plan-mes-test-line">Mes Test: AR$ 270.000 (≈ USD 180)</div>
+          <div class="plan-price-usd">â‰ˆ USD 260 / mes</div>
+          <div class="plan-mes-test-line">Mes Test: AR$ 270.000 (â‰ˆ USD 180)</div>
         </div>
 
         <div class="plan-divider"></div>
         <div class="plan-features-label">Incluye</div>
         <ul class="plan-features">
-          <li>2 áreas operativas cubiertas · workflows ilimitados</li>
+          <li>2 Ã¡reas operativas cubiertas Â· workflows ilimitados</li>
           <li>Hasta 10 integraciones externas (CRM, Google Workspace, etc.)</li>
-          <li>Memoria avanzada + calificación + clasificación automática</li>
-          <li>Panel de control en Sheets con tablero de leads y métricas</li>
-          <li>Construido con Claude Max — modelo IA premium</li>
+          <li>Memoria avanzada + calificaciÃ³n + clasificaciÃ³n automÃ¡tica</li>
+          <li>Panel de control en Sheets con tablero de leads y mÃ©tricas</li>
+          <li>Construido con Claude Max â€” modelo IA premium</li>
           <li>Hasta 5 hs/mes de monitoreo, correcciones y optimizaciones</li>
-          <li>1 mejora o automatización nueva por mes</li>
-          <li>1 reunión mensual de 30 min · prioridad alta</li>
-          <li>Respuesta a incidencias en 12 hs hábiles</li>
-          <li>1 sesión de capacitación de 1 hora al equipo</li>
+          <li>1 mejora o automatizaciÃ³n nueva por mes</li>
+          <li>1 reuniÃ³n mensual de 30 min Â· prioridad alta</li>
+          <li>Respuesta a incidencias en 12 hs hÃ¡biles</li>
+          <li>1 sesiÃ³n de capacitaciÃ³n de 1 hora al equipo</li>
           <li>Canal directo conmigo (WhatsApp + email)</li>
         </ul>
 
         <div class="plan-features-label">No incluye</div>
         <ul class="plan-features">
-          <li class="excluded">Cobertura de una tercera área operativa</li>
-          <li class="excluded">Atención fuera de horario hábil</li>
+          <li class="excluded">Cobertura de una tercera Ã¡rea operativa</li>
+          <li class="excluded">AtenciÃ³n fuera de horario hÃ¡bil</li>
           <li class="excluded">Dashboard con datos en tiempo real</li>
         </ul>
       </div>
 
       <!-- PREMIUM -->
       <div class="plan">
-        <div class="plan-kicker">Plan 3 · Premium</div>
-        <h3 class="plan-name">La operación completa, funcionando sola</h3>
-        <div class="plan-tagline">Cuando entendés que esto es infraestructura del negocio, no una herramienta más. Atención + ventas + reportes + lo que haga falta.</div>
+        <div class="plan-kicker">Plan 3 Â· Premium</div>
+        <h3 class="plan-name">La operaciÃ³n completa, funcionando sola</h3>
+        <div class="plan-tagline">Cuando entendÃ©s que esto es infraestructura del negocio, no una herramienta mÃ¡s. AtenciÃ³n + ventas + reportes + lo que haga falta.</div>
 
         <div class="plan-price-block">
           <div class="plan-price-ars">AR$ 825.000<span class="plan-price-ars-suffix">/mes</span></div>
-          <div class="plan-price-usd">≈ USD 550 / mes</div>
-          <div class="plan-mes-test-line">Mes Test: AR$ 600.000 (≈ USD 400)</div>
+          <div class="plan-price-usd">â‰ˆ USD 550 / mes</div>
+          <div class="plan-mes-test-line">Mes Test: AR$ 600.000 (â‰ˆ USD 400)</div>
         </div>
 
         <div class="plan-divider"></div>
         <div class="plan-features-label">Incluye</div>
         <ul class="plan-features">
-          <li>Áreas operativas ilimitadas (3+ típicamente)</li>
+          <li>Ãreas operativas ilimitadas (3+ tÃ­picamente)</li>
           <li>Workflows e integraciones ilimitadas</li>
           <li>Multi-agente coordinado (agentes IA especializados)</li>
           <li>Memoria persistente entre sesiones</li>
-          <li>Dashboard en tiempo real con métricas operativas</li>
-          <li>Construido con Claude Max — modelo IA premium</li>
+          <li>Dashboard en tiempo real con mÃ©tricas operativas</li>
+          <li>Construido con Claude Max â€” modelo IA premium</li>
           <li>Hasta 12 hs/mes de monitoreo y optimizaciones</li>
           <li>2 mejoras o automatizaciones nuevas por mes</li>
-          <li>Reunión quincenal de 45 min · prioridad máxima</li>
-          <li>Incidencias críticas respondidas en 4 hs hábiles</li>
-          <li>3 sesiones de capacitación de 1 hora c/u</li>
+          <li>ReuniÃ³n quincenal de 45 min Â· prioridad mÃ¡xima</li>
+          <li>Incidencias crÃ­ticas respondidas en 4 hs hÃ¡biles</li>
+          <li>3 sesiones de capacitaciÃ³n de 1 hora c/u</li>
           <li>Canal directo + disponibilidad fuera de horario para emergencias</li>
         </ul>
 
         <div class="plan-features-label">No incluye</div>
         <ul class="plan-features">
-          <li class="excluded">Garantía 24/7/365 (horario lun-vie 9-19 ART)</li>
+          <li class="excluded">GarantÃ­a 24/7/365 (horario lun-vie 9-19 ART)</li>
           <li class="excluded">Desarrollo de software fuera de n8n</li>
         </ul>
       </div>
@@ -271,7 +304,7 @@
 
     <!-- TABLA COMPARATIVA EXPANDIBLE -->
     <button class="compare-toggle" id="compareToggle" aria-expanded="false" aria-controls="compareTableWrap">
-      Comparar los tres planes lado a lado <span class="arrow">▼</span>
+      Comparar los tres planes lado a lado <span class="arrow">â–¼</span>
     </button>
     <div class="compare-table-wrap" id="compareTableWrap" data-open="false">
       <table class="compare-table">
@@ -285,25 +318,25 @@
         </thead>
         <tbody>
           <tr class="compare-row-section"><td colspan="4">Alcance</td></tr>
-          <tr><td>Áreas operativas</td><td>1</td><td class="feat-col">2</td><td>Ilimitadas</td></tr>
-          <tr><td>Workflows</td><td>Ilimitados (en su área)</td><td class="feat-col">Ilimitados (en sus 2 áreas)</td><td>Ilimitados</td></tr>
+          <tr><td>Ãreas operativas</td><td>1</td><td class="feat-col">2</td><td>Ilimitadas</td></tr>
+          <tr><td>Workflows</td><td>Ilimitados (en su Ã¡rea)</td><td class="feat-col">Ilimitados (en sus 2 Ã¡reas)</td><td>Ilimitados</td></tr>
           <tr><td>Integraciones externas</td><td>Hasta 4</td><td class="feat-col">Hasta 10</td><td>Ilimitadas</td></tr>
-          <tr><td>Memoria del asistente</td><td>De sesión</td><td class="feat-col">Avanzada + calificación</td><td>Persistente entre sesiones</td></tr>
-          <tr><td>Multi-agente coordinado</td><td>—</td><td class="feat-col">—</td><td>Sí</td></tr>
+          <tr><td>Memoria del asistente</td><td>De sesiÃ³n</td><td class="feat-col">Avanzada + calificaciÃ³n</td><td>Persistente entre sesiones</td></tr>
+          <tr><td>Multi-agente coordinado</td><td>â€”</td><td class="feat-col">â€”</td><td>SÃ­</td></tr>
           <tr><td>Modelo IA</td><td>Claude Max</td><td class="feat-col">Claude Max</td><td>Claude Max</td></tr>
 
           <tr class="compare-row-section"><td colspan="4">Soporte mensual</td></tr>
           <tr><td>Horas de soporte</td><td>2 hs/mes</td><td class="feat-col">5 hs/mes</td><td>12 hs/mes</td></tr>
-          <tr><td>Mejoras nuevas por mes</td><td>—</td><td class="feat-col">1</td><td>2</td></tr>
-          <tr><td>Reuniones</td><td>1/mes (30 min) · prioridad estándar</td><td class="feat-col">1/mes (30 min) · prioridad alta</td><td>Quincenal (45 min) · prioridad máxima</td></tr>
+          <tr><td>Mejoras nuevas por mes</td><td>â€”</td><td class="feat-col">1</td><td>2</td></tr>
+          <tr><td>Reuniones</td><td>1/mes (30 min) Â· prioridad estÃ¡ndar</td><td class="feat-col">1/mes (30 min) Â· prioridad alta</td><td>Quincenal (45 min) Â· prioridad mÃ¡xima</td></tr>
           <tr><td>Dashboard / reporte</td><td>Reporte mensual</td><td class="feat-col">Panel Sheets</td><td>Tiempo real</td></tr>
-          <tr><td>Tiempo de respuesta</td><td>24 hs hábiles</td><td class="feat-col">12 hs hábiles</td><td>4 hs (críticas)</td></tr>
-          <tr><td>Capacitación inicial</td><td>1 sesión × 30 min</td><td class="feat-col">1 sesión × 1 hr</td><td>3 sesiones × 1 hr</td></tr>
-          <tr><td>Canal de comunicación</td><td>WhatsApp + email</td><td class="feat-col">WhatsApp + email + canal directo</td><td>Canal directo + disponibilidad off-hours</td></tr>
+          <tr><td>Tiempo de respuesta</td><td>24 hs hÃ¡biles</td><td class="feat-col">12 hs hÃ¡biles</td><td>4 hs (crÃ­ticas)</td></tr>
+          <tr><td>CapacitaciÃ³n inicial</td><td>1 sesiÃ³n Ã— 30 min</td><td class="feat-col">1 sesiÃ³n Ã— 1 hr</td><td>3 sesiones Ã— 1 hr</td></tr>
+          <tr><td>Canal de comunicaciÃ³n</td><td>WhatsApp + email</td><td class="feat-col">WhatsApp + email + canal directo</td><td>Canal directo + disponibilidad off-hours</td></tr>
 
           <tr class="compare-row-section"><td colspan="4">Precio</td></tr>
-          <tr><td>Mes Test</td><td>AR$ 135.000 (≈ USD 90)</td><td class="feat-col">AR$ 270.000 (≈ USD 180)</td><td>AR$ 600.000 (≈ USD 400)</td></tr>
-          <tr><td>Mensual desde mes 2</td><td>AR$ 195.000 (≈ USD 130)</td><td class="feat-col">AR$ 390.000 (≈ USD 260)</td><td>AR$ 825.000 (≈ USD 550)</td></tr>
+          <tr><td>Mes Test</td><td>AR$ 135.000 (â‰ˆ USD 90)</td><td class="feat-col">AR$ 270.000 (â‰ˆ USD 180)</td><td>AR$ 600.000 (â‰ˆ USD 400)</td></tr>
+          <tr><td>Mensual desde mes 2</td><td>AR$ 195.000 (â‰ˆ USD 130)</td><td class="feat-col">AR$ 390.000 (â‰ˆ USD 260)</td><td>AR$ 825.000 (â‰ˆ USD 550)</td></tr>
         </tbody>
       </table>
     </div>
@@ -312,17 +345,17 @@
 
 
 <!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="overlayClick(event)">
+<div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modal">
 
     <div class="mh">
       <div class="mh-top">
         <div>
-          <div class="mh-badge">Diagnóstico de procesos</div>
-          <h3>Contanos cómo funciona tu negocio</h3>
-          <p>Describí el proceso como si se lo explicaras a alguien de confianza. Sin tecnicismos.</p>
+          <div class="mh-badge">DiagnÃ³stico de procesos</div>
+          <h3>Contanos cÃ³mo funciona tu negocio</h3>
+          <p>DescribÃ­ el proceso como si se lo explicaras a alguien de confianza. Sin tecnicismos.</p>
         </div>
-        <button class="modal-close" onclick="closeModal()" title="Cerrar">✕</button>
+        <button class="modal-close" type="button" data-action="close-modal" title="Cerrar">âœ•</button>
       </div>
     </div>
 
@@ -341,91 +374,91 @@
 
       <div class="fs active" id="step1">
         <div class="fs-head">
-          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿Con quién hablamos?</h4>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">Â¿Con quiÃ©n hablamos?</h4>
         </div>
 
         <div class="fc">
           <div class="fc-label"><span class="req">*</span>Tu nombre</div>
-          <input type="text" id="nombre" placeholder="Ej: María González" autocomplete="given-name">
-          <div class="fc-hint" id="err-nombre">Ingresá tu nombre</div>
+          <input type="text" id="nombre" placeholder="Ej: MarÃ­a GonzÃ¡lez" autocomplete="given-name">
+          <div class="fc-hint" id="err-nombre">IngresÃ¡ tu nombre</div>
         </div>
 
         <div class="fc">
           <div class="fc-label"><span class="req">*</span>Nombre del negocio</div>
           <input type="text" id="negocio" placeholder="Ej: Inmobiliaria del Centro">
-          <div class="fc-hint" id="err-negocio">Ingresá el nombre del negocio</div>
+          <div class="fc-hint" id="err-negocio">IngresÃ¡ el nombre del negocio</div>
         </div>
 
         <div class="fc">
           <div class="fc-label"><span class="req">*</span>WhatsApp de contacto</div>
           <div class="two-col">
             <select id="prefijo">
-              <option value="+54">🇦🇷 +54</option>
-              <option value="+598">🇺🇾 +598</option>
-              <option value="+56">🇨🇱 +56</option>
-              <option value="+591">🇧🇴 +591</option>
-              <option value="+595">🇵🇾 +595</option>
+              <option value="+54">ðŸ‡¦ðŸ‡· +54</option>
+              <option value="+598">ðŸ‡ºðŸ‡¾ +598</option>
+              <option value="+56">ðŸ‡¨ðŸ‡± +56</option>
+              <option value="+591">ðŸ‡§ðŸ‡´ +591</option>
+              <option value="+595">ðŸ‡µðŸ‡¾ +595</option>
             </select>
             <input type="tel" id="whatsapp" placeholder="Ej: 3512345678" autocomplete="tel">
           </div>
-          <div class="fc-hint" id="err-whatsapp">Ingresá un número válido</div>
+          <div class="fc-hint" id="err-whatsapp">IngresÃ¡ un nÃºmero vÃ¡lido</div>
         </div>
 
-        <div class="fnav"><div></div><button class="btn-fwd" onclick="goNext(1)">Siguiente →</button></div>
+        <div class="fnav"><div></div><button class="btn-fwd" type="button" data-action="next" data-step="1">Siguiente â†’</button></div>
       </div>
 
       <div class="fs" id="step2">
         <div class="fs-head">
-          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿A qué se dedica tu negocio?</h4>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">Â¿A quÃ© se dedica tu negocio?</h4>
         </div>
 
         <div class="opts-2" id="pillGrid">
-          <label class="pill" onclick="selectPill(this, 'Inmobiliaria')"><input type="radio" name="sector" value="Inmobiliaria" style="display:none;"> 🏠 Inmobiliaria</label>
-          <label class="pill" onclick="selectPill(this, 'Clínica / salud')"><input type="radio" name="sector" value="Clínica / salud" style="display:none;"> 🏥 Clínica / salud</label>
-          <label class="pill" onclick="selectPill(this, 'Alquiler vacacional')"><input type="radio" name="sector" value="Alquiler vacacional" style="display:none;"> 🏖️ Alquiler vacacional</label>
-          <label class="pill" onclick="selectPill(this, 'Comercio / retail')"><input type="radio" name="sector" value="Comercio / retail" style="display:none;"> 🛍️ Comercio / retail</label>
-          <label class="pill" onclick="selectPill(this, 'Estudio contable / legal')"><input type="radio" name="sector" value="Estudio contable / legal" style="display:none;"> 📊 Contable / legal</label>
-          <label class="pill" onclick="selectPill(this, 'Otro')"><input type="radio" name="sector" value="Otro" style="display:none;"> ⚡ Otro rubro</label>
+          <label class="pill" data-action="select-pill" data-value="Inmobiliaria"><input type="radio" name="sector" value="Inmobiliaria" style="display:none;"> ðŸ  Inmobiliaria</label>
+          <label class="pill" data-action="select-pill" data-value="Clínica / salud"><input type="radio" name="sector" value="Clínica / salud" style="display:none;"> 🏥 Clínica / salud</label>
+          <label class="pill" data-action="select-pill" data-value="Alquiler vacacional"><input type="radio" name="sector" value="Alquiler vacacional" style="display:none;"> ðŸ–ï¸ Alquiler vacacional</label>
+          <label class="pill" data-action="select-pill" data-value="Comercio / retail"><input type="radio" name="sector" value="Comercio / retail" style="display:none;"> ðŸ›ï¸ Comercio / retail</label>
+          <label class="pill" data-action="select-pill" data-value="Estudio contable / legal"><input type="radio" name="sector" value="Estudio contable / legal" style="display:none;"> ðŸ“Š Contable / legal</label>
+          <label class="pill" data-action="select-pill" data-value="Otro"><input type="radio" name="sector" value="Otro" style="display:none;"> âš¡ Otro rubro</label>
         </div>
-        <div class="fc-hint" id="err-sector">Seleccioná un rubro</div>
+        <div class="fc-hint" id="err-sector">SeleccionÃ¡ un rubro</div>
 
         <div class="fc" id="otroField" style="display:none;">
-          <div class="fc-label">¿Cuál es tu rubro?</div>
-          <input type="text" id="otroRubro" placeholder="Describí brevemente a qué se dedica">
+          <div class="fc-label">Â¿CuÃ¡l es tu rubro?</div>
+          <input type="text" id="otroRubro" placeholder="DescribÃ­ brevemente a quÃ© se dedica">
         </div>
 
         <div class="fnav">
-          <button class="btn-back" onclick="go(2,1)">← Atrás</button>
-          <button class="btn-fwd" onclick="goNext(2)">Siguiente →</button>
+          <button class="btn-back" type="button" data-action="back" data-step="1">â† AtrÃ¡s</button>
+          <button class="btn-fwd" type="button" data-action="next" data-step="2">Siguiente â†’</button>
         </div>
       </div>
 
       <div class="fs" id="step3">
         <div class="fs-head">
-          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿Qué problema querés resolver?</h4>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">Â¿QuÃ© problema querÃ©s resolver?</h4>
         </div>
 
         <div class="fc">
           <div class="fc-label"><span class="req">*</span>Contanos brevemente</div>
-          <textarea id="problema" placeholder="Ej: Paso mucho tiempo respondiendo WhatsApp con las mismas preguntas. Querría que alguien lo hiciera por mí mientras atiendo otras cosas."></textarea>
+          <textarea id="problema" placeholder="Ej: Paso mucho tiempo respondiendo WhatsApp con las mismas preguntas. QuerrÃ­a que alguien lo hiciera por mÃ­ mientras atiendo otras cosas."></textarea>
           <div class="fc-hint" id="err-problema">Contanos un poco sobre tu problema</div>
         </div>
 
         <div class="fnav">
-          <button class="btn-back" onclick="go(3,2)">← Atrás</button>
-          <button class="btn-send" id="submitBtn" onclick="submitForm()" style="flex:1;">Quiero mi diagnóstico →</button>
+          <button class="btn-back" type="button" data-action="back" data-step="2">â† AtrÃ¡s</button>
+          <button class="btn-send" id="submitBtn" type="button" data-action="submit" style="flex:1;">Quiero mi diagnÃ³stico â†’</button>
         </div>
       </div>
 
       <div class="f-ok" id="fOk">
-        <div class="f-ok-ico">✓</div>
-        <h2>¡Gracias, <span id="successNombre"></span>!</h2>
-        <p id="finalMessage">Hemos recibido tu información. En un plazo de 2 a 3 días nos contactaremos.</p>
+        <div class="f-ok-ico">âœ“</div>
+        <h2>Â¡Gracias, <span id="successNombre"></span>!</h2>
+        <p id="finalMessage">Hemos recibido tu informaciÃ³n. En un plazo de 2 a 3 dÃ­as nos contactaremos.</p>
       </div>
 
       <div class="f-loading" id="fLoading">
-        <div class="f-loading-ico">⏳</div>
-        <p>Procesando tu diagnóstico...</p>
+        <div class="f-loading-ico">â³</div>
+        <p>Procesando tu diagnÃ³stico...</p>
       </div>
     </div>
   </div>
@@ -441,36 +474,9 @@
   </div>
 </footer>
 
-<script>
-// Comparativa expandible
-const compareToggle = document.getElementById('compareToggle');
-const compareTableWrap = document.getElementById('compareTableWrap');
-if (compareToggle && compareTableWrap) {
-  compareToggle.addEventListener('click', () => {
-    const isOpen = compareTableWrap.dataset.open === 'true';
-    compareTableWrap.dataset.open = !isOpen;
-    compareToggle.setAttribute('aria-expanded', !isOpen);
-    compareToggle.firstChild.textContent = isOpen
-      ? 'Comparar los tres planes lado a lado '
-      : 'Cerrar comparativa ';
-  });
-}
-
-// Mobile menu toggle
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-  // Cerrar menú al clickear un link
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-}
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="js/diagnostico.js"></script>
 
 </body>
 </html>
+

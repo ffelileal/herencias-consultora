@@ -1,18 +1,22 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HerencIAs · Automatización con IA para PyMEs</title>
+
 <meta name="description" content="Automatización de procesos con IA para PyMEs argentinas. Asistentes WhatsApp, gestión de leads, reportes automáticos. Diagnóstico gratuito.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link rel="stylesheet" href="styles.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- HEADER -->
 <!-- HEADER -->
 <header>
   <nav>
@@ -20,17 +24,25 @@
       <span class="logo-mark">H</span>
       <span class="logo-text">HerencIAs</span>
     </a>
+
     <div class="nav-links" id="navLinks">
       <a href="#servicios">Servicios</a>
       <a href="sobre-mi.html">Sobre mí</a>
-            <!--<a href="precios">Precios</a> -->
+
+      <!-- <a href="precios">Precios</a> -->
 
       <a href="proceso.html">Cómo funciona</a>
       <a href="#contacto">Contacto</a>
-      <button class="nav-btn" onclick="openModal()">Iniciar diagnóstico</button>
+
+      <button class="nav-btn" type="button" data-action="open-modal">
+        Iniciar diagnóstico
+      </button>
     </div>
+
     <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
     </button>
   </nav>
 </header>
@@ -38,28 +50,49 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-decoration">IA</div>
+
   <div class="container">
-    <div class="kicker reveal d1">Automatización · Inteligencia Artificial</div>
-    <h1 class="hero-title reveal d2">Tu empresa funciona.<br>Imaginate que funciona <em>sola.</em></h1>
-    <p class="hero-sub reveal d3">Analizamos cómo trabajás, mapeamos tus procesos y los automatizamos con IA — para que tu equipo se enfoque en lo que realmente genera valor.</p>
+
+    <div class="kicker reveal d1">
+      Automatización · Inteligencia Artificial
+    </div>
+
+    <h1 class="hero-title reveal d2">
+      Tu empresa funciona.<br>
+      Imaginate que funciona <em>sola.</em>
+    </h1>
+
+    <p class="hero-sub reveal d3">
+      Analizamos cómo trabajás, mapeamos tus procesos y los automatizamos con IA — para que tu equipo se enfoque en lo que realmente genera valor.
+    </p>
+
     <div class="hero-cta reveal d4">
-      <a href="#" onclick="openModal(); return false;" class="btn-primary">Iniciar diagnóstico gratuito →</a>
-      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+      <a href="#" data-action="open-modal" class="btn-primary">
+        Iniciar diagnóstico gratuito →
+      </a>
+
+      <a href="#servicios" class="btn-secondary">
+        Ver servicios
+      </a>
     </div>
 
     <div class="hero-stats">
+
       <div class="stat">
         <div class="stat-num">5+</div>
         <div class="stat-label">tipos de automatización</div>
       </div>
+
       <div class="stat">
         <div class="stat-num">100%</div>
         <div class="stat-label">soluciones a medida</div>
       </div>
+
       <div class="stat">
         <div class="stat-num">PyMEs</div>
         <div class="stat-label">nuestro foco principal</div>
       </div>
+
     </div>
   </div>
 </section>
@@ -67,67 +100,135 @@
 <!-- SERVICIOS -->
 <section id="servicios">
   <div class="container">
+
     <div class="section-header">
       <div class="kicker">Nuestros servicios</div>
-      <h2 class="section-title">¿Qué <em>automatizamos?</em></h2>
-      <p class="section-sub">Diseñamos e implementamos soluciones de Inteligencia Artificial adaptadas a cada proceso de tu negocio. Estos son algunos de los sistemas que desarrollamos:</p>
+
+      <h2 class="section-title">
+        ¿Qué <em>automatizamos?</em>
+      </h2>
+
+      <p class="section-sub">
+        Diseñamos e implementamos soluciones de Inteligencia Artificial adaptadas a cada proceso de tu negocio. Estos son algunos de los sistemas que desarrollamos:
+      </p>
     </div>
 
     <div class="services-grid">
+
       <div class="service">
         <span class="service-tag">más solicitado</span>
         <div class="service-icon">💬</div>
-        <h3 class="service-title">Asistente de atención al cliente</h3>
-        <p class="service-desc">Un agente de IA que responde consultas frecuentes por WhatsApp, Instagram o tu sitio web, las 24 horas del día, sin intervención humana.</p>
+
+        <h3 class="service-title">
+          Asistente de atención al cliente
+        </h3>
+
+        <p class="service-desc">
+          Un agente de IA que responde consultas frecuentes por WhatsApp, Instagram o tu sitio web, las 24 horas del día, sin intervención humana.
+        </p>
       </div>
+
       <div class="service">
         <div class="service-icon">📣</div>
-        <h3 class="service-title">Gestor de redes sociales</h3>
-        <p class="service-desc">Genera, programa y publica contenido en Instagram, Facebook y LinkedIn de forma automática, manteniendo la voz de tu marca.</p>
+
+        <h3 class="service-title">
+          Gestor de redes sociales
+        </h3>
+
+        <p class="service-desc">
+          Genera, programa y publica contenido en Instagram, Facebook y LinkedIn de forma automática, manteniendo la voz de tu marca.
+        </p>
       </div>
+
       <div class="service">
         <div class="service-icon">🎯</div>
-        <h3 class="service-title">Buscador de clientes potenciales</h3>
-        <p class="service-desc">Identifica y contacta automáticamente personas o empresas que podrían interesarse en tus productos o servicios, según criterios que vos definís.</p>
+
+        <h3 class="service-title">
+          Buscador de clientes potenciales
+        </h3>
+
+        <p class="service-desc">
+          Identifica y contacta automáticamente personas o empresas que podrían interesarse en tus productos o servicios, según criterios que vos definís.
+        </p>
       </div>
+
       <div class="service">
         <div class="service-icon">📊</div>
-        <h3 class="service-title">Reportes automáticos de ventas</h3>
-        <p class="service-desc">Generá informes diarios, semanales o mensuales de facturación, rendimiento y tendencias directamente desde tus datos — sin abrir una sola planilla.</p>
+
+        <h3 class="service-title">
+          Reportes automáticos de ventas
+        </h3>
+
+        <p class="service-desc">
+          Generá informes diarios, semanales o mensuales de facturación, rendimiento y tendencias directamente desde tus datos — sin abrir una sola planilla.
+        </p>
       </div>
+
       <div class="service">
         <div class="service-icon">🔁</div>
-        <h3 class="service-title">Flujos de onboarding automático</h3>
-        <p class="service-desc">Cuando entra un nuevo cliente o empleado, el sistema envía bienvenidas, materiales y pasos a seguir de forma automática y personalizada.</p>
+
+        <h3 class="service-title">
+          Flujos de onboarding automático
+        </h3>
+
+        <p class="service-desc">
+          Cuando entra un nuevo cliente o empleado, el sistema envía bienvenidas, materiales y pasos a seguir de forma automática y personalizada.
+        </p>
       </div>
+
       <div class="service">
         <span class="service-tag">a medida</span>
         <div class="service-icon">⚙️</div>
-        <h3 class="service-title">Automatización personalizada</h3>
-        <p class="service-desc">Si tu proceso no encaja en los anteriores, lo analizamos y diseñamos una solución a medida. Cada negocio es distinto — cada solución también.</p>
+
+        <h3 class="service-title">
+          Automatización personalizada
+        </h3>
+
+        <p class="service-desc">
+          Si tu proceso no encaja en los anteriores, lo analizamos y diseñamos una solución a medida. Cada negocio es distinto — cada solución también.
+        </p>
       </div>
+
     </div>
   </div>
 </section>
 
-
 <!-- COMO FUNCIONA -->
 <section id="proceso">
   <div class="container">
+
     <div class="section-header">
       <div class="kicker">El recorrido</div>
-      <h2 class="section-title">¿Cómo es <em>el proceso?</em></h2>
-      <p class="section-sub">De la primera conversación al sistema funcionando, en cinco pasos. Vos contás cómo trabajás hoy, nosotros lo traducimos en automatización.</p>
+
+      <h2 class="section-title">
+        ¿Cómo es <em>el proceso?</em>
+      </h2>
+
+      <p class="section-sub">
+        De la primera conversación al sistema funcionando, en cinco pasos. Vos contás cómo trabajás hoy, nosotros lo traducimos en automatización.
+      </p>
     </div>
 
     <div class="process-timeline">
 
       <div class="process-step">
-        <div class="step-marker"><div class="step-num">1</div></div>
+        <div class="step-marker">
+          <div class="step-num">1</div>
+        </div>
+
         <div class="step-content">
-          <span class="step-tag cliente">Lo hace el cliente · 5 min</span>
-          <h3 class="step-title">Contanos sobre tu negocio</h3>
-          <p class="step-desc">Completás un formulario corto en la web con tus datos de contacto, el rubro de tu empresa y una descripción breve del problema que querés resolver. No necesitás tecnicismos ni preparar nada — alcanza con que cuentes lo esencial.</p>
+          <span class="step-tag cliente">
+            Lo hace el cliente · 5 min
+          </span>
+
+          <h3 class="step-title">
+            Contanos sobre tu negocio
+          </h3>
+
+          <p class="step-desc">
+            Completas un formulario corto en la web con tus datos de contacto, el rubro de tu empresa y una descripción breve del problema que querés resolver. No necesitás tecnicismos ni preparar nada — alcanza con que cuentes lo esencial.
+          </p>
+
           <div class="step-meta">
             <span><strong>Tu rol:</strong> rellenar el formulario</span>
             <span><strong>Nuestra respuesta:</strong> en menos de 24hs</span>
@@ -136,11 +237,23 @@
       </div>
 
       <div class="process-step">
-        <div class="step-marker"><div class="step-num">2</div></div>
+        <div class="step-marker">
+          <div class="step-num">2</div>
+        </div>
+
         <div class="step-content">
-          <span class="step-tag">Diagnóstico colaborativo · 60–90 min</span>
-          <h3 class="step-title">Evaluamos tus procesos juntos</h3>
-          <p class="step-desc">Coordinamos una videollamada (o reunión presencial si estás en Córdoba) donde recorremos en detalle cómo funciona tu operación hoy. Usamos plantillas de diagnóstico estructuradas para identificar dónde se pierde tiempo, qué procesos se repiten y cuáles son automatizables. Al final, vos tenés un mapa claro de tu propio negocio que probablemente nunca habías visto así.</p>
+          <span class="step-tag">
+            Diagnóstico colaborativo · 60–90 min
+          </span>
+
+          <h3 class="step-title">
+            Evaluamos tus procesos juntos
+          </h3>
+
+          <p class="step-desc">
+            Coordinamos una videollamada (o reunión presencial si estás en Córdoba) donde recorremos en detalle cómo funciona tu operación hoy. Usamos plantillas de diagnóstico estructuradas para identificar dónde se pierde tiempo, qué procesos se repiten y cuáles son automatizables. Al final, vos tenés un mapa claro de tu propio negocio que probablemente nunca habías visto así.
+          </p>
+
           <div class="step-meta">
             <span><strong>Resultado:</strong> diagnóstico escrito en PDF</span>
             <span><strong>Costo:</strong> sin cargo</span>
@@ -149,11 +262,23 @@
       </div>
 
       <div class="process-step">
-        <div class="step-marker"><div class="step-num">3</div></div>
+        <div class="step-marker">
+          <div class="step-num">3</div>
+        </div>
+
         <div class="step-content">
-          <span class="step-tag">Propuesta · 2–3 días</span>
-          <h3 class="step-title">Recibís la propuesta y elegís el alcance</h3>
-          <p class="step-desc">Te entrego un documento con las áreas operativas que detecté como automatizables, agrupadas por impacto. Vos decidís qué alcance querés cubrir — eso determina el plan (Esencial, Profesional o Premium). Sin sorpresas ni costos ocultos. Sin compromiso hasta firmar.</p>
+          <span class="step-tag">
+            Propuesta · 2–3 días
+          </span>
+
+          <h3 class="step-title">
+            Recibís la propuesta y elegís el alcance
+          </h3>
+
+          <p class="step-desc">
+            Te entrego un documento con las áreas operativas que detecté como automatizables, agrupadas por impacto. Vos decidís qué alcance querés cubrir — eso determina el plan (Esencial, Profesional o Premium). Sin sorpresas ni costos ocultos. Sin compromiso hasta firmar.
+          </p>
+
           <div class="step-meta">
             <span><strong>Validez:</strong> 30 días</span>
             <span><strong>Compromiso:</strong> ninguno hasta firmar</span>
@@ -162,11 +287,23 @@
       </div>
 
       <div class="process-step">
-        <div class="step-marker"><div class="step-num">4</div></div>
+        <div class="step-marker">
+          <div class="step-num">4</div>
+        </div>
+
         <div class="step-content">
-          <span class="step-tag">Mes Test · 30 días</span>
-          <h3 class="step-title">Construyo el sistema y lo testeás en producción</h3>
-          <p class="step-desc">Pagás el Mes Test del plan elegido. Durante esos 30 días construyo el sistema en n8n integrando IA con las herramientas que ya usás (WhatsApp, Sheets, Calendar, tu CRM). Lo dejo corriendo en producción real con tus clientes y tu equipo, ajusto en vivo lo que aparezca, y al final del mes vos decidís si continuás al plan completo.</p>
+          <span class="step-tag">
+            Mes Test · 30 días
+          </span>
+
+          <h3 class="step-title">
+            Construyo el sistema y lo testeás en producción
+          </h3>
+
+          <p class="step-desc">
+            Pagás el Mes Test del plan elegido. Durante esos 30 días construyo el sistema en n8n integrando IA con las herramientas que ya usás (WhatsApp, Sheets, Calendar, tu CRM). Lo dejo corriendo en producción real con tus clientes y tu equipo, ajusto en vivo lo que aparezca, y al final del mes vos decidís si continuás al plan completo.
+          </p>
+
           <div class="step-meta">
             <span><strong>Tu rol:</strong> dar accesos y feedback</span>
             <span><strong>Si continuás:</strong> el monto se acredita al mes 1</span>
@@ -175,11 +312,23 @@
       </div>
 
       <div class="process-step">
-        <div class="step-marker"><div class="step-num">5</div></div>
+        <div class="step-marker">
+          <div class="step-num">5</div>
+        </div>
+
         <div class="step-content">
-          <span class="step-tag">Mantenimiento · recurrente</span>
-          <h3 class="step-title">Operación continua y mantenimiento</h3>
-          <p class="step-desc">Desde el mes 2 entrás al precio mensual estándar del plan. Monitoreo el sistema, corrijo bugs, agrego mejoras según lo que incluya tu plan, y hacemos las reuniones de revisión correspondientes. El sistema evoluciona con tu negocio.</p>
+          <span class="step-tag">
+            Mantenimiento · recurrente
+          </span>
+
+          <h3 class="step-title">
+            Operación continua y mantenimiento
+          </h3>
+
+          <p class="step-desc">
+            Desde el mes 2 entrás al precio mensual estándar del plan. Monitoreo el sistema, corrijo bugs, agrego mejoras según lo que incluya tu plan, y hacemos las reuniones de revisión correspondientes. El sistema evoluciona con tu negocio.
+          </p>
+
           <div class="step-meta">
             <span><strong>Comunicación:</strong> según plan elegido</span>
             <span><strong>Reportes:</strong> según plan elegido</span>
@@ -191,25 +340,38 @@
   </div>
 </section>
 
-
 <!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="overlayClick(event)">
+<div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modal">
 
     <div class="mh">
       <div class="mh-top">
+
         <div>
           <div class="mh-badge">Diagnóstico de procesos</div>
+
           <h3>Contanos cómo funciona tu negocio</h3>
-          <p>Describí el proceso como si se lo explicaras a alguien de confianza. Sin tecnicismos.</p>
+
+          <p>
+            Describe el proceso como si se lo explicaras a alguien de confianza. Sin tecnicismos.
+          </p>
         </div>
-        <button class="modal-close" onclick="closeModal()" title="Cerrar">✕</button>
+
+        <button class="modal-close" type="button" data-action="close-modal" title="Cerrar">
+          ✕
+        </button>
+
       </div>
     </div>
 
     <div class="prog-bar">
-      <div class="progress-track"><div class="prog-fill" id="progressFill"></div></div>
-      <span id="stepLabel" class="step-label">Paso 1 de 3</span>
+      <div class="progress-track">
+        <div class="prog-fill" id="progressFill"></div>
+      </div>
+
+      <span id="stepLabel" class="step-label">
+        Paso 1 de 3
+      </span>
     </div>
 
     <div class="step-dots">
@@ -220,26 +382,46 @@
 
     <div class="fb">
 
+      <!-- STEP 1 -->
       <div class="fs active" id="step1">
+
         <div class="fs-head">
-          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿Con quién hablamos?</h4>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">
+            ¿Con quién hablamos?
+          </h4>
         </div>
 
         <div class="fc">
-          <div class="fc-label"><span class="req">*</span>Tu nombre</div>
-          <input type="text" id="nombre" placeholder="Ej: María González" autocomplete="given-name">
-          <div class="fc-hint" id="err-nombre">Ingresá tu nombre</div>
+          <div class="fc-label">
+            <span class="req">*</span>Tu nombre
+          </div>
+
+          <input type="text" id="nombre" placeholder="Ej: María Gonzalez" autocomplete="given-name">
+
+          <div class="fc-hint" id="err-nombre">
+            Ingresa tu nombre
+          </div>
         </div>
 
         <div class="fc">
-          <div class="fc-label"><span class="req">*</span>Nombre del negocio</div>
+          <div class="fc-label">
+            <span class="req">*</span>Nombre del negocio
+          </div>
+
           <input type="text" id="negocio" placeholder="Ej: Inmobiliaria del Centro">
-          <div class="fc-hint" id="err-negocio">Ingresá el nombre del negocio</div>
+
+          <div class="fc-hint" id="err-negocio">
+            Ingresa el nombre del negocio
+          </div>
         </div>
 
         <div class="fc">
-          <div class="fc-label"><span class="req">*</span>WhatsApp de contacto</div>
+          <div class="fc-label">
+            <span class="req">*</span>WhatsApp de contacto
+          </div>
+
           <div class="two-col">
+
             <select id="prefijo">
               <option value="+54">🇦🇷 +54</option>
               <option value="+598">🇺🇾 +598</option>
@@ -247,67 +429,147 @@
               <option value="+591">🇧🇴 +591</option>
               <option value="+595">🇵🇾 +595</option>
             </select>
+
             <input type="tel" id="whatsapp" placeholder="Ej: 3512345678" autocomplete="tel">
+
           </div>
-          <div class="fc-hint" id="err-whatsapp">Ingresá un número válido</div>
+
+          <div class="fc-hint" id="err-whatsapp">
+            Ingresa un número válido
+          </div>
         </div>
 
-        <div class="fnav"><div></div><button class="btn-fwd" onclick="goNext(1)">Siguiente →</button></div>
+        <div class="fnav">
+          <div></div>
+
+          <button class="btn-fwd" type="button" data-action="next" data-step="1">
+            Siguiente →
+          </button>
+        </div>
       </div>
 
+      <!-- STEP 2 -->
       <div class="fs" id="step2">
+
         <div class="fs-head">
-          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿A qué se dedica tu negocio?</h4>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">
+            ¿A qué se dedica tu negocio?
+          </h4>
         </div>
 
         <div class="opts-2" id="pillGrid">
-          <label class="pill" onclick="selectPill(this, 'Inmobiliaria')"><input type="radio" name="sector" value="Inmobiliaria" style="display:none;"> 🏠 Inmobiliaria</label>
-          <label class="pill" onclick="selectPill(this, 'Clínica / salud')"><input type="radio" name="sector" value="Clínica / salud" style="display:none;"> 🏥 Clínica / salud</label>
-          <label class="pill" onclick="selectPill(this, 'Alquiler vacacional')"><input type="radio" name="sector" value="Alquiler vacacional" style="display:none;"> 🏖️ Alquiler vacacional</label>
-          <label class="pill" onclick="selectPill(this, 'Comercio / retail')"><input type="radio" name="sector" value="Comercio / retail" style="display:none;"> 🛍️ Comercio / retail</label>
-          <label class="pill" onclick="selectPill(this, 'Estudio contable / legal')"><input type="radio" name="sector" value="Estudio contable / legal" style="display:none;"> 📊 Contable / legal</label>
-          <label class="pill" onclick="selectPill(this, 'Otro')"><input type="radio" name="sector" value="Otro" style="display:none;"> ⚡ Otro rubro</label>
+
+          <label class="pill" data-action="select-pill" data-value="Inmobiliaria">
+            <input type="radio" name="sector" value="Inmobiliaria" style="display:none;">
+            🏠 Inmobiliaria
+          </label>
+
+          <label class="pill" data-action="select-pill" data-value="Clínica / salud">
+            <input type="radio" name="sector" value="Clínica / salud" style="display:none;">
+            🏥 Clínica / salud
+          </label>
+
+          <label class="pill" data-action="select-pill" data-value="Alquiler vacacional">
+            <input type="radio" name="sector" value="Alquiler vacacional" style="display:none;">
+            🏖️ Alquiler vacacional
+          </label>
+
+          <label class="pill" data-action="select-pill" data-value="Comercio / retail">
+            <input type="radio" name="sector" value="Comercio / retail" style="display:none;">
+            🛍️ Comercio / retail
+          </label>
+
+          <label class="pill" data-action="select-pill" data-value="Estudio contable / legal">
+            <input type="radio" name="sector" value="Estudio contable / legal" style="display:none;">
+            📊 Contable / legal
+          </label>
+
+          <label class="pill" data-action="select-pill" data-value="Otro">
+            <input type="radio" name="sector" value="Otro" style="display:none;">
+            ⚡ Otro rubro
+          </label>
+
         </div>
-        <div class="fc-hint" id="err-sector">Seleccioná un rubro</div>
+
+        <div class="fc-hint" id="err-sector">
+          Seleccioná un rubro
+        </div>
 
         <div class="fc" id="otroField" style="display:none;">
           <div class="fc-label">¿Cuál es tu rubro?</div>
+
           <input type="text" id="otroRubro" placeholder="Describí brevemente a qué se dedica">
         </div>
 
         <div class="fnav">
-          <button class="btn-back" onclick="go(2,1)">← Atrás</button>
-          <button class="btn-fwd" onclick="goNext(2)">Siguiente →</button>
+
+          <button class="btn-back" type="button" data-action="back" data-step="1">
+            ← Atrás
+          </button>
+
+          <button class="btn-fwd" type="button" data-action="next" data-step="2">
+            Siguiente →
+          </button>
+
         </div>
       </div>
 
+      <!-- STEP 3 -->
       <div class="fs" id="step3">
+
         <div class="fs-head">
-          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿Qué problema querés resolver?</h4>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">
+            ¿Qué problema querés resolver?
+          </h4>
         </div>
 
         <div class="fc">
-          <div class="fc-label"><span class="req">*</span>Contanos brevemente</div>
+
+          <div class="fc-label">
+            <span class="req">*</span>Contanos brevemente
+          </div>
+
           <textarea id="problema" placeholder="Ej: Paso mucho tiempo respondiendo WhatsApp con las mismas preguntas. Querría que alguien lo hiciera por mí mientras atiendo otras cosas."></textarea>
-          <div class="fc-hint" id="err-problema">Contanos un poco sobre tu problema</div>
+
+          <div class="fc-hint" id="err-problema">
+            Contanos un poco sobre tu problema
+          </div>
+
         </div>
 
         <div class="fnav">
-          <button class="btn-back" onclick="go(3,2)">← Atrás</button>
-          <button class="btn-send" id="submitBtn" onclick="submitForm()" style="flex:1;">Quiero mi diagnóstico →</button>
+
+          <button class="btn-back" type="button" data-action="back" data-step="2">
+            ← Atrás
+          </button>
+
+          <button class="btn-send" id="submitBtn" type="button" data-action="submit" style="flex:1;">
+            Quiero mi diagnóstico →
+          </button>
+
         </div>
       </div>
 
+      <!-- SUCCESS -->
       <div class="f-ok" id="fOk">
+
         <div class="f-ok-ico">✓</div>
-        <h2>¡Gracias, <span id="successNombre"></span>!</h2>
-        <p id="finalMessage">Hemos recibido tu información. En un plazo de 2 a 3 días nos contactaremos.</p>
+
+        <h2>
+          ¡Gracias, <span id="successNombre"></span>!
+        </h2>
+
+        <p id="finalMessage">
+          Hemos recibido tu información. En un plazo de 2 a 3 días nos contactaremos.
+        </p>
       </div>
 
+      <!-- LOADING -->
       <div class="f-loading" id="fLoading">
         <div class="f-loading-ico">⏳</div>
         <p>Procesando tu diagnóstico...</p>
       </div>
+
     </div>
   </div>
 </div>
@@ -315,41 +577,30 @@
 <!-- FOOTER -->
 <footer>
   <div class="container">
+
     <div class="footer-row">
-      <div><strong style="color:var(--ink)">HerencIAs</strong> · Córdoba, Argentina · <a href="mailto:herencias.asist@gmail.com" style="color:var(--ink-mute)">herencias.asist@gmail.com</a></div>
-      <div>© 2026 HerencIAs. Todos los derechos reservados. <a href="politicas.html" style="color:var(--ink-mute)">Política de privacidad</a></div>
+
+      <div>
+        <strong style="color:var(--ink)">HerencIAs</strong>
+        · Córdoba, Argentina ·
+
+        <a href="mailto:herencias.asist@gmail.com" style="color:var(--ink-mute)">
+          herencias.asist@gmail.com
+        </a>
+      </div>
+
+      <div>
+        © 2026 HerencIAs. Todos los derechos reservados.
+
+        <a href="politicas.html" style="color:var(--ink-mute)">
+          Política de privacidad
+        </a>
+      </div>
+
     </div>
   </div>
 </footer>
 
-<script>
-// Comparativa expandible
-const compareToggle = document.getElementById('compareToggle');
-const compareTableWrap = document.getElementById('compareTableWrap');
-if (compareToggle && compareTableWrap) {
-  compareToggle.addEventListener('click', () => {
-    const isOpen = compareTableWrap.dataset.open === 'true';
-    compareTableWrap.dataset.open = !isOpen;
-    compareToggle.setAttribute('aria-expanded', !isOpen);
-    compareToggle.firstChild.textContent = isOpen
-      ? 'Comparar los tres planes lado a lado '
-      : 'Cerrar comparativa ';
-  });
-}
-
-// Mobile menu toggle
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-  // Cerrar menú al clickear un link
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-}
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="js/diagnostico.js"></script>
 

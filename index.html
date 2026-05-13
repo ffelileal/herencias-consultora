@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HerencIAs · Automatización con IA para PyMEs</title>
-<meta name="description" content="Automatización de procesos con IA para PyMEs argentinas. Asistentes WhatsApp, gestión de leads, reportes automáticos. Diagnóstico gratuito.">
+<meta name="description" content="AutomatizaciÃ³n de procesos con IA para PyMEs argentinas. Asistentes WhatsApp, gestiÃ³n de leads, reportes automÃ¡ticos. DiagnÃ³stico gratuito.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles.css">
@@ -26,12 +26,19 @@
 
       <a href="proceso.html">Cómo funciona</a>
       <a href="#contacto">Contacto</a>
-      <button class="nav-btn" onclick="openModal()">Iniciar diagnóstico</button>
-    </div>
-    <button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
-  </nav>
+      <button type="button" class="nav-btn" data-action="open-modal">
+  Iniciar diagnóstico
+</button>
+
+</div>
+
+<button class="mobile-menu-toggle" id="menuToggle" aria-label="Abrir menú">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M3 6h18M3 12h18M3 18h18"/>
+  </svg>
+</button>
+
+</nav>
 </header>
 
 <!-- HERO -->
@@ -46,24 +53,56 @@
       <a href="#servicios" class="btn-secondary">Ver servicios</a>
     </div>
 
+    <!-- HERO -->
+<section class="hero">
+  <div class="hero-decoration">IA</div>
+
+  <div class="container">
+
+    <div class="kicker reveal d1">
+      Automatización · Inteligencia Artificial
+    </div>
+
+    <h1 class="hero-title reveal d2">
+      Tu empresa funciona.<br>
+      Imaginate que funciona <em>sola.</em>
+    </h1>
+
+    <p class="hero-sub reveal d3">
+      Analizamos cómo trabajás, mapeamos tus procesos y los automatizamos con IA — para que tu equipo se enfoque en lo que realmente genera valor.
+    </p>
+
+    <div class="hero-cta reveal d4">
+      <a href="#contacto" class="btn-primary">
+        Iniciar diagnóstico gratuito →
+      </a>
+
+      <a href="#servicios" class="btn-secondary">
+        Ver servicios
+      </a>
+    </div>
+
     <div class="hero-stats">
+
       <div class="stat">
         <div class="stat-num">5+</div>
         <div class="stat-label">tipos de automatización</div>
       </div>
+
       <div class="stat">
         <div class="stat-num">100%</div>
         <div class="stat-label">soluciones a medida</div>
       </div>
+
       <div class="stat">
         <div class="stat-num">PyMEs</div>
         <div class="stat-label">nuestro foco principal</div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- SERVICIOS -->
 <section id="servicios">
   <div class="container">
     <div class="section-header">
@@ -110,6 +149,7 @@
 </section>
 
 
+
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="container">
@@ -151,10 +191,9 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     MODAL — FORMULARIO DE DIAGNÓSTICO
-══════════════════════════════════════ -->
-<div class="modal-overlay" id="modalOverlay" onclick="overlayClick(event)">
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modal">
 
     <div class="mh">
@@ -162,39 +201,40 @@
         <div>
           <div class="mh-badge">Diagnóstico de procesos</div>
           <h3>Contanos cómo funciona tu negocio</h3>
-          <p>Describí el proceso como si se lo explicaras a alguien de confianza. Sin tecnicismos.</p>
+          <p>Describe el proceso como si se lo explicaras a alguien de confianza. Sin tecnicismos.</p>
         </div>
-        <button class="modal-close" onclick="closeModal()" title="Cerrar">✕</button>
+        <button class="modal-close" type="button" data-action="close-modal" title="Cerrar">✕</button>
       </div>
     </div>
 
     <div class="prog-bar">
-        <div class="progress-track"><div class="prog-fill" id="progressFill"></div></div>
-        <span id="stepLabel" class="step-label">Paso 1 de 3</span>
-      </div>
+      <div class="progress-track"><div class="prog-fill" id="progressFill"></div></div>
+      <span id="stepLabel" class="step-label">Paso 1 de 3</span>
+    </div>
 
-      <div class="step-dots">
-        <div class="step-dot active" id="dot0"></div>
-        <div class="step-dot" id="dot1"></div>
-        <div class="step-dot" id="dot2"></div>
-      </div>
+    <div class="step-dots">
+      <div class="step-dot active" id="dot0"></div>
+      <div class="step-dot" id="dot1"></div>
+      <div class="step-dot" id="dot2"></div>
+    </div>
+
     <div class="fb">
 
       <div class="fs active" id="step1">
         <div class="fs-head">
-          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿Con quién hablamos?</h4>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">Â¿Con quiÃ©n hablamos?</h4>
         </div>
 
         <div class="fc">
           <div class="fc-label"><span class="req">*</span>Tu nombre</div>
-          <input type="text" id="nombre" placeholder="Ej: María González" autocomplete="given-name">
-          <div class="fc-hint" id="err-nombre">Ingresá tu nombre</div>
+          <input type="text" id="nombre" placeholder="Ej: Marí­a Gonzalez" autocomplete="given-name">
+          <div class="fc-hint" id="err-nombre">Ingresa tu nombre</div>
         </div>
 
         <div class="fc">
           <div class="fc-label"><span class="req">*</span>Nombre del negocio</div>
           <input type="text" id="negocio" placeholder="Ej: Inmobiliaria del Centro">
-          <div class="fc-hint" id="err-negocio">Ingresá el nombre del negocio</div>
+          <div class="fc-hint" id="err-negocio">Ingresa el nombre del negocio</div>
         </div>
 
         <div class="fc">
@@ -209,24 +249,24 @@
             </select>
             <input type="tel" id="whatsapp" placeholder="Ej: 3512345678" autocomplete="tel">
           </div>
-          <div class="fc-hint" id="err-whatsapp">Ingresá un número válido</div>
+          <div class="fc-hint" id="err-whatsapp">Ingresa un número válido</div>
         </div>
 
-        <div class="fnav"><div></div><button class="btn-fwd" onclick="goNext(1)">Siguiente →</button></div>
+        <div class="fnav"><div></div><button class="btn-fwd" type="button" data-action="next" data-step="1">Siguiente →’</button></div>
       </div>
 
       <div class="fs" id="step2">
         <div class="fs-head">
-          <h4 style="font-size:1.15rem;margin-bottom:10px;">¿A qué se dedica tu negocio?</h4>
+          <h4 style="font-size:1.15rem;margin-bottom:10px;">Â¿A quÃ© se dedica tu negocio?</h4>
         </div>
 
         <div class="opts-2" id="pillGrid">
-          <label class="pill" onclick="selectPill(this, 'Inmobiliaria')"><input type="radio" name="sector" value="Inmobiliaria" style="display:none;"> 🏠 Inmobiliaria</label>
-          <label class="pill" onclick="selectPill(this, 'Clínica / salud')"><input type="radio" name="sector" value="Clínica / salud" style="display:none;"> 🏥 Clínica / salud</label>
-          <label class="pill" onclick="selectPill(this, 'Alquiler vacacional')"><input type="radio" name="sector" value="Alquiler vacacional" style="display:none;"> 🏖️ Alquiler vacacional</label>
-          <label class="pill" onclick="selectPill(this, 'Comercio / retail')"><input type="radio" name="sector" value="Comercio / retail" style="display:none;"> 🛍️ Comercio / retail</label>
-          <label class="pill" onclick="selectPill(this, 'Estudio contable / legal')"><input type="radio" name="sector" value="Estudio contable / legal" style="display:none;"> 📊 Contable / legal</label>
-          <label class="pill" onclick="selectPill(this, 'Otro')"><input type="radio" name="sector" value="Otro" style="display:none;"> ⚡ Otro rubro</label>
+          <label class="pill" data-action="select-pill" data-value="Inmobiliaria"><input type="radio" name="sector" value="Inmobiliaria" style="display:none;"> 🏠 Inmobiliaria</label>
+          <label class="pill" data-action="select-pill" data-value="Clínica / salud"><input type="radio" name="sector" value="Clínica / salud" style="display:none;"> 🏥 Clínica / salud</label>
+          <label class="pill" data-action="select-pill" data-value="Alquiler vacacional"><input type="radio" name="sector" value="Alquiler vacacional" style="display:none;"> 🏖️ Alquiler vacacional</label>
+          <label class="pill" data-action="select-pill" data-value="Comercio / retail"><input type="radio" name="sector" value="Comercio / retail" style="display:none;"> 🛍️ Comercio / retail</label>
+          <label class="pill" data-action="select-pill" data-value="Estudio contable / legal"><input type="radio" name="sector" value="Estudio contable / legal" style="display:none;"> 📊 Contable / legal</label>
+          <label class="pill" data-action="select-pill" data-value="Otro"><input type="radio" name="sector" value="Otro" style="display:none;"> ⚡ Otro rubro</label>
         </div>
         <div class="fc-hint" id="err-sector">Seleccioná un rubro</div>
 
@@ -236,8 +276,8 @@
         </div>
 
         <div class="fnav">
-          <button class="btn-back" onclick="go(2,1)">← Atrás</button>
-          <button class="btn-fwd" onclick="goNext(2)">Siguiente →</button>
+          <button class="btn-back" type="button" data-action="back" data-step="1">← Atrás</button>
+          <button class="btn-fwd" type="button" data-action="next" data-step="2">Siguiente →</button>
         </div>
       </div>
 
@@ -253,15 +293,15 @@
         </div>
 
         <div class="fnav">
-          <button class="btn-back" onclick="go(3,2)">← Atrás</button>
-          <button class="btn-send" id="submitBtn" onclick="submitForm()" style="flex:1;">Quiero mi diagnóstico →</button>
+          <button class="btn-back" type="button" data-action="back" data-step="2">← Atrás</button>
+          <button class="btn-send" id="submitBtn" type="button" data-action="submit" style="flex:1;">Quiero mi diagnóstico →</button>
         </div>
       </div>
 
       <div class="f-ok" id="fOk">
-        <div class="f-ok-ico">✓</div>
-        <h2>¡Gracias, <span id="successNombre"></span>!</h2>
-        <p id="finalMessage">Hemos recibido tu información. En un plazo de 2 a 3 días nos contactaremos.</p>
+        <div class="f-ok-ico">âœ“</div>
+        <h2>Â¡Gracias, <span id="successNombre"></span>!</h2>
+        <p id="finalMessage">Hemos recibido tu informaciÃ³n. En un plazo de 2 a 3 dÃ­as nos contactaremos.</p>
       </div>
 
       <div class="f-loading" id="fLoading">
@@ -282,36 +322,9 @@
   </div>
 </footer>
 
-<script>
-// Comparativa expandible
-const compareToggle = document.getElementById('compareToggle');
-const compareTableWrap = document.getElementById('compareTableWrap');
-if (compareToggle && compareTableWrap) {
-  compareToggle.addEventListener('click', () => {
-    const isOpen = compareTableWrap.dataset.open === 'true';
-    compareTableWrap.dataset.open = !isOpen;
-    compareToggle.setAttribute('aria-expanded', !isOpen);
-    compareToggle.firstChild.textContent = isOpen
-      ? 'Comparar los tres planes lado a lado '
-      : 'Cerrar comparativa ';
-  });
-}
-
-// Mobile menu toggle
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-  // Cerrar menú al clickear un link
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-}
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="js/diagnostico.js"></script>
 
 </body>
 </html>
+
